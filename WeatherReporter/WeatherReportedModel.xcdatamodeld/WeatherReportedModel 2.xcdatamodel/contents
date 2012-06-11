@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="City" syncable="YES">
+        <attribute name="country" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="City" positionX="160" positionY="192" width="128" height="105"/>
+    </elements>
+</model>
