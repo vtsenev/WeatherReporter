@@ -11,19 +11,20 @@
 
 @class User;
 @class City;
+
 @interface DataManager : NSObject {
     NSManagedObjectModel *model;
     NSManagedObjectContext *context;
 }
 
-+ (DataManager *)defaultManager;
++ (DataManager *)defaultDataManager;
 
 - (NSSet *)fetchCitiesForUser:(NSString *)username;
-- (BOOL)checkPass:(NSString *)pass forUser:(NSString *)user;
-- (User *)fetchUserInfoForUser:(NSString *)user;
+- (BOOL)checkPass:(NSString *)pass forUser:(NSString *)username;
+- (User *)fetchUserInfoForUser:(NSString *)username;
 - (City *)addCity:(City *)cityName;
-- (BOOL)addUser:(User *)userName;
-- (BOOL)removeObject:(NSManagedObject *)managedObj; 
+- (BOOL)addUser:(User *)username;
+- (BOOL)removeObject:(NSManagedObject *)managedObj;
 - (BOOL)updateUser:(NSString *)username;
 
 - (BOOL)saveChanges;

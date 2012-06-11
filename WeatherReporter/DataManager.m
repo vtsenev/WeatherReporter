@@ -7,6 +7,8 @@
 //
 
 #import "DataManager.h"
+#import "User.h"
+#import "City.h"
 
 static DataManager *defaultDataManager = nil;
 
@@ -76,5 +78,75 @@ NSString *pathInDocumentDirectory(NSString *fileName) {
     NSString *documentDirectory = [documentDirectories objectAtIndex:0];
     return [documentDirectory stringByAppendingPathComponent:fileName];
 }
+
+- (NSSet *)fetchCitiesForUser:(NSString *)username {
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
+    [request setEntity:e];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username LIKE %@", username];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if (!result) {
+        [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
+    }
+    User *user = [result lastObject];
+    return [user cities];
+}
+
+- (BOOL)checkPass:(NSString *)passHash forUser:(NSString *)username {
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
+    [request setEntity:e];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(username LIKE %@) AND (password LIKE %@)", username, passHash];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if(!result) {
+        [NSException raise:@"Fetch failed" format:@"Reason %@", [error localizedDescription]];
+    }
+    
+    if([result count] == 0) {
+        return NO;
+    }
+    return YES;
+}
+
+//- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError{
+////    if (inKey == @"userName") {
+////        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+////        NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
+////        [request setEntity:e];
+////        
+////        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username LIKE %@", ioValue];
+////        [request setPredicate:predicate];
+////        
+////        NSError *error;
+////        NSArray *result = [context executeFetchRequest:request error:&error];
+////        
+////        if(!result)
+////        {
+////            [NSException raise:@"Fetch failed" format:@"Reason %@", [error localizedDescription]];
+////        }
+////        
+////        if([result count] == 0 )
+////        {
+////            return NO;
+////        }
+////    }
+////    
+////    return YES;
+//}
+
+//- (User *)fetchUserInfoForUser:(NSString *)username;
+//- (City *)addCity:(City *)cityName;
+//- (BOOL)addUser:(User *)username;
+//- (BOOL)removeObject:(NSManagedObject *)managedObj;
+//- (BOOL)updateUser:(NSString *)username;
+//
+//- (BOOL)saveChanges;
 
 @end
