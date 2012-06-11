@@ -9,5 +9,20 @@
 #import "WeatherResponse.h"
 
 @implementation WeatherResponse
+@synthesize weatherPeriods, basicResponse;
+
+- (void)dealloc {
+    [weatherPeriods release];
+    [basicResponse release];
+    [super dealloc];
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        weatherPeriods = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 @end

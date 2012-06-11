@@ -58,6 +58,8 @@
 		A0E346F61586046200C59EF5 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E346F41586046200C59EF5 /* DatePickerViewController.xib */; };
 		A0E346F91586048A00C59EF5 /* CountyPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */; };
 		A0E347001586051000C59EF5 /* WeatherPeriodCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */; };
+		A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E3470215861DF300C59EF5 /* MapViewController.m */; };
+		A0E3470515861DF300C59EF5 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E3470315861DF300C59EF5 /* MapViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,9 @@
 		A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountyPickerTableViewController.m; sourceTree = "<group>"; };
 		A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriodCustomCell.h; sourceTree = "<group>"; };
 		A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriodCustomCell.m; sourceTree = "<group>"; };
+		A0E3470115861DF300C59EF5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		A0E3470215861DF300C59EF5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		A0E3470315861DF300C59EF5 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,8 +224,8 @@
 				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
 				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
 				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
-				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
-				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
+				A0E3470115861DF300C59EF5 /* MapViewController.h */,
+				A0E3470215861DF300C59EF5 /* MapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -233,6 +238,9 @@
 				A08569D915820DE500B06FA2 /* ProfileViewController.xib */,
 				A0E346EF1586043100C59EF5 /* LoginViewController.xib */,
 				A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */,
+				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
+				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
+				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -478,6 +486,7 @@
 				A0E346EC1586041D00C59EF5 /* RegisterUserViewController.xib in Resources */,
 				A0E346F11586043100C59EF5 /* LoginViewController.xib in Resources */,
 				A0E346F61586046200C59EF5 /* DatePickerViewController.xib in Resources */,
+				A0E3470515861DF300C59EF5 /* MapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +555,7 @@
 				A0E346F51586046200C59EF5 /* DatePickerViewController.m in Sources */,
 				A0E346F91586048A00C59EF5 /* CountyPickerTableViewController.m in Sources */,
 				A0E347001586051000C59EF5 /* WeatherPeriodCustomCell.m in Sources */,
+				A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

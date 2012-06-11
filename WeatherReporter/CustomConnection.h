@@ -14,7 +14,8 @@
 @interface CustomConnection : NSURLConnection
 
 @property (nonatomic, retain) CustomRequest *customRequest;
-@property (nonatomic, assign) id<CustomConnectionDelegate> viewControllerDelegate;
+@property (nonatomic, assign) NSMutableArray *delegates;
 @property (nonatomic, retain) NSData *receivedData;
+@property (nonatomic, retain) NSString *connectionTag;
 
 @end

@@ -12,7 +12,7 @@
 
 @protocol BasicParserDelegate <NSObject>
 
-- (void)parserDidSucceedWithData:(NSObject *)parsedData;
-- (void)parserDidFailWithError:(NSString *)errorMessage;
+- (void)parserDidSucceedWithData:(NSObject *)parsedData withConnectionTag:(NSString *)connectionTag;
+- (void)parserDidFailWithError:(NSString *)errorMessage withConnectionTag:(NSString *)connectionTag;
 
 @end

@@ -12,9 +12,9 @@
 
 @interface ConnectionManager : NSObject <BasicParserDelegate>
 
-+ (ConnectionManager *)defaultManager;
++ (ConnectionManager *)defaultConnectionManager;
 
-- (void)createConnectionForViewController:(id<CustomConnectionDelegate> *)viewController
-                                 forLocation:(NSString *)location;
+- (void)getForecastForLocation:(NSString *)location
+                  withDelegate:(id<CustomConnectionDelegate>)delegate;
 
 @end

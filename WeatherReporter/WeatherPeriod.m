@@ -10,4 +10,23 @@
 
 @implementation WeatherPeriod
 
+@synthesize location, currentTemp, minTemp, maxTemp, date, conditions, iconURL, detailedForecast;
+
+- (void)dealloc {
+    [location release];
+    [currentTemp release];
+    [minTemp release];
+    [maxTemp release];
+    [date release];
+    [conditions release];
+    [iconURL release];
+    [detailedForecast release];
+    [super dealloc];
+}
+
+- (id)init {
+    self = [super init];
+    return self;
+}
+
 @end

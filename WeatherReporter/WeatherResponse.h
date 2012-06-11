@@ -12,5 +12,6 @@
 @interface WeatherResponse : BasicResponse
 
 @property (nonatomic, retain) NSMutableArray *weatherPeriods;
+@property (nonatomic, retain) BasicResponse *basicResponse;
 
 @end

@@ -9,5 +9,18 @@
 #import "BasicResponse.h"
 
 @implementation BasicResponse
+@synthesize errorMessage, isSuccessful;
+
+- (void)dealloc{
+
+    [errorMessage release];
+    [super dealloc];
+}
+
+
+- (id)init {
+    self = [super init];
+    return self;
+}
 
 @end

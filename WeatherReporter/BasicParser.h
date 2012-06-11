@@ -13,7 +13,11 @@
 
 @interface BasicParser : SBJsonParser
 
-- (BasicResponse *)parseResponseWithString:(NSString *)dataString
-                                withDelegate:(id<BasicParserDelegate>)delegate;
+@property (nonatomic, retain) BasicResponse *basicResponse;
+@property (nonatomic, retain) NSDictionary *parsedData;
+
+- (void)parseResponseWithString:(NSString *)dataString
+                                withDelegate:(id<BasicParserDelegate>)delegate
+                                withConnectionTag:(NSString *)connectionTag;
 
 @end

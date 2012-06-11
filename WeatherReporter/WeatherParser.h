@@ -12,8 +12,8 @@
 
 @interface WeatherParser : BasicParser
 
-- (WeatherResponse *)parseResponseWithString:(NSString *)dataString
-                              withDelegate:(id<BasicParserDelegate>)delegate;
-
+- (void)parseResponseWithString:(NSString *)dataString
+                              withDelegate:(id<BasicParserDelegate>)delegate
+                         withConnectionTag:(NSString *)connectionTag;
 
 @end

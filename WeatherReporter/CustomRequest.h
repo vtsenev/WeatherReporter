@@ -13,4 +13,6 @@
 
 @property (nonatomic, retain) BasicParser *basicParser;
 
+- (id)initWithURL:(NSURL *)URL cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval parser:(BasicParser *)parser;
+
 @end

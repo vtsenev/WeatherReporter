@@ -12,11 +12,11 @@
 
 @property (nonatomic, retain) NSString *location;
 @property (nonatomic, retain) NSString *date;
-@property (nonatomic, retain) NSString *currentTemp;
 @property (nonatomic, retain) NSString *minTemp;
 @property (nonatomic, retain) NSString *maxTemp;
 @property (nonatomic, retain) NSString *conditions;
 @property (nonatomic, retain) NSString *iconURL;
 @property (nonatomic, retain) NSString *detailedForecast;
+@property (nonatomic, retain) NSString *currentTemp;
 
 @end
