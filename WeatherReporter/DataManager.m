@@ -55,7 +55,7 @@ static DataManager *defaultDataManager = nil;
     
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     
-    NSString *path = pathInDocumentDirectory(@"db.data");
+    NSString *path = [self pathInDocumentDirectory:@"db.data"];
     NSURL *storeURL = [NSURL fileURLWithPath:path];
     
     NSError *error = nil;
@@ -73,7 +73,7 @@ static DataManager *defaultDataManager = nil;
     return self;
 }
 
-NSString *pathInDocumentDirectory(NSString *fileName) {
+- (NSString *)pathInDocumentDirectory:(NSString *)fileName {
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [documentDirectories objectAtIndex:0];
     return [documentDirectory stringByAppendingPathComponent:fileName];
@@ -116,37 +116,61 @@ NSString *pathInDocumentDirectory(NSString *fileName) {
 }
 
 //- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError{
-////    if (inKey == @"userName") {
-////        NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-////        NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
-////        [request setEntity:e];
-////        
-////        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username LIKE %@", ioValue];
-////        [request setPredicate:predicate];
-////        
-////        NSError *error;
-////        NSArray *result = [context executeFetchRequest:request error:&error];
-////        
-////        if(!result)
-////        {
-////            [NSException raise:@"Fetch failed" format:@"Reason %@", [error localizedDescription]];
-////        }
-////        
-////        if([result count] == 0 )
-////        {
-////            return NO;
-////        }
-////    }
-////    
-////    return YES;
-//}
 
-//- (User *)fetchUserInfoForUser:(NSString *)username;
-//- (City *)addCity:(City *)cityName;
-//- (BOOL)addUser:(User *)username;
-//- (BOOL)removeObject:(NSManagedObject *)managedObj;
-//- (BOOL)updateUser:(NSString *)username;
-//
-//- (BOOL)saveChanges;
+- (User *)fetchUserForUsername:(NSString *)username {
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
+    [request setEntity:e];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"username LIKE %@", username];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if(!result) {
+        [NSException raise:@"Fetch failed" format:@"Reason %@", [error localizedDescription]];
+    }
+    
+    return [result lastObject];
+}
+
+- (BOOL)addCity:(City *)newCity
+      forUsername:(NSString *)username {
+    City *c = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
+    c = [[newCity retain] autorelease];
+    User *user = [self fetchUserForUsername:username];
+    
+    NSMutableSet *cities = [user mutableSetValueForKey:@"cities"];
+    [cities addObject:c];
+    
+    return [self saveChanges];
+}
+
+- (BOOL)addUser:(User *)newUser {
+    User *u = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    u = [[newUser retain] autorelease];
+    
+    return [self saveChanges];
+}
+
+- (BOOL)removeObject:(NSManagedObject *)managedObj {
+    [context deleteObject:managedObj];
+    return [self saveChanges];
+}
+
+- (BOOL)updateUser:(User *)user {
+    User *u = [self fetchUserForUsername:user.userName];
+    u = [[user retain] autorelease];
+    return [self saveChanges];
+}
+
+- (BOOL)saveChanges {
+    NSError *err = nil;
+    BOOL successful = [context save:&err];
+    if (!successful) {
+        NSLog(@"Error saving: %@", [err localizedDescription]);
+    }
+    return successful;
+}
 
 @end

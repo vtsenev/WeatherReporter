@@ -199,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				A0B14239158201B400378DE6 /* WeatherReportedModel.xcdatamodeld */,
+				A0E346E0158601E500C59EF5 /* WeatherPeriod.h */,
+				A0E346E1158601E500C59EF5 /* WeatherPeriod.m */,
 				A08569E915822C7100B06FA2 /* User.h */,
 				A08569EA15822C7100B06FA2 /* User.m */,
 				A08569EC15822C8900B06FA2 /* City.h */,
@@ -273,8 +275,6 @@
 				A078771C15825C8F00E62525 /* CustomConnection.m */,
 				A078771E15825F8800E62525 /* BasicParserDelegate.h */,
 				A0787727158262AD00E62525 /* CustomConnectionDelegate.h */,
-				A0E346E0158601E500C59EF5 /* WeatherPeriod.h */,
-				A0E346E1158601E500C59EF5 /* WeatherPeriod.m */,
 			);
 			name = "Web Service";
 			sourceTree = "<group>";
