@@ -7,38 +7,66 @@
 //
 
 #import "AddCityViewController.h"
+#import "City.h"
+#import "DataManager.h"
 
 @interface AddCityViewController ()
 
 @end
 
 @implementation AddCityViewController
+@synthesize city;
+@synthesize cityNameField;
+@synthesize countryField;
+@synthesize latitudeField;
+@synthesize longitudeField;
+@synthesize delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (void)dealloc {
+    [city release];
+    [cityNameField release];
+    [countryField release];
+    [latitudeField release];
+    [longitudeField release];
+    [super dealloc];
+}
+
+- (void)viewDidUnload {
+    [self setCity:nil];
+    [self setCityNameField:nil];
+    [self setCountryField:nil];
+    [self setLatitudeField:nil];
+    [self setLongitudeField:nil];
+    [super viewDidUnload];
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (IBAction)addCity:(id)sender {
+    [self updateCity];
+    if ([self.delegate respondsToSelector:@selector(didUpdateCity:)]) {
+        [self.delegate didUpdateCity:self.city];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)updateCity {
+    self.city.name = self.cityNameField.text;
+    self.city.country = self.countryField.text;
+    self.city.latitude = [NSDecimalNumber decimalNumberWithString:self.latitudeField.text];
+    self.city.longitude = [NSDecimalNumber decimalNumberWithString:self.longitudeField.text];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    BOOL success = [textField resignFirstResponder];
+    return success;
 }
 
 @end

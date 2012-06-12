@@ -147,16 +147,14 @@ static DataManager *defaultDataManager = nil;
     }
 }
 
-- (BOOL)addCity:(City *)newCity
-      forUsername:(NSString *)username {
+- (City *)addCityForUsername:(NSString *)username {
     City *c = [NSEntityDescription insertNewObjectForEntityForName:@"City" inManagedObjectContext:context];
-    c = [[newCity retain] autorelease];
     User *user = [self fetchUserForUsername:username];
     
     NSMutableSet *cities = [user mutableSetValueForKey:@"cities"];
     [cities addObject:c];
     
-    return YES;
+    return c;
 }
 
 - (User *)addUser {
@@ -170,9 +168,8 @@ static DataManager *defaultDataManager = nil;
 }
 
 - (void)updateUser:(User *)user {
-    User *u = [self fetchUserForUsername:user.username];
-    u = [[user retain] autorelease];
-    NSLog(@"%@, %@, %@, %@, %@", u.username, u.firstName, u.lastName, u.birthdayDate, u.password);
+//    User *u = [self fetchUserForUsername:user.username];
+//    u = [[user retain] autorelease];
 }
 
 - (BOOL)saveChanges {

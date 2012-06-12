@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddCityDelegate.h"
 
-@interface AddCityViewController : UIViewController
+@class City;
+
+@interface AddCityViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic, retain) City *city;
+@property (retain, nonatomic) IBOutlet UITextField *cityNameField;
+@property (retain, nonatomic) IBOutlet UITextField *countryField;
+@property (retain, nonatomic) IBOutlet UITextField *latitudeField;
+@property (retain, nonatomic) IBOutlet UITextField *longitudeField;
+@property (nonatomic, assign) id<AddCityDelegate> delegate;
+
+- (IBAction)addCity:(id)sender;
 
 @end

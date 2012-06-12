@@ -11,6 +11,7 @@
 #import "City.h"
 #import "User.h"
 #import "LoginViewController.h"
+#import "AddCityViewController.h"
 
 @interface WeatherTableViewController ()
 
@@ -63,16 +64,7 @@
     [self.tableView setTableHeaderView:searchBar];
     [searchBar release];
     
-    self.tableData = [[NSMutableArray alloc] init];
-    [tableData release];
-}
-
-- (void)loginDidSucceedWithUser:(User *)theUser {
-    self.user = theUser;
-    NSSet *citiesForCurrentUser = [[DataManager defaultDataManager] fetchCitiesForUserWithUsername:self.user.username];
-    self.tableData = [NSArray arrayWithArray:[citiesForCurrentUser allObjects]];
-    
-    [self.tableView reloadData];
+    tableData = [[NSMutableArray alloc] init];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -80,7 +72,35 @@
 }
 
 - (void)addCity {
-    // ... 
+    City *newCity = [[DataManager defaultDataManager] addCityForUsername:self.user.username];
+    AddCityViewController *addCityViewController = [[AddCityViewController alloc] initWithNibName:@"AddCityViewController" bundle:nil];
+    addCityViewController.city = newCity;
+    addCityViewController.delegate = self;
+    
+    [self.navigationController pushViewController:addCityViewController animated:YES];
+    [addCityViewController release];
+}
+
+# pragma mark - AddCityDelegate methods
+
+- (void)didUpdateCity:(City *)theCity {
+    [self.tableData addObject:theCity];
+    [self.tableView reloadData];
+}
+
+- (void)didCancelCity:(City *)theCity {
+    [[DataManager defaultDataManager] removeObject:theCity];
+    [self.tableView reloadData];
+}
+
+# pragma mark - LoginViewControllerDelegate methods
+
+- (void)loginDidSucceedWithUser:(User *)theUser {
+    self.user = theUser;
+    NSSet *citiesForCurrentUser = [[DataManager defaultDataManager] fetchCitiesForUserWithUsername:self.user.username];
+    self.tableData = [NSMutableArray arrayWithArray:[citiesForCurrentUser allObjects]];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -96,9 +116,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"] autorelease];
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    // Configure the cell...
-    
+    NSString *cityName = [[self.tableData objectAtIndex:[indexPath row]] name];
+    [cell.textLabel setText:cityName];
     return cell;
 }
 

@@ -23,7 +23,7 @@
 - (BOOL)checkIfUserExistsWithUsername:(NSString *)username;
 - (BOOL)checkPass:(NSString *)passHash forUsername:(NSString *)username;
 - (User *)fetchUserForUsername:(NSString *)username;
-- (BOOL)addCity:(City *)newCity forUsername:(NSString *)username;
+- (City *)addCityForUsername:(NSString *)username;
 - (User *)addUser;
 - (BOOL)removeObject:(NSManagedObject *)managedObj;
 - (void)updateUser:(User *)user;

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewControllerDelegate.h"
+#import "AddCityDelegate.h"
 
 @class User;
 
-@interface WeatherTableViewController : UITableViewController <UISearchBarDelegate, LoginViewControllerDelegate>
+@interface WeatherTableViewController : UITableViewController <UISearchBarDelegate, LoginViewControllerDelegate, AddCityDelegate>
 
 @property (retain, nonatomic) NSMutableArray *tableData;
 @property (retain, nonatomic) UISearchBar *theSearchBar;

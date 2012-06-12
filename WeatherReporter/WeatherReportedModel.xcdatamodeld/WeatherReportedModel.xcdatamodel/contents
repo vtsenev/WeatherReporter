@@ -16,7 +16,7 @@
         <relationship name="cities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="City" inverseName="users" inverseEntity="City" syncable="YES"/>
     </entity>
     <elements>
-        <element name="City" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="User" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="City" positionX="7" positionY="222" width="128" height="120"/>
+        <element name="User" positionX="-198" positionY="207" width="128" height="135"/>
     </elements>
 </model>
