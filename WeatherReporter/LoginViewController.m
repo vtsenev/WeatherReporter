@@ -53,7 +53,16 @@
 - (IBAction)login:(id)sender {
     User *user = [[DataManager defaultDataManager] fetchUserForUsername:self.usernameField.text];
     if (!user) {
-        // show alert user doesn't exist
+        
+        NSString *wrongUsername = [NSString stringWithFormat:@"Username: \"%@\" doesn't exist!", self.usernameField.text];
+        
+        UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong username" message:wrongUsername delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [wrongUserAllertView show];
+        [wrongUserAllertView release];
+        
+        NSLog(@"Incorrect username!");
+        
     } else {
         BOOL isPasswordCorrect = [user.password isEqualToString:self.passwordField.text]; // pass should be hashed
         if (isPasswordCorrect) {
@@ -63,8 +72,13 @@
                 NSLog(@"Correct user data!");
             }
         } else {
-            // alert password incorrect
-            NSLog(@"Incorrect user data!");
+            
+            UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong password" message:@"Incorrect Password!.\n Try Again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [wrongUserAllertView show];
+            [wrongUserAllertView release];
+            
+            NSLog(@"Incorrect user password!");
         }
     }
 }
