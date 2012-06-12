@@ -12,7 +12,7 @@
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
         <attribute name="password" attributeType="String" syncable="YES"/>
-        <attribute name="userName" attributeType="String" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="cities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="City" inverseName="users" inverseEntity="City" syncable="YES"/>
     </entity>
     <elements>

@@ -55,7 +55,7 @@ static DataManager *defaultDataManager = nil;
     
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     
-    NSString *path = [self pathInDocumentDirectory:@"db.data"];
+    NSString *path = [self pathInDocumentDirectory:@"db.sqlite"];
     NSURL *storeURL = [NSURL fileURLWithPath:path];
     
     NSError *error = nil;
@@ -79,7 +79,7 @@ static DataManager *defaultDataManager = nil;
     return [documentDirectory stringByAppendingPathComponent:fileName];
 }
 
-- (NSSet *)fetchCitiesForUser:(NSString *)username {
+- (NSSet *)fetchCitiesForUserWithUsername:(NSString *)username {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
     [request setEntity:e];
@@ -95,7 +95,7 @@ static DataManager *defaultDataManager = nil;
     return [user cities];
 }
 
-- (BOOL)checkPass:(NSString *)passHash forUser:(NSString *)username {
+- (BOOL)checkPass:(NSString *)passHash forUsername:(NSString *)username {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
     [request setEntity:e];
@@ -117,6 +117,15 @@ static DataManager *defaultDataManager = nil;
 
 //- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError{
 
+- (BOOL)checkIfUserExistsWithUsername:(NSString *)username {
+    User *user = [self fetchUserForUsername:username];
+    if (user) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (User *)fetchUserForUsername:(NSString *)username {
     NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *e = [[model entitiesByName] objectForKey:@"User"];
@@ -131,7 +140,11 @@ static DataManager *defaultDataManager = nil;
         [NSException raise:@"Fetch failed" format:@"Reason %@", [error localizedDescription]];
     }
     
-    return [result lastObject];
+    if ([result count] == 1) {
+        return [result lastObject];
+    } else {
+        return nil;
+    }
 }
 
 - (BOOL)addCity:(City *)newCity
@@ -143,14 +156,12 @@ static DataManager *defaultDataManager = nil;
     NSMutableSet *cities = [user mutableSetValueForKey:@"cities"];
     [cities addObject:c];
     
-    return [self saveChanges];
+    return YES;
 }
 
-- (BOOL)addUser:(User *)newUser {
+- (User *)addUser {
     User *u = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-    u = [[newUser retain] autorelease];
-    
-    return [self saveChanges];
+    return u;
 }
 
 - (BOOL)removeObject:(NSManagedObject *)managedObj {
@@ -158,10 +169,10 @@ static DataManager *defaultDataManager = nil;
     return [self saveChanges];
 }
 
-- (BOOL)updateUser:(User *)user {
-    User *u = [self fetchUserForUsername:user.userName];
+- (void)updateUser:(User *)user {
+    User *u = [self fetchUserForUsername:user.username];
     u = [[user retain] autorelease];
-    return [self saveChanges];
+    NSLog(@"%@, %@, %@, %@, %@", u.username, u.firstName, u.lastName, u.birthdayDate, u.password);
 }
 
 - (BOOL)saveChanges {

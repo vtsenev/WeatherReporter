@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
-@interface RegisterUserViewController : UIViewController
+@interface RegisterUserViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>
+
+@property (retain, nonatomic) User *user;
+@property (retain, nonatomic) IBOutlet UITextField *usernameField;
+@property (retain, nonatomic) IBOutlet UITextField *firstnameField;
+@property (retain, nonatomic) IBOutlet UITextField *lastnameField;
+@property (retain, nonatomic) IBOutlet UITextField *dateOfBirthField;
+
+@property (retain, nonatomic) UITextField *passwordField;
+@property (retain, nonatomic) UITextField *confirmPasswordField;
+
+- (IBAction)registerNewUser:(id)sender;
 
 @end

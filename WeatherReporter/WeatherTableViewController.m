@@ -7,6 +7,10 @@
 //
 
 #import "WeatherTableViewController.h"
+#import "DataManager.h"
+#import "City.h"
+#import "User.h"
+#import "LoginViewController.h"
 
 @interface WeatherTableViewController ()
 
@@ -16,17 +20,20 @@
 
 @synthesize tableData;
 @synthesize theSearchBar;
+@synthesize user;
 
 - (void)dealloc {
+    [user release];
     [tableData release];
     [theSearchBar release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
+    [self setUser:nil];
     [self setTableData:nil];
     [self setTheSearchBar:nil];
+    [super viewDidUnload];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -55,6 +62,17 @@
     
     [self.tableView setTableHeaderView:searchBar];
     [searchBar release];
+    
+    self.tableData = [[NSMutableArray alloc] init];
+    [tableData release];
+}
+
+- (void)loginDidSucceedWithUser:(User *)theUser {
+    self.user = theUser;
+    NSSet *citiesForCurrentUser = [[DataManager defaultDataManager] fetchCitiesForUserWithUsername:self.user.username];
+    self.tableData = [NSArray arrayWithArray:[citiesForCurrentUser allObjects]];
+    
+    [self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -62,7 +80,7 @@
 }
 
 - (void)addCity {
-    // ...
+    // ... 
 }
 
 #pragma mark - Table view data source
@@ -72,11 +90,10 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [self.tableData count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -126,8 +143,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];

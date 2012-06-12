@@ -81,6 +81,7 @@
 		A078771C15825C8F00E62525 /* CustomConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomConnection.m; sourceTree = "<group>"; };
 		A078771E15825F8800E62525 /* BasicParserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicParserDelegate.h; sourceTree = "<group>"; };
 		A0787727158262AD00E62525 /* CustomConnectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomConnectionDelegate.h; sourceTree = "<group>"; };
+		A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewControllerDelegate.h; sourceTree = "<group>"; };
 		A08569CF15820B6900B06FA2 /* WeatherReportedModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WeatherReportedModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		A08569D715820DE500B06FA2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		A08569D815820DE500B06FA2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
@@ -228,6 +229,7 @@
 				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
 				A0E3470115861DF300C59EF5 /* MapViewController.h */,
 				A0E3470215861DF300C59EF5 /* MapViewController.m */,
+				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

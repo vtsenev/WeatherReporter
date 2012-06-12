@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginViewControllerDelegate.h"
 
-@interface LoginViewController : UIViewController
+@class User;
+@class WeatherTableViewController;
+
+@interface LoginViewController : UIViewController <UITextFieldDelegate>
+
+@property (retain, nonatomic) IBOutlet UITextField *usernameField;
+@property (retain, nonatomic) IBOutlet UITextField *passwordField;
+@property (nonatomic, assign) id<LoginViewControllerDelegate> delegate;
+
+- (IBAction)login:(id)sender;
+- (IBAction)registerNewUser:(id)sender;
 
 @end

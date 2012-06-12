@@ -19,13 +19,14 @@
 
 + (DataManager *)defaultDataManager;
 
-- (NSSet *)fetchCitiesForUser:(NSString *)username;
-- (BOOL)checkPass:(NSString *)passHash forUser:(NSString *)username;
+- (NSSet *)fetchCitiesForUserWithUsername:(NSString *)username;
+- (BOOL)checkIfUserExistsWithUsername:(NSString *)username;
+- (BOOL)checkPass:(NSString *)passHash forUsername:(NSString *)username;
 - (User *)fetchUserForUsername:(NSString *)username;
 - (BOOL)addCity:(City *)newCity forUsername:(NSString *)username;
-- (BOOL)addUser:(User *)newUser;
+- (User *)addUser;
 - (BOOL)removeObject:(NSManagedObject *)managedObj;
-- (BOOL)updateUser:(User *)user;
+- (void)updateUser:(User *)user;
 
 - (BOOL)saveChanges;
 
