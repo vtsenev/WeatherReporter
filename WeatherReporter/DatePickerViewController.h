@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DatePickerViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UIDatePicker *datePickerController;
+- (IBAction)cancelDatePicker:(id)sender;
+- (IBAction)addDate:(id)sender;
 
 @end

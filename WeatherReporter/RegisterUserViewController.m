@@ -7,6 +7,7 @@
 //
 
 #import "RegisterUserViewController.h"
+#import "DatePickerViewController.h"
 #import "DataManager.h"
 #import "User.h"
 
@@ -140,5 +141,16 @@
     return YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //If we begin editing in dateOfBirthField
+    if(textField.tag == 1)
+    {
+        [textField resignFirstResponder];
+        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+        [self presentModalViewController:datePickerViewController animated:YES];
+    }
+    
+}
 
 @end

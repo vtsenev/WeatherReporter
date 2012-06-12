@@ -13,6 +13,7 @@
 @end
 
 @implementation DatePickerViewController
+@synthesize datePickerController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +32,7 @@
 
 - (void)viewDidUnload
 {
+    [self setDatePickerController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -41,4 +43,17 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [datePickerController release];
+    [super dealloc];
+}
+- (IBAction)cancelDatePicker:(id)sender {
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)addDate:(id)sender {
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end
