@@ -62,30 +62,42 @@
 
 - (IBAction)registerNewUser:(id)sender {
     
-    BOOL isUsernameExists = [[DataManager defaultDataManager] checkIfUserExistsWithUsername:self.usernameField.text];
     
-    if (isUsernameExists) {
+    if ([self.usernameField.text isEqualToString:@""] || [self.firstnameField.text isEqualToString:@""] ||
+            [self.lastnameField.text isEqualToString:@""] || [self.dateOfBirthField.text isEqualToString:@""]){
         
-        NSString *existingUsername = [NSString stringWithFormat:@"Username: \"%@\" already exists!", self.usernameField.text];
+        UIAlertView *emptyRequiredAllertView = [[UIAlertView alloc] initWithTitle:@"Empty Required Fileds!" message:@"Fill in required fields!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
-        UIAlertView *existingUsernameAllertView = [[UIAlertView alloc] initWithTitle:@"Username Already Exists" message:existingUsername delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [emptyRequiredAllertView show];
+        [emptyRequiredAllertView release];
+    }
+    else{
         
-        [existingUsernameAllertView show];
-        [existingUsernameAllertView release];
+        BOOL isUsernameExists = [[DataManager defaultDataManager] checkIfUserExistsWithUsername:self.usernameField.text];
         
-        NSLog(@"Incorrect username!");
-        
-    } else {
-        
-        User *newUser = [[DataManager defaultDataManager] addUser];
-        
-        newUser.username = self.usernameField.text;
-        newUser.firstName = self.firstnameField.text;
-        newUser.lastName = self.lastnameField.text;
-        newUser.birthdayDate = [NSDate date];
-        
-        self.user = newUser;
-        [self displayPasswordAlertView];
+        if (isUsernameExists) {
+            
+            NSString *existingUsername = [NSString stringWithFormat:@"Username: \"%@\" already exists!", self.usernameField.text];
+            
+            UIAlertView *existingUsernameAllertView = [[UIAlertView alloc] initWithTitle:@"Username Already Exists" message:existingUsername delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [existingUsernameAllertView show];
+            [existingUsernameAllertView release];
+            
+            NSLog(@"Incorrect username!");
+            
+        } else {
+            
+            User *newUser = [[DataManager defaultDataManager] addUser];
+            
+            newUser.username = self.usernameField.text;
+            newUser.firstName = self.firstnameField.text;
+            newUser.lastName = self.lastnameField.text;
+            newUser.birthdayDate = [NSDate date];
+            
+            self.user = newUser;
+            [self displayPasswordAlertView];
+        }
     }
 }
 
@@ -127,5 +139,6 @@
     }
     return YES;
 }
+
 
 @end

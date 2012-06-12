@@ -1,7 +1,6 @@
 todo:
 
 Login Screen:
-- check the mandatory fields when regestering: username, fistName, lastName, Date.
 - date of birth View Controller
 - md5 hashing the password
 
