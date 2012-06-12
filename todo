@@ -1,0 +1,15 @@
+todo:
+
+Login Screen:
+- when registering check if username exists
+- alert when username and password don't match
+- date of birth stuff...
+- md5 hashing the password
+
+Weather TableView:
+- everything...
+
+Additional:
+1. rocking view animation when passwords don't match
+2. adding user info in device settings
+3. searchbar behavior - show up when you swipe down
