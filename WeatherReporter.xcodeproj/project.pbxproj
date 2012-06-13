@@ -78,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerControllerDelegate.h; sourceTree = "<group>"; };
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
 		A078771815825B8A00E62525 /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherParser.h; sourceTree = "<group>"; };
@@ -244,6 +245,7 @@
 				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
 				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
+				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
