@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DatePickerControllerDelegate.h"
-
 @class User;
 
-@interface RegisterUserViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, DatePickerControllerDelegate>
+@interface RegisterUserViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (retain, nonatomic) User *user;
 @property (retain, nonatomic) IBOutlet UITextField *usernameField;
@@ -19,7 +17,6 @@
 @property (retain, nonatomic) IBOutlet UITextField *lastnameField;
 @property (retain, nonatomic) IBOutlet UITextField *dateOfBirthField;
 
-@property (retain, nonatomic) NSDate * birthdayDate;
 @property (retain, nonatomic) UITextField *passwordField;
 @property (retain, nonatomic) UITextField *confirmPasswordField;
 
