@@ -70,7 +70,7 @@ static DataManager *defaultDataManager = nil;
     
     [context setUndoManager:nil];
     
-    countries = [[NSArray alloc] initWithObjects:@"Bulgaria", @"France", @"The United Kingdom", @"USA", nil];
+    countries = [[NSArray alloc] initWithObjects:@"Bulgaria", @"France", @"UK", nil];
     
     return self;
 }

@@ -7,26 +7,45 @@
 //
 
 #import "WeatherPeriodsViewController.h"
+#import "ConnectionManager.h"
+#import "WeatherResponse.h"
+#import "WeatherPeriod.h"
 
 @interface WeatherPeriodsViewController ()
 
 @end
 
 @implementation WeatherPeriodsViewController
+@synthesize cityName, country, tableData;
+
+- (void)dealloc {
+    [tableData release];
+    [cityName release];
+    [country release];
+    [super dealloc];
+}
+
+- (void)viewDidUnload {
+    [self setTableData:nil];
+    [self setCityName:nil];
+    [self setCountry:nil];
+    [super viewDidUnload];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+        tableData = [[NSArray alloc] init];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
+    NSString *title = [NSString stringWithFormat:@"%@, %@", self.cityName, self.country];
+    [self.navigationItem setTitle:title];
+    
+    [[ConnectionManager defaultConnectionManager] getForecastForCity:cityName inCountry:country withDelegate:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -40,30 +59,57 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [self.tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"] autorelease];
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    // Configure the cell...
+    WeatherPeriod *weatherPeriod = [self.tableData objectAtIndex:[indexPath row]];
+    [cell.textLabel setText:[weatherPeriod date]];
+    NSString *minMaxTemp = [NSString stringWithFormat:@"Low: %@, High: %@", [weatherPeriod minTemp], [weatherPeriod maxTemp]];
+    [cell.detailTextLabel setText:minMaxTemp];
+    
+    NSURL *iconURL = [NSURL URLWithString:[weatherPeriod iconURL]];
+    NSData *iconData = [NSData dataWithContentsOfURL:iconURL];
+    UIImage *img = [[UIImage alloc] initWithData:iconData];
+    [cell.imageView setImage:img];
+
+    CGRect labelFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 120, 7, 90, cell.frame.size.height - 14);
+    UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setNumberOfLines:2];
+    [label setFont:[UIFont boldSystemFontOfSize:13]];
+    [label setTextColor:[UIColor darkGrayColor]];
+    [label setText:[weatherPeriod conditions]];
+    [cell addSubview:label];
+    [label release];
     
     return cell;
 }
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+}
+
+# pragma mark - CustomConnectionDelegate
+
+- (void)connectionDidFailWithError:(NSString *)errorMessage {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection error" message:errorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    [alertView release];
+}
+
+- (void)connectionDidSucceedWithParsedData:(NSObject *)parsedData {
+    WeatherResponse *weatherResponse = (WeatherResponse *)parsedData;
+    self.tableData = weatherResponse.weatherPeriods;
+    [self.tableView reloadData];
 }
 
 @end

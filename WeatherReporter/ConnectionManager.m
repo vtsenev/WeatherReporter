@@ -19,7 +19,7 @@ NSString * const kGetForecastTag = @"GetForecast+%@";
 @property (nonatomic, retain) NSMutableData *receivedData;
 @property (retain, nonatomic) NSMutableDictionary *connectionDict;
 
-- (NSURL *)createURLForLocation:(NSString *)theLocation;
+- (NSURL *)createURLForCity:(NSString *)city inCountry:(NSString *)country;
 
 @end
 
@@ -64,28 +64,26 @@ static ConnectionManager *defaultConnectionManager = nil;
         return defaultConnectionManager;
     }
     self = [super init];
-    
     connectionDict = [[NSMutableDictionary alloc] init];
-    
     return self;
 }
 
-- (NSURL *)createURLForLocation:(NSString *)theLocation {
+- (NSURL *)createURLForCity:(NSString *)city inCountry:(NSString *)country {
     NSString *requestKey = @"93ab1f111d91a7bd";
-    NSString *requestStr = [NSString stringWithFormat:@"http://api.wunderground.com/api/%@/conditions/forecast/q/%@.json", requestKey, theLocation];
+    NSString *requestStr = [NSString stringWithFormat:@"http://api.wunderground.com/api/%@/conditions/forecast/q/%@/%@.json", requestKey, country, city];
     NSURL *url = [NSURL URLWithString:requestStr];
     return url;
-}
+} 
 
-- (void)getForecastForLocation:(NSString *)location
-                  withDelegate:(id<CustomConnectionDelegate>)delegate {
-    NSString *tagString = [NSString stringWithFormat:kGetForecastTag, location];
+- (void)getForecastForCity:(NSString *)city inCountry:(NSString *)country
+              withDelegate:(id<CustomConnectionDelegate>)delegate {
+    NSString *tagString = [NSString stringWithFormat:kGetForecastTag, city];
     CustomConnection *customConnection = [connectionDict objectForKey:tagString];
     
     if (!customConnection) {
         WeatherParser *weatherParser = [[WeatherParser alloc] init];
-        
-        CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createURLForLocation:location] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:weatherParser];
+
+        CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:weatherParser];
         
         CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
         [newConnection.delegates addObject:delegate];
@@ -108,7 +106,7 @@ static ConnectionManager *defaultConnectionManager = nil;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response  {
     NSLog(@"Request received response.");
-    self.receivedData = [[[NSMutableData alloc] init] autorelease];
+    receivedData = [[NSMutableData alloc] init];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data  {

@@ -29,20 +29,20 @@
         NSArray *forecastDetailsArray = [[[self.parsedData objectForKey:@"forecast"] objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
         
         
-        NSString *currentTemp = [NSString stringWithFormat:@"%d °C",[[self.parsedData objectForKey:@"current_observation"] objectForKey:@"temp_c"]];
+        NSString *currentTemp = [NSString stringWithFormat:@"%@ °C",[[self.parsedData objectForKey:@"current_observation"] objectForKey:@"temp_c"]];
         NSString *currentLocation = [[[self.parsedData objectForKey:@"current_observation"] objectForKey:@"display_location"] objectForKey:@"full"];
         
         int period = 0;
-        for (NSDictionary* forecastInfo in forecastInfoArray){
+        for (NSDictionary* forecastInfo in forecastInfoArray) {
             
             WeatherPeriod *weatherPeriod = [[WeatherPeriod alloc] init];
             weatherPeriod.currentTemp = currentTemp;
             weatherPeriod.location = currentLocation;
             NSString *monthName = [[forecastInfo objectForKey:@"date"] objectForKey:@"monthname"];
-            NSString *day = [[forecastInfo objectForKey:@"date"] objectForKey:@"day"];
-            NSString *year = [[forecastInfo objectForKey:@"date"] objectForKey:@"year"];
+            NSString *day = [NSString stringWithFormat:@"%@", [[forecastInfo objectForKey:@"date"] objectForKey:@"day"]];
+            NSString *year = [NSString stringWithFormat:@"%@", [[forecastInfo objectForKey:@"date"] objectForKey:@"year"]];
             
-            weatherPeriod.date = [NSString stringWithFormat:@"%@ %d, %d", monthName, day, year];
+            weatherPeriod.date = [NSString stringWithFormat:@"%@ %@, %@", monthName, day, year];
             weatherPeriod.maxTemp = [[forecastInfo objectForKey:@"high"] objectForKey:@"celsius"];
             weatherPeriod.minTemp = [[forecastInfo objectForKey:@"low"] objectForKey:@"celsius"];
             weatherPeriod.conditions = [forecastInfo objectForKey:@"conditions"];

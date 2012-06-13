@@ -34,6 +34,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableData = [[DataManager defaultDataManager] countries];
+    
+    CGRect toolBarFrame = CGRectMake(0, 0, self.view.frame.size.width, 50);
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+    [toolBar setItems:[NSArray arrayWithObject:backBtn]];
+    [self.tableView setTableHeaderView:toolBar];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -62,6 +68,10 @@
     [cell.textLabel setText:cityName];
     
     return cell;
+}
+
+- (void)cancel {
+    [self dismissViewControllerAnimated:YES completion:NULL];    
 }
 
 #pragma mark - Table view delegate

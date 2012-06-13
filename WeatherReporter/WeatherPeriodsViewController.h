@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomConnectionDelegate.h"
 
-@interface WeatherPeriodsViewController : UITableViewController
+@interface WeatherPeriodsViewController : UITableViewController <CustomConnectionDelegate>
+
+@property (nonatomic, retain) NSString *cityName;
+@property (nonatomic, retain) NSString *country;
+@property (nonatomic, retain) NSArray *tableData;
 
 @end

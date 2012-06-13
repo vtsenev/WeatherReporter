@@ -68,7 +68,7 @@
 		A0FB92B21588973A00BEC0F6 /* USA.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92AE1588973A00BEC0F6 /* USA.png */; };
 		A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92B51588976100BEC0F6 /* Bulgaria.png */; };
 		A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BB1588A30F00BEC0F6 /* France.png */; };
-		A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */; };
+		A0FB92BE1588A30F00BEC0F6 /* UK.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BC1588A30F00BEC0F6 /* UK.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,7 +190,7 @@
 		A0FB92AE1588973A00BEC0F6 /* USA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USA.png; sourceTree = "<group>"; };
 		A0FB92B51588976100BEC0F6 /* Bulgaria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bulgaria.png; sourceTree = "<group>"; };
 		A0FB92BB1588A30F00BEC0F6 /* France.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = France.png; sourceTree = "<group>"; };
-		A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "The United Kingdom.png"; sourceTree = "<group>"; };
+		A0FB92BC1588A30F00BEC0F6 /* UK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UK.png; sourceTree = "<group>"; };
 		A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryPickerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,7 +286,7 @@
 			children = (
 				A0AFCFB71588C14E0065DFC0 /* map.png */,
 				A0FB92BB1588A30F00BEC0F6 /* France.png */,
-				A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */,
+				A0FB92BC1588A30F00BEC0F6 /* UK.png */,
 				A0FB92B51588976100BEC0F6 /* Bulgaria.png */,
 				A0FB92AE1588973A00BEC0F6 /* USA.png */,
 				A08569DD1582107300B06FA2 /* profile.png */,
@@ -531,7 +531,7 @@
 				A0FB92B21588973A00BEC0F6 /* USA.png in Resources */,
 				A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */,
 				A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */,
-				A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */,
+				A0FB92BE1588A30F00BEC0F6 /* UK.png in Resources */,
 				A0AFCFB81588C14E0065DFC0 /* map.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

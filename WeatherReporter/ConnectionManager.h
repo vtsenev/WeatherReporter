@@ -14,7 +14,7 @@
 
 + (ConnectionManager *)defaultConnectionManager;
 
-- (void)getForecastForLocation:(NSString *)location
-                  withDelegate:(id<CustomConnectionDelegate>)delegate;
+- (void)getForecastForCity:(NSString *)city inCountry:(NSString *)country
+              withDelegate:(id<CustomConnectionDelegate>)delegate;
 
 @end
