@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class DatePickerViewController;
 @protocol DatePickerControllerDelegate <NSObject>
+
+-(void)datePickerController:(DatePickerViewController *) datePickerViewController didPickDate:(NSDate *)date; 
 
 @end

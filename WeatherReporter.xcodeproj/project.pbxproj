@@ -236,15 +236,15 @@
 				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
 				A0E346ED1586043100C59EF5 /* LoginViewController.h */,
 				A0E346EE1586043100C59EF5 /* LoginViewController.m */,
-				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
-				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
+				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
 				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
 				A0E3470115861DF300C59EF5 /* MapViewController.h */,
 				A0E3470215861DF300C59EF5 /* MapViewController.m */,
-				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
 				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
+				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
+				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
 				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
 			);
 			name = ViewControllers;

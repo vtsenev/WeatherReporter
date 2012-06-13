@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DatePickerControllerDelegate.h"
 
 @interface DatePickerViewController : UIViewController
+
 @property (retain, nonatomic) IBOutlet UIDatePicker *datePickerController;
+@property (assign, nonatomic) id<DatePickerControllerDelegate> delegate;
+
 - (IBAction)cancelDatePicker:(id)sender;
 - (IBAction)addDate:(id)sender;
 

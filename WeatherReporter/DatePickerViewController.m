@@ -13,7 +13,7 @@
 @end
 
 @implementation DatePickerViewController
-@synthesize datePickerController;
+@synthesize datePickerController, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,6 +54,7 @@
 
 - (IBAction)addDate:(id)sender {
     
+    [self.delegate datePickerController:self didPickDate:[self.datePickerController date]];
     [self dismissModalViewControllerAnimated:YES];
 }
 @end
