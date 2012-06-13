@@ -5,7 +5,10 @@ Login Screen:
 - md5 hashing the password
 
 Weather TableView:
-- everything...
+- send request for a city
+
+- choose country from a table view of countries
+- find country flags
 
 Additional:
 1. rocking view animation when passwords don't match

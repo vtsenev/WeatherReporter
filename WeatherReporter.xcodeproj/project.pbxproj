@@ -60,6 +60,10 @@
 		A0E347001586051000C59EF5 /* WeatherPeriodCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */; };
 		A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E3470215861DF300C59EF5 /* MapViewController.m */; };
 		A0E3470515861DF300C59EF5 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E3470315861DF300C59EF5 /* MapViewController.xib */; };
+		A0FB92B21588973A00BEC0F6 /* USA.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92AE1588973A00BEC0F6 /* USA.png */; };
+		A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92B51588976100BEC0F6 /* Bulgaria.png */; };
+		A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BB1588A30F00BEC0F6 /* France.png */; };
+		A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +174,11 @@
 		A0E3470115861DF300C59EF5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		A0E3470215861DF300C59EF5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		A0E3470315861DF300C59EF5 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		A0FB92AE1588973A00BEC0F6 /* USA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = USA.png; sourceTree = "<group>"; };
+		A0FB92B51588976100BEC0F6 /* Bulgaria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bulgaria.png; sourceTree = "<group>"; };
+		A0FB92BB1588A30F00BEC0F6 /* France.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = France.png; sourceTree = "<group>"; };
+		A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "The United Kingdom.png"; sourceTree = "<group>"; };
+		A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryPickerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +241,7 @@
 				A0E3470215861DF300C59EF5 /* MapViewController.m */,
 				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
+				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -254,6 +264,10 @@
 		A08569E11582107600B06FA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A0FB92BB1588A30F00BEC0F6 /* France.png */,
+				A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */,
+				A0FB92B51588976100BEC0F6 /* Bulgaria.png */,
+				A0FB92AE1588973A00BEC0F6 /* USA.png */,
 				A08569DD1582107300B06FA2 /* profile.png */,
 				A08569DE1582107300B06FA2 /* weather.png */,
 			);
@@ -491,6 +505,10 @@
 				A0E346F11586043100C59EF5 /* LoginViewController.xib in Resources */,
 				A0E346F61586046200C59EF5 /* DatePickerViewController.xib in Resources */,
 				A0E3470515861DF300C59EF5 /* MapViewController.xib in Resources */,
+				A0FB92B21588973A00BEC0F6 /* USA.png in Resources */,
+				A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */,
+				A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */,
+				A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

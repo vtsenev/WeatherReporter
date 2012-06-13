@@ -9,6 +9,7 @@
 #import "AddCityViewController.h"
 #import "City.h"
 #import "DataManager.h"
+#import "CountyPickerTableViewController.h"
 
 @interface AddCityViewController ()
 
@@ -64,9 +65,27 @@
     self.city.longitude = [NSDecimalNumber decimalNumberWithString:self.longitudeField.text];
 }
 
+# pragma mark - UITextFieldDelegate methods
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
     return success;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField.tag == 1) {
+        [textField resignFirstResponder];
+        CountyPickerTableViewController *countryPickerViewController = [[CountyPickerTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        countryPickerViewController.delegate = self;
+        [self presentViewController:countryPickerViewController animated:YES completion:NULL];
+        [countryPickerViewController release];
+    }
+}
+
+# pragma mark - CountryPickerDelegate methods
+
+- (void)didSelectCountry:(NSString *)country {
+    countryField.text = country;
 }
 
 @end

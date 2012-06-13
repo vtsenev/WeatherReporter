@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AddCityDelegate.h"
+#import "CountryPickerDelegate.h"
 
 @class City;
 
-@interface AddCityViewController : UIViewController <UITextFieldDelegate>
+@interface AddCityViewController : UIViewController <UITextFieldDelegate, CountryPickerDelegate>
 
 @property (nonatomic, retain) City *city;
 @property (retain, nonatomic) IBOutlet UITextField *cityNameField;

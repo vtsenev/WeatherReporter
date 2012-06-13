@@ -70,6 +70,8 @@ static DataManager *defaultDataManager = nil;
     
     [context setUndoManager:nil];
     
+    countries = [[NSArray alloc] initWithObjects:@"Bulgaria", @"France", @"The United Kingdom", @"USA", nil];
+    
     return self;
 }
 
@@ -179,6 +181,10 @@ static DataManager *defaultDataManager = nil;
         NSLog(@"Error saving: %@", [err localizedDescription]);
     }
     return successful;
+}
+
+- (NSArray *)countries {
+    return countries;
 }
 
 @end

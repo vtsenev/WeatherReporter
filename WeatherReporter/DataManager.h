@@ -15,6 +15,8 @@
 @interface DataManager : NSObject {
     NSManagedObjectModel *model;
     NSManagedObjectContext *context;
+    
+    NSArray *countries;
 }
 
 + (DataManager *)defaultDataManager;
@@ -31,5 +33,7 @@
 - (BOOL)saveChanges;
 
 - (NSString *)pathInDocumentDirectory:(NSString *)fileName;
+
+- (NSArray *)countries;
 
 @end
