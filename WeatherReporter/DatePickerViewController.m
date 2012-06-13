@@ -38,6 +38,7 @@
     // e.g. self.myOutlet = nil;
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -49,12 +50,13 @@
 }
 - (IBAction)cancelDatePicker:(id)sender {
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self.delegate dismissDatePickerView:self.view];
 }
 
 - (IBAction)addDate:(id)sender {
     
     [self.delegate datePickerController:self didPickDate:[self.datePickerController date]];
-    [self dismissModalViewControllerAnimated:YES];
+    [self.delegate dismissDatePickerView:self.view];
+    
 }
 @end

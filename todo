@@ -1,7 +1,8 @@
 todo:
 
 Login Screen:
-- DatePickerViewController - better UI 
+- custom view for passwords; 
+- add UIScrollView to RegisterViewController
 - md5 hashing the password
 
 Weather TableView:

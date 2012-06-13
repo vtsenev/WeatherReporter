@@ -25,5 +25,7 @@
 @property (retain, nonatomic) UITextField *confirmPasswordField;
 
 - (IBAction)registerNewUser:(id)sender;
+- (void) animateAppearFromBottomForView:(UIView *)view;
+
 
 @end

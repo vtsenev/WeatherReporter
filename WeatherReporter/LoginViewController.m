@@ -73,7 +73,7 @@
             }
         } else {
             
-            UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong password" message:@"Incorrect Password!.\n Try Again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong password" message:@"Incorrect Password!\n Try Again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             
             [wrongUserAllertView show];
             [wrongUserAllertView release];
