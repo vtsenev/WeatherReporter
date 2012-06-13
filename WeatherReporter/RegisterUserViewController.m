@@ -8,14 +8,17 @@
 
 #import "RegisterUserViewController.h"
 #import "DatePickerViewController.h"
+#import "PasswordViewController.h"
 #import "DataManager.h"
 #import "User.h"
 
 @interface RegisterUserViewController ()
 - (IBAction)removeFromSuperviewDatePickerView:(id)sender;
+- (void) showPasswordView;
 @end
 
 @implementation RegisterUserViewController
+@synthesize scrollView;
 @synthesize usernameField;
 @synthesize firstnameField;
 @synthesize lastnameField;
@@ -33,6 +36,7 @@
     [lastnameField release];
     [dateOfBirthField release];
     [birthdayDate release];
+    [scrollView release];
     [super dealloc];
 }
 
@@ -45,6 +49,7 @@
     [self setLastnameField:nil];
     [self setDateOfBirthField:nil];
     [self setBirthdayDate:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
 }
 
@@ -58,6 +63,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.scrollView.contentSize = self.view.    frame.size;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -100,10 +107,12 @@
             newUser.birthdayDate = self.birthdayDate;
             
             self.user = newUser;
-            [self displayPasswordAlertView];
+            [self showPasswordView];
+//            [self displayPasswordAlertView];
         }
     }
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
@@ -122,6 +131,13 @@
     [alert show];
 }
 
+- (void)showPasswordView{
+    
+    PasswordViewController *passVC = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
+   
+    [self animateAppearFromBottomForView:passVC.view];
+    
+}
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -164,7 +180,6 @@
         [textField resignFirstResponder];
         DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
         datePickerViewController.delegate = self;
-        [self.view addSubview:datePickerViewController.view];
         [self animateAppearFromBottomForView:datePickerViewController.view];
     }
     
@@ -174,6 +189,8 @@
 
 - (void)animateAppearFromBottomForView:(UIView *)view{
     int height = 480;
+    
+    [self.view addSubview:view];
     
     CGRect viewFrame = view.frame;
     // Set the popup view's frame so that it is off the bottom of the screen

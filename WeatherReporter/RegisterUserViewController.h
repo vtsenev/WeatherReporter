@@ -23,6 +23,7 @@
 
 @property (retain, nonatomic) UITextField *passwordField;
 @property (retain, nonatomic) UITextField *confirmPasswordField;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)registerNewUser:(id)sender;
 - (void) animateAppearFromBottomForView:(UIView *)view;
