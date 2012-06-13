@@ -64,9 +64,6 @@
 		A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92B51588976100BEC0F6 /* Bulgaria.png */; };
 		A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BB1588A30F00BEC0F6 /* France.png */; };
 		A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */; };
-		A0FB92C11588B86500BEC0F6 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92C01588B86500BEC0F6 /* CityTableViewCell.xib */; };
-		A0FB92C41588BBEB00BEC0F6 /* CityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FB92C31588BBEB00BEC0F6 /* CityTableViewCell.m */; };
-		A0FB92C61588BC7300BEC0F6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FB92C51588BC7300BEC0F6 /* map.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,10 +180,6 @@
 		A0FB92BB1588A30F00BEC0F6 /* France.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = France.png; sourceTree = "<group>"; };
 		A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "The United Kingdom.png"; sourceTree = "<group>"; };
 		A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryPickerDelegate.h; sourceTree = "<group>"; };
-		A0FB92C01588B86500BEC0F6 /* CityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
-		A0FB92C21588BBEB00BEC0F6 /* CityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewCell.h; sourceTree = "<group>"; };
-		A0FB92C31588BBEB00BEC0F6 /* CityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewCell.m; sourceTree = "<group>"; };
-		A0FB92C51588BC7300BEC0F6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,9 +264,6 @@
 				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
 				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
 				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
-				A0FB92C01588B86500BEC0F6 /* CityTableViewCell.xib */,
-				A0FB92C21588BBEB00BEC0F6 /* CityTableViewCell.h */,
-				A0FB92C31588BBEB00BEC0F6 /* CityTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -281,7 +271,6 @@
 		A08569E11582107600B06FA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A0FB92C51588BC7300BEC0F6 /* map.png */,
 				A0FB92BB1588A30F00BEC0F6 /* France.png */,
 				A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */,
 				A0FB92B51588976100BEC0F6 /* Bulgaria.png */,
@@ -527,8 +516,6 @@
 				A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */,
 				A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */,
 				A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */,
-				A0FB92C11588B86500BEC0F6 /* CityTableViewCell.xib in Resources */,
-				A0FB92C61588BC7300BEC0F6 /* map.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,7 +585,6 @@
 				A0E346F91586048A00C59EF5 /* CountyPickerTableViewController.m in Sources */,
 				A0E347001586051000C59EF5 /* WeatherPeriodCustomCell.m in Sources */,
 				A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */,
-				A0FB92C41588BBEB00BEC0F6 /* CityTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

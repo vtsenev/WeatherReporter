@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WeatherPeriodCustomCell : UITableViewCell {
-}
+@interface WeatherPeriodCustomCell : UITableViewCell
 
 @end
