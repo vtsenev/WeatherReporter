@@ -77,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E834CFF1588A2CE003D42DC /* DatePickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerControllerDelegate.h; sourceTree = "<group>"; };
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
 		A078771815825B8A00E62525 /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherParser.h; sourceTree = "<group>"; };
@@ -229,19 +230,25 @@
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
 				A0E346E3158603FE00C59EF5 /* AddCityViewController.h */,
 				A0E346E4158603FE00C59EF5 /* AddCityViewController.m */,
+				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
 				A0E346E81586041D00C59EF5 /* RegisterUserViewController.h */,
 				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
 				A0E346ED1586043100C59EF5 /* LoginViewController.h */,
 				A0E346EE1586043100C59EF5 /* LoginViewController.m */,
-				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
-				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
+				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
 				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
 				A0E3470115861DF300C59EF5 /* MapViewController.h */,
 				A0E3470215861DF300C59EF5 /* MapViewController.m */,
+<<<<<<< HEAD
 				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
 				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
 				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
+=======
+				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
+				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
+				3E834CFF1588A2CE003D42DC /* DatePickerControllerDelegate.h */,
+>>>>>>> Added functionality to the DatePickerViewController
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -22,6 +22,7 @@
 @synthesize dateOfBirthField;
 @synthesize passwordField, confirmPasswordField;
 @synthesize user;
+@synthesize birthdayDate;
 
 - (void)dealloc {
     [user release];
@@ -31,6 +32,7 @@
     [firstnameField release];
     [lastnameField release];
     [dateOfBirthField release];
+    [birthdayDate release];
     [super dealloc];
 }
 
@@ -42,6 +44,7 @@
     [self setFirstnameField:nil];
     [self setLastnameField:nil];
     [self setDateOfBirthField:nil];
+    [self setBirthdayDate:nil];
     [super viewDidUnload];
 }
 
@@ -67,7 +70,7 @@
     if ([self.usernameField.text isEqualToString:@""] || [self.firstnameField.text isEqualToString:@""] ||
             [self.lastnameField.text isEqualToString:@""] || [self.dateOfBirthField.text isEqualToString:@""]){
         
-        UIAlertView *emptyRequiredAllertView = [[UIAlertView alloc] initWithTitle:@"Empty Required Fileds!" message:@"Fill in required fields!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *emptyRequiredAllertView = [[UIAlertView alloc] initWithTitle:@"Empty Required Fileds!" message:@"Please fill in required fields!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [emptyRequiredAllertView show];
         [emptyRequiredAllertView release];
@@ -94,7 +97,7 @@
             newUser.username = self.usernameField.text;
             newUser.firstName = self.firstnameField.text;
             newUser.lastName = self.lastnameField.text;
-            newUser.birthdayDate = [NSDate date];
+            newUser.birthdayDate = self.birthdayDate;
             
             self.user = newUser;
             [self displayPasswordAlertView];
@@ -126,6 +129,9 @@
         if ([[[alertView textFieldAtIndex:0] text] isEqualToString:[[alertView textFieldAtIndex:1] text]]) {
             user.password = [[alertView textFieldAtIndex:0] text];
             [[DataManager defaultDataManager] updateUser:user];
+            
+            NSLog(@" Inserted user: %@, %@, %@, %@, %@", user.username, user.firstName, user.lastName, user.birthdayDate, user.password);
+            
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             [alertView setTitle:@"Passwords do not match"];
@@ -148,9 +154,19 @@
     {
         [textField resignFirstResponder];
         DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+        datePickerViewController.delegate = self;
         [self presentModalViewController:datePickerViewController animated:YES];
     }
     
+}
+
+- (void)datePickerController:(DatePickerViewController *)datePickerViewController didPickDate:(NSDate *)date
+{
+    self.birthdayDate = date;
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MMMM-dd"];
+    self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
 }
 
 @end

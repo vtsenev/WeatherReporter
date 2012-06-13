@@ -1,8 +1,9 @@
 todo:
 
 Login Screen:
-- date of birth View Controller
+- DatePickerViewController - better UI 
 - md5 hashing the password
+- check for weak password
 
 Weather TableView:
 - send request for a city
