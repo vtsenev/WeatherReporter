@@ -35,6 +35,7 @@
 		A0856A291582585F00B06FA2 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = A0856A1C1582585F00B06FA2 /* SBJsonUTF8Stream.m */; };
 		A0856A2A1582585F00B06FA2 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A0856A1E1582585F00B06FA2 /* SBJsonWriter.m */; };
 		A0AFCFB81588C14E0065DFC0 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AFCFB71588C14E0065DFC0 /* map.png */; };
+		A0AFCFBC1588CC660065DFC0 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AFCFBB1588CC660065DFC0 /* MapButton.m */; };
 		A0B142021581FC2F00378DE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142011581FC2F00378DE6 /* UIKit.framework */; };
 		A0B142041581FC2F00378DE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142031581FC2F00378DE6 /* Foundation.framework */; };
 		A0B142061581FC2F00378DE6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142051581FC2F00378DE6 /* CoreGraphics.framework */; };
@@ -138,6 +139,8 @@
 		A0856A1D1582585F00B06FA2 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		A0856A1E1582585F00B06FA2 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		A0AFCFB71588C14E0065DFC0 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		A0AFCFBA1588CC660065DFC0 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
+		A0AFCFBB1588CC660065DFC0 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
 		A0B141FD1581FC2F00378DE6 /* WeatherReporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherReporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B142011581FC2F00378DE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0B142031581FC2F00378DE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -246,6 +249,8 @@
 				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
 				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
 				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
+				A0AFCFBA1588CC660065DFC0 /* MapButton.h */,
+				A0AFCFBB1588CC660065DFC0 /* MapButton.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				A0E346F91586048A00C59EF5 /* CountyPickerTableViewController.m in Sources */,
 				A0E347001586051000C59EF5 /* WeatherPeriodCustomCell.m in Sources */,
 				A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */,
+				A0AFCFBC1588CC660065DFC0 /* MapButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

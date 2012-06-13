@@ -12,6 +12,8 @@
 #import "User.h"
 #import "LoginViewController.h"
 #import "AddCityViewController.h"
+#import "MapButton.h"
+#import "MapViewController.h"
 
 @interface WeatherTableViewController ()
 
@@ -85,6 +87,7 @@
 
 - (void)didUpdateCity:(City *)theCity {
     [self.tableData addObject:theCity];
+    NSLog(@"%@, %@, %@, %@", theCity.name, theCity.country, theCity.latitude, theCity.longitude);
     [self.tableView reloadData];
 }
 
@@ -128,8 +131,28 @@
     [cell.detailTextLabel setText:country];
     UIImage *flagImage = [UIImage imageNamed:country];
     [cell.imageView setImage:flagImage];
+
+    CGRect showMapBtnFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 70, 5, 30, 30);
     
+    MapButton *showMapBtn = [MapButton buttonWithType:UIButtonTypeCustom];
+    [showMapBtn setTableRow:[indexPath row]];
+    [showMapBtn addTarget:self action:@selector(showMapForCity:) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *mapImage = [UIImage imageNamed:@"map"];
+    [showMapBtn setImage:mapImage forState:UIControlStateNormal];
+    showMapBtn.frame = showMapBtnFrame;
+    [cell addSubview:showMapBtn];
+        
     return cell;
+}
+
+- (IBAction)showMapForCity:(id)sender {
+    MapButton *mapButton = (MapButton *)sender;
+    City *city = [self.tableData objectAtIndex:mapButton.tableRow];
+    
+    MapViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+    mapViewController.city = city;
+    [self.navigationController pushViewController:mapViewController animated:YES];
+    [mapViewController release];
 }
 
 /*
