@@ -10,21 +10,23 @@
 
 @interface MapViewController ()
 
+- (void)initializeMapView;
+
 @end
 
 @implementation MapViewController
 @synthesize city;
-@synthesize testLabel;
+@synthesize theMapView;
 
 - (void)dealloc {
     [city release];
-    [testLabel release];
+    [theMapView release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setCity:nil];
-    [self setTestLabel:nil];
+    [self setTheMapView:nil];
     [super viewDidUnload];
 }
 
@@ -39,11 +41,21 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.testLabel setText:city.name];
+    [self initializeMapView];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)initializeMapView {    
+    CLLocationCoordinate2D mapCenter = CLLocationCoordinate2DMake([self.city.latitude doubleValue], [self.city.longitude doubleValue]);
+    MKCoordinateSpan mapSpan = MKCoordinateSpanMake(0.195, 0.195);
+    MKCoordinateRegion mapRegion = MKCoordinateRegionMake(mapCenter, mapSpan);
+    
+    self.theMapView.region = mapRegion;
+    self.theMapView.mapType = MKMapTypeHybrid;
+    self.theMapView.userTrackingMode = YES;
 }
 
 @end

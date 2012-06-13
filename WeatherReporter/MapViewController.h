@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "City.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, retain) City *city;
-@property (retain, nonatomic) IBOutlet UILabel *testLabel;
+@property (retain, nonatomic) IBOutlet MKMapView *theMapView;
 
 @end
