@@ -34,6 +34,7 @@
 		A0856A281582585F00B06FA2 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = A0856A1A1582585F00B06FA2 /* SBJsonTokeniser.m */; };
 		A0856A291582585F00B06FA2 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = A0856A1C1582585F00B06FA2 /* SBJsonUTF8Stream.m */; };
 		A0856A2A1582585F00B06FA2 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A0856A1E1582585F00B06FA2 /* SBJsonWriter.m */; };
+		A0AFCFB81588C14E0065DFC0 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AFCFB71588C14E0065DFC0 /* map.png */; };
 		A0B142021581FC2F00378DE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142011581FC2F00378DE6 /* UIKit.framework */; };
 		A0B142041581FC2F00378DE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142031581FC2F00378DE6 /* Foundation.framework */; };
 		A0B142061581FC2F00378DE6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142051581FC2F00378DE6 /* CoreGraphics.framework */; };
@@ -135,6 +136,7 @@
 		A0856A1C1582585F00B06FA2 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		A0856A1D1582585F00B06FA2 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		A0856A1E1582585F00B06FA2 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		A0AFCFB71588C14E0065DFC0 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		A0B141FD1581FC2F00378DE6 /* WeatherReporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherReporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B142011581FC2F00378DE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0B142031581FC2F00378DE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -264,6 +266,7 @@
 		A08569E11582107600B06FA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A0AFCFB71588C14E0065DFC0 /* map.png */,
 				A0FB92BB1588A30F00BEC0F6 /* France.png */,
 				A0FB92BC1588A30F00BEC0F6 /* The United Kingdom.png */,
 				A0FB92B51588976100BEC0F6 /* Bulgaria.png */,
@@ -509,6 +512,7 @@
 				A0FB92B61588976100BEC0F6 /* Bulgaria.png in Resources */,
 				A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */,
 				A0FB92BE1588A30F00BEC0F6 /* The United Kingdom.png in Resources */,
+				A0AFCFB81588C14E0065DFC0 /* map.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

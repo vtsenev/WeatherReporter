@@ -117,12 +117,18 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"UITableViewCell"] autorelease];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    NSString *cityName = [[self.tableData objectAtIndex:[indexPath row]] name];
+    City *city = [self.tableData objectAtIndex:[indexPath row]];
+    NSString *cityName = city.name;
+    NSString *country = city.country;
     [cell.textLabel setText:cityName];
+    [cell.detailTextLabel setText:country];
+    UIImage *flagImage = [UIImage imageNamed:country];
+    [cell.imageView setImage:flagImage];
+    
     return cell;
 }
 
