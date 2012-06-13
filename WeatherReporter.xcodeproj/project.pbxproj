@@ -36,6 +36,9 @@
 		A0856A2A1582585F00B06FA2 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A0856A1E1582585F00B06FA2 /* SBJsonWriter.m */; };
 		A0AFCFB81588C14E0065DFC0 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = A0AFCFB71588C14E0065DFC0 /* map.png */; };
 		A0AFCFBC1588CC660065DFC0 /* MapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AFCFBB1588CC660065DFC0 /* MapButton.m */; };
+		A0AFCFC61588D4D00065DFC0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AFCFC51588D4D00065DFC0 /* MapKit.framework */; };
+		A0AFCFC91588D60E0065DFC0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */; };
+		A0AFCFD01588DAB00065DFC0 /* WeatherPeriodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */; };
 		A0B142021581FC2F00378DE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142011581FC2F00378DE6 /* UIKit.framework */; };
 		A0B142041581FC2F00378DE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142031581FC2F00378DE6 /* Foundation.framework */; };
 		A0B142061581FC2F00378DE6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142051581FC2F00378DE6 /* CoreGraphics.framework */; };
@@ -141,6 +144,10 @@
 		A0AFCFB71588C14E0065DFC0 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		A0AFCFBA1588CC660065DFC0 /* MapButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapButton.h; sourceTree = "<group>"; };
 		A0AFCFBB1588CC660065DFC0 /* MapButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapButton.m; sourceTree = "<group>"; };
+		A0AFCFC51588D4D00065DFC0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriodsViewController.h; sourceTree = "<group>"; };
+		A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriodsViewController.m; sourceTree = "<group>"; };
 		A0B141FD1581FC2F00378DE6 /* WeatherReporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherReporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B142011581FC2F00378DE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0B142031581FC2F00378DE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -192,6 +199,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0AFCFC91588D60E0065DFC0 /* CoreLocation.framework in Frameworks */,
+				A0AFCFC61588D4D00065DFC0 /* MapKit.framework in Frameworks */,
 				A0B142381581FF7300378DE6 /* CoreData.framework in Frameworks */,
 				A0B142021581FC2F00378DE6 /* UIKit.framework in Frameworks */,
 				A0B142041581FC2F00378DE6 /* Foundation.framework in Frameworks */,
@@ -251,6 +260,8 @@
 				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
 				A0AFCFBA1588CC660065DFC0 /* MapButton.h */,
 				A0AFCFBB1588CC660065DFC0 /* MapButton.m */,
+				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
+				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -380,6 +391,8 @@
 		A0B142001581FC2F00378DE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */,
+				A0AFCFC51588D4D00065DFC0 /* MapKit.framework */,
 				A0856A031582585F00B06FA2 /* SBJSON */,
 				A0B142371581FF7300378DE6 /* CoreData.framework */,
 				A0B142011581FC2F00378DE6 /* UIKit.framework */,
@@ -590,6 +603,7 @@
 				A0E347001586051000C59EF5 /* WeatherPeriodCustomCell.m in Sources */,
 				A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */,
 				A0AFCFBC1588CC660065DFC0 /* MapButton.m in Sources */,
+				A0AFCFD01588DAB00065DFC0 /* WeatherPeriodsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
