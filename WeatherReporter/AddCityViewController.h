@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "AddCityDelegate.h"
 #import "CountryPickerDelegate.h"
+#import "CustomConnectionDelegate.h"
 
 @class City;
 
-@interface AddCityViewController : UIViewController <UITextFieldDelegate, CountryPickerDelegate>
+@interface AddCityViewController : UIViewController <UITextFieldDelegate, CountryPickerDelegate, CustomConnectionDelegate>
 
 @property (nonatomic, retain) City *city;
 @property (retain, nonatomic) IBOutlet UITextField *cityNameField;
@@ -20,7 +21,10 @@
 @property (retain, nonatomic) IBOutlet UITextField *latitudeField;
 @property (retain, nonatomic) IBOutlet UITextField *longitudeField;
 @property (nonatomic, assign) id<AddCityDelegate> delegate;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (retain, nonatomic) IBOutlet UIButton *getLocationBtn;
 
 - (IBAction)addCity:(id)sender;
+- (IBAction)getLocation:(id)sender;
 
 @end

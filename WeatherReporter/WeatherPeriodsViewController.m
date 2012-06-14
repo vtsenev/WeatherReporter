@@ -125,11 +125,11 @@
 }
 
 - (void)displayCurrentTemperature {
-    CGRect tableHeaderViewFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 34);
+    CGRect tableHeaderViewFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 40);
     UILabel *currentTemperatureLabel = [[UILabel alloc] initWithFrame:tableHeaderViewFrame];
     NSString *currentTemp = [NSString stringWithFormat:@"Temperature now: %@", [[self.tableData lastObject] currentTemp]];
     [currentTemperatureLabel setText:currentTemp];
-//    [currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
+    [currentTemperatureLabel setFont:[UIFont boldSystemFontOfSize:20]];
     [currentTemperatureLabel setTextAlignment:UITextAlignmentCenter];
     
     [self.tableView setTableHeaderView:currentTemperatureLabel];

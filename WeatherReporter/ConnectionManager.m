@@ -10,16 +10,18 @@
 #import "CustomConnection.h"
 #import "CustomRequest.h"
 #import "WeatherParser.h"
+#import "GeoLocationParser.h"
 
 // connection tags
 NSString * const kGetForecastTag = @"GetForecast+%@";
+NSString * const kGetGeoLocationTag = @"GetGeoLocation+%@";
 
 @interface ConnectionManager()
 
 @property (nonatomic, retain) NSMutableData *receivedData;
 @property (retain, nonatomic) NSMutableDictionary *connectionDict;
 
-- (NSURL *)createURLForCity:(NSString *)city inCountry:(NSString *)country;
+- (NSURL *)createForecastURLForCity:(NSString *)city inCountry:(NSString *)country;
 
 @end
 
@@ -68,9 +70,16 @@ static ConnectionManager *defaultConnectionManager = nil;
     return self;
 }
 
-- (NSURL *)createURLForCity:(NSString *)city inCountry:(NSString *)country {
+- (NSURL *)createForecastURLForCity:(NSString *)city inCountry:(NSString *)country {
     NSString *requestKey = @"93ab1f111d91a7bd";
     NSString *requestStr = [NSString stringWithFormat:@"http://api.wunderground.com/api/%@/conditions/forecast/q/%@/%@.json", requestKey, country, city];
+    NSURL *url = [NSURL URLWithString:requestStr];
+    return url;
+}
+
+- (NSURL *)createGeoLocationURLForCity:(NSString *)city inCountry:(NSString *)country {
+    NSString *requestKey = @"93ab1f111d91a7bd";
+    NSString *requestStr = [NSString stringWithFormat:@"http://api.wunderground.com/api/%@/geolookup/q/%@/%@.json", requestKey, country, city];
     NSURL *url = [NSURL URLWithString:requestStr];
     return url;
 } 
@@ -83,7 +92,27 @@ static ConnectionManager *defaultConnectionManager = nil;
     if (!customConnection) {
         WeatherParser *weatherParser = [[WeatherParser alloc] init];
 
-        CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:weatherParser];
+        CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createForecastURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:weatherParser];
+        
+        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+        [newConnection.delegates addObject:delegate];
+        newConnection.connectionTag = tagString;
+        
+        [connectionDict setObject:newConnection forKey:tagString];
+    } else {
+        [customConnection.delegates addObject:delegate];
+    }
+}
+
+- (void)getGeoLocationInformationForCity:(NSString *)city inCountry:(NSString *)country
+              withDelegate:(id<CustomConnectionDelegate>)delegate {
+    NSString *tagString = [NSString stringWithFormat:kGetGeoLocationTag, city];
+    CustomConnection *customConnection = [connectionDict objectForKey:tagString];
+    
+    if (!customConnection) {
+        GeoLocationParser *geoLocationParser = [[GeoLocationParser alloc] init];
+        
+        CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createGeoLocationURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:geoLocationParser];
         
         CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
         [newConnection.delegates addObject:delegate];

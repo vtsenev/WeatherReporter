@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self refreshView];
+    [self.navigationItem setTitle:[self.weatherPeriod date]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
