@@ -61,6 +61,7 @@
 		A0B765061589F34900E997E4 /* Spain.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765031589F34900E997E4 /* Spain.png */; };
 		A0B765071589F34900E997E4 /* Netherlands.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765041589F34900E997E4 /* Netherlands.png */; };
 		A0B765081589F34900E997E4 /* Austria.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765051589F34900E997E4 /* Austria.png */; };
+		A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B76516158A0FCF00E997E4 /* CustomLabel.m */; };
 		A0E346E2158601E500C59EF5 /* WeatherPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E1158601E500C59EF5 /* WeatherPeriod.m */; };
 		A0E346E6158603FE00C59EF5 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E4158603FE00C59EF5 /* AddCityViewController.m */; };
 		A0E346E7158603FE00C59EF5 /* AddCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */; };
@@ -92,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerControllerDelegate.h; sourceTree = "<group>"; };
+		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
 		3E834D3215890263003D42DC /* PasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
 		3E89475A158A0CD5002966C0 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
 		3E89475B158A0CD6002966C0 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
@@ -189,6 +191,8 @@
 		A0B765031589F34900E997E4 /* Spain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spain.png; sourceTree = "<group>"; };
 		A0B765041589F34900E997E4 /* Netherlands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Netherlands.png; sourceTree = "<group>"; };
 		A0B765051589F34900E997E4 /* Austria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Austria.png; sourceTree = "<group>"; };
+		A0B76515158A0FCF00E997E4 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
+		A0B76516158A0FCF00E997E4 /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
 		A0E346E0158601E500C59EF5 /* WeatherPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriod.h; sourceTree = "<group>"; };
 		A0E346E1158601E500C59EF5 /* WeatherPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriod.m; sourceTree = "<group>"; };
 		A0E346E3158603FE00C59EF5 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityViewController.h; sourceTree = "<group>"; };
@@ -288,6 +292,9 @@
 				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
 				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
+				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
+				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
+				A00FE08B158A21A600179837 /* LogoutDelegate.h */,
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
 			);
@@ -307,6 +314,9 @@
 				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
 				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
 				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
+				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
+				A0B76515158A0FCF00E997E4 /* CustomLabel.h */,
+				A0B76516158A0FCF00E997E4 /* CustomLabel.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -649,6 +659,7 @@
 				A0AFCFDC1588FEF60065DFC0 /* DetailedForecastViewController.m in Sources */,
 				A0B764FE1589EBDD00E997E4 /* GeoLocationParser.m in Sources */,
 				A0B765021589EC6400E997E4 /* GeoLocationResponse.m in Sources */,
+				A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */,
 				3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

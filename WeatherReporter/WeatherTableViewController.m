@@ -18,6 +18,9 @@
 
 @interface WeatherTableViewController ()
 
+- (void)addCity;
+- (IBAction)showMapForCity:(id)sender;
+
 @end
 
 @implementation WeatherTableViewController
@@ -133,7 +136,7 @@
     UIImage *flagImage = [UIImage imageNamed:country];
     [cell.imageView setImage:flagImage];
 
-    CGRect showMapBtnFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 70, 5, 30, 30);
+    CGRect showMapBtnFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 68, 5, 30, 30);
     
     MapButton *showMapBtn = [MapButton buttonWithType:UIButtonTypeCustom];
     [showMapBtn setTableRow:[indexPath row]];

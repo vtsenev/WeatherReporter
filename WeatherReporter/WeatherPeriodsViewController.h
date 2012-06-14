@@ -14,5 +14,6 @@
 @property (nonatomic, retain) NSString *cityName;
 @property (nonatomic, retain) NSString *country;
 @property (nonatomic, retain) NSArray *tableData;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
 @end

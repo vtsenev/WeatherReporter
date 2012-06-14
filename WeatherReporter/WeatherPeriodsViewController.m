@@ -11,15 +11,19 @@
 #import "ConnectionManager.h"
 #import "WeatherResponse.h"
 #import "WeatherPeriod.h"
+#import "CustomLabel.h"
 
 @interface WeatherPeriodsViewController ()
+
+- (void)initializeActivityIndicator;
 
 @end
 
 @implementation WeatherPeriodsViewController
-@synthesize cityName, country, tableData;
+@synthesize cityName, country, tableData, activityIndicator;
 
 - (void)dealloc {
+    [activityIndicator release];
     [tableData release];
     [cityName release];
     [country release];
@@ -27,6 +31,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setActivityIndicator:nil];
     [self setTableData:nil];
     [self setCityName:nil];
     [self setCountry:nil];
@@ -46,11 +51,27 @@
     NSString *title = [NSString stringWithFormat:@"%@, %@", self.cityName, self.country];
     [self.navigationItem setTitle:title];
     
+    [self initializeActivityIndicator];
     [[ConnectionManager defaultConnectionManager] getForecastForCity:cityName inCountry:country withDelegate:self];
+    [self.view addSubview:self.activityIndicator];
+    [self userInteractionEnabled:NO];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)initializeActivityIndicator {
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    CGPoint center = self.view.center;
+    center.y -= 50;
+    [self.activityIndicator setColor:[UIColor darkGrayColor]];
+    [self.activityIndicator setCenter:center];
+    [self.activityIndicator startAnimating];
+}
+
+- (void)userInteractionEnabled:(BOOL)isEnabled {
+    [self.tableView setUserInteractionEnabled:isEnabled];
 }
 
 #pragma mark - Table view data source
@@ -110,6 +131,8 @@
 # pragma mark - CustomConnectionDelegate
 
 - (void)connectionDidFailWithError:(NSString *)errorMessage {
+    [self.activityIndicator removeFromSuperview];
+    [self userInteractionEnabled:YES];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection error"
                                                         message:errorMessage delegate:self
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -122,11 +145,13 @@
     self.tableData = weatherResponse.weatherPeriods;
     [self displayCurrentTemperature];
     [self.tableView reloadData];
+    [self.activityIndicator removeFromSuperview];
+    [self userInteractionEnabled:YES];
 }
 
 - (void)displayCurrentTemperature {
-    CGRect tableHeaderViewFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 40);
-    UILabel *currentTemperatureLabel = [[UILabel alloc] initWithFrame:tableHeaderViewFrame];
+    CGRect tableHeaderViewFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 45);
+    CustomLabel *currentTemperatureLabel = [[CustomLabel alloc] initWithFrame:tableHeaderViewFrame];
     NSString *currentTemp = [NSString stringWithFormat:@"Temperature now: %@", [[self.tableData lastObject] currentTemp]];
     [currentTemperatureLabel setText:currentTemp];
     [currentTemperatureLabel setFont:[UIFont boldSystemFontOfSize:20]];
