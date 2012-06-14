@@ -22,16 +22,19 @@
 @synthesize passwordField;
 @synthesize weatherTableViewControllerDelegate;
 @synthesize profileViewControllerDelegate;
+@synthesize switchBtn;
 
 - (void)dealloc {
     [usernameField release];
     [passwordField release];
+    [switchBtn release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setUsernameField:nil];
     [self setPasswordField:nil];
+    [self setSwitchBtn:nil];
     [super viewDidUnload];
 }
 
@@ -45,6 +48,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *defaultUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
+    [self.usernameField setText:defaultUsername];
+    NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
+    [self.passwordField setText:password];
+    NSInteger rememberMe = [[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"];
+    if (rememberMe == 1) {
+        [self.switchBtn setOn:YES];
+    } else {
+        [self.switchBtn setOn:NO];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -72,6 +85,9 @@
                 if ([self.profileViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
                     [self.profileViewControllerDelegate loginDidSucceedWithUser:user];
                 }
+                if (switchBtn.on) {
+                    [self rememberUser];
+                }
                 UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
                 [tabBarController setSelectedIndex:0];
                 [self dismissModalViewControllerAnimated:YES];
@@ -95,9 +111,23 @@
     [registerUserViewController release];
 }
 
+- (void)rememberUser {
+    [[NSUserDefaults standardUserDefaults] setValue:self.usernameField.text forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] setValue:self.passwordField.text forKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"rememberMe"];
+}
+
+# pragma mark - UITextFieldDelegate methods
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
     return success;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""]) {
+        [self login:nil];
+    }
 }
 
 @end

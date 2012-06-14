@@ -35,5 +35,6 @@
 - (NSString *)pathInDocumentDirectory:(NSString *)fileName;
 
 - (NSArray *)countries;
+- (NSArray *)searchCitiesForCity:(NSString *)cityName forUsername:(NSString *)username;
 
 @end

@@ -187,4 +187,23 @@ static DataManager *defaultDataManager = nil;
     return countries;
 }
 
+- (NSArray *)searchCitiesForCity:(NSString *)cityName forUsername:(NSString *)username {
+    User *user = [self fetchUserForUsername:username];
+    NSSet *allCities = user.cities;
+
+    NSMutableArray *searchedCities = [[NSMutableArray alloc] init];
+    if (![cityName isEqualToString:@""]) {
+
+        for (City *city in allCities) {
+            if ([city.name hasPrefix:cityName]) {
+                [searchedCities addObject:city];
+            }
+        }
+    } else {
+        [searchedCities addObjectsFromArray:[allCities allObjects]];
+    }
+    
+    return searchedCities;
+}
+
 @end
