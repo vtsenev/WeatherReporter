@@ -1,15 +1,15 @@
 todo:
 
 Login Screen:
-- custom view for passwords; 
+- custom view for passwords;
 - add UIScrollView to RegisterViewController
 - md5 hashing the password
 
 Weather TableView:
-- send request for a city
-
-- choose country from a table view of countries
-- find country flags
+- date picker for latitude and longitude
+- detailed forecast view
+- handle bad url requests and errors
+- use activity indicator when waiting for information from server
 
 Additional:
 1. rocking view animation when passwords don't match

@@ -41,6 +41,8 @@
 		A0AFCFC61588D4D00065DFC0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AFCFC51588D4D00065DFC0 /* MapKit.framework */; };
 		A0AFCFC91588D60E0065DFC0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */; };
 		A0AFCFD01588DAB00065DFC0 /* WeatherPeriodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */; };
+		A0AFCFDC1588FEF60065DFC0 /* DetailedForecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */; };
+		A0AFCFDD1588FEF60065DFC0 /* DetailedForecastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */; };
 		A0B142021581FC2F00378DE6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142011581FC2F00378DE6 /* UIKit.framework */; };
 		A0B142041581FC2F00378DE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142031581FC2F00378DE6 /* Foundation.framework */; };
 		A0B142061581FC2F00378DE6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0B142051581FC2F00378DE6 /* CoreGraphics.framework */; };
@@ -153,6 +155,9 @@
 		A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriodsViewController.h; sourceTree = "<group>"; };
 		A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriodsViewController.m; sourceTree = "<group>"; };
+		A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedForecastViewController.h; sourceTree = "<group>"; };
+		A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedForecastViewController.m; sourceTree = "<group>"; };
+		A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailedForecastViewController.xib; sourceTree = "<group>"; };
 		A0B141FD1581FC2F00378DE6 /* WeatherReporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherReporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B142011581FC2F00378DE6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0B142031581FC2F00378DE6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -269,6 +274,8 @@
 				A0AFCFBB1588CC660065DFC0 /* MapButton.m */,
 				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
+				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
+				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -285,6 +292,7 @@
 				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
 				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
 				3E834D3215890263003D42DC /* PasswordViewController.xib */,
+				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -542,6 +550,7 @@
 				A0FB92BE1588A30F00BEC0F6 /* UK.png in Resources */,
 				A0AFCFB81588C14E0065DFC0 /* map.png in Resources */,
 				3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */,
+				A0AFCFDD1588FEF60065DFC0 /* DetailedForecastViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,7 +622,7 @@
 				A0E3470415861DF300C59EF5 /* MapViewController.m in Sources */,
 				A0AFCFBC1588CC660065DFC0 /* MapButton.m in Sources */,
 				A0AFCFD01588DAB00065DFC0 /* WeatherPeriodsViewController.m in Sources */,
-				3E834D3315890263003D42DC /* PasswordViewController.m in Sources */,
+				A0AFCFDC1588FEF60065DFC0 /* DetailedForecastViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

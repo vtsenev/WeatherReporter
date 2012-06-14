@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 MentorMate. All rights reserved.
 //
 
+#import "DetailedForecastViewController.h"
 #import "WeatherPeriodsViewController.h"
 #import "ConnectionManager.h"
 #import "WeatherResponse.h"
@@ -79,6 +80,7 @@
     NSData *iconData = [NSData dataWithContentsOfURL:iconURL];
     UIImage *img = [[UIImage alloc] initWithData:iconData];
     [cell.imageView setImage:img];
+    [img release];
 
     CGRect labelFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 120, 7, 90, cell.frame.size.height - 14);
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
@@ -96,12 +98,21 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DetailedForecastViewController *detailedForecastViewController = [[DetailedForecastViewController alloc] 
+                                                                      initWithNibName:@"DetailedForecastViewController" bundle:nil];
+    WeatherPeriod *weatherPeriod = [self.tableData objectAtIndex:[indexPath row]];
+    detailedForecastViewController.weatherPeriod = weatherPeriod;
+    
+    [self.navigationController pushViewController:detailedForecastViewController animated:YES];
+    [detailedForecastViewController release];
 }
 
 # pragma mark - CustomConnectionDelegate
 
 - (void)connectionDidFailWithError:(NSString *)errorMessage {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection error" message:errorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection error"
+                                                        message:errorMessage delegate:self
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
     [alertView release];
 }
@@ -109,7 +120,20 @@
 - (void)connectionDidSucceedWithParsedData:(NSObject *)parsedData {
     WeatherResponse *weatherResponse = (WeatherResponse *)parsedData;
     self.tableData = weatherResponse.weatherPeriods;
+    [self displayCurrentTemperature];
     [self.tableView reloadData];
+}
+
+- (void)displayCurrentTemperature {
+    CGRect tableHeaderViewFrame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, 34);
+    UILabel *currentTemperatureLabel = [[UILabel alloc] initWithFrame:tableHeaderViewFrame];
+    NSString *currentTemp = [NSString stringWithFormat:@"Temperature now: %@", [[self.tableData lastObject] currentTemp]];
+    [currentTemperatureLabel setText:currentTemp];
+//    [currentTemperatureLabel setBackgroundColor:[UIColor clearColor]];
+    [currentTemperatureLabel setTextAlignment:UITextAlignmentCenter];
+    
+    [self.tableView setTableHeaderView:currentTemperatureLabel];
+    [currentTemperatureLabel release];
 }
 
 @end
