@@ -16,5 +16,7 @@
 
 - (void)getForecastForCity:(NSString *)city inCountry:(NSString *)country
               withDelegate:(id<CustomConnectionDelegate>)delegate;
+- (void)getGeoLocationInformationForCity:(NSString *)city inCountry:(NSString *)country
+                            withDelegate:(id<CustomConnectionDelegate>)delegate;
 
 @end
