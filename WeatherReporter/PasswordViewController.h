@@ -18,5 +18,4 @@
 
 - (IBAction)cancelPassword:(id)sender;
 - (IBAction)confirmPassword:(id)sender;
-- (void) shakeToClearTextContentForView:(UIView *)view; 
 @end

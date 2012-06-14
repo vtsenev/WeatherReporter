@@ -7,9 +7,11 @@
 //
 
 #import "PasswordViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PasswordViewController ()
 
+- (void)shakeView:(UIView *)view onAngle:(NSInteger)angle;
 @end
 
 @implementation PasswordViewController
@@ -23,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -31,7 +33,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.passwordView.layer.cornerRadius = 15.0;
+    self.passwordView.layer.masksToBounds = YES;
+    
+    // seems to look like a little bit better with this property
+    // when the view is shaked 
+//    self.passwordView.layer.shouldRasterize = YES;
 }
 
 - (void)viewDidUnload
@@ -71,18 +78,56 @@
     NSString *confirmPass = self.confirmPassTextField.text;
     
     if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]){
-        self.warningLabel.text = @"Please fill in password and confirm it!";
+        self.warningLabel.text = @"Please, fill in fields!";
     }
     else if([ password isEqualToString:confirmPass]){
-     
+        self.warningLabel.text = @"";
         [self.delegate dismissPasswordView:self.view];
         [self.delegate confirmPassword:password];
     }
     else {
-        self.warningLabel.text = @"Passwords do not match!";
+        [self shakeView:self.passwordView onAngle:5];
+        self.warningLabel.text = @"";
+        self.passwordTextField.text = @""; 
+        self.confirmPassTextField.text = @""; 
     }
         
 }
+
+- (void)shakeView:(UIView *)view onAngle:(NSInteger)angle{
+    
+    float radiansAngle = (angle / 180.0 * M_PI);
+    
+    CGAffineTransform leftRotate = CGAffineTransformMakeRotation( radiansAngle);
+    CGAffineTransform rightRotate = CGAffineTransformMakeRotation(-radiansAngle);
+    
+    //rotate first to the left and then to the right 3 times
+    //the rotation autoreverses
+    view.transform = leftRotate;  
+    [UIView beginAnimations:@"shakeView" context:view];
+    //[UIView setAnimationRepeatAutoreverses:YES];
+    [UIView setAnimationRepeatCount:3];
+    [UIView setAnimationDuration:0.09];
+    [UIView setAnimationDelegate:self];
+    view.transform = rightRotate;
+    
+    //When finish set the view to it's identity posiotion
+    [UIView setAnimationDidStopSelector:@selector(shakeViewEnded:finished:context:)];
+    [UIView commitAnimations];
+
+}
+
+
+- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context 
+{
+    if ([finished boolValue]) 
+    {
+        UIView* item = (UIView *)context;
+        item.transform = CGAffineTransformIdentity;
+    }
+}
+    
+
 
 
 @end

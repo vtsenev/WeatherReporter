@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E834D3215890263003D42DC /* PasswordViewController.xib */; };
 		3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89475B158A0CD6002966C0 /* PasswordViewController.m */; };
+		3E894768158A4516002966C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E894767158A4516002966C0 /* QuartzCore.framework */; };
 		A078771615825B2900E62525 /* BasicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771515825B2900E62525 /* BasicParser.m */; };
 		A078771A15825B8A00E62525 /* WeatherParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771915825B8A00E62525 /* WeatherParser.m */; };
 		A078771D15825C8F00E62525 /* CustomConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771C15825C8F00E62525 /* CustomConnection.m */; };
@@ -93,11 +94,12 @@
 
 /* Begin PBXFileReference section */
 		3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerControllerDelegate.h; sourceTree = "<group>"; };
-		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
 		3E834D3215890263003D42DC /* PasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
 		3E89475A158A0CD5002966C0 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
 		3E89475B158A0CD6002966C0 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		3E89475D158A104E002966C0 /* PasswordViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordViewControllerDelegate.h; sourceTree = "<group>"; };
+		3E894767158A4516002966C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
 		A078771815825B8A00E62525 /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherParser.h; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E894768158A4516002966C0 /* QuartzCore.framework in Frameworks */,
 				A0AFCFC91588D60E0065DFC0 /* CoreLocation.framework in Frameworks */,
 				A0AFCFC61588D4D00065DFC0 /* MapKit.framework in Frameworks */,
 				A0B142381581FF7300378DE6 /* CoreData.framework in Frameworks */,
@@ -438,6 +441,7 @@
 		A0B142001581FC2F00378DE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E894767158A4516002966C0 /* QuartzCore.framework */,
 				A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */,
 				A0AFCFC51588D4D00065DFC0 /* MapKit.framework */,
 				A0856A031582585F00B06FA2 /* SBJSON */,
