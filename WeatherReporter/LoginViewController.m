@@ -20,7 +20,8 @@
 @implementation LoginViewController
 @synthesize usernameField;
 @synthesize passwordField;
-@synthesize delegate;
+@synthesize weatherTableViewControllerDelegate;
+@synthesize profileViewControllerDelegate;
 
 - (void)dealloc {
     [usernameField release];
@@ -66,8 +67,13 @@
     } else {
         BOOL isPasswordCorrect = [user.password isEqualToString:self.passwordField.text]; // pass should be hashed
         if (isPasswordCorrect) {
-            if ([self.delegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
-                [self.delegate loginDidSucceedWithUser:user];
+            if ([self.weatherTableViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
+                [self.weatherTableViewControllerDelegate loginDidSucceedWithUser:user];
+                if ([self.profileViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
+                    [self.profileViewControllerDelegate loginDidSucceedWithUser:user];
+                }
+                UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
+                [tabBarController setSelectedIndex:0];
                 [self dismissModalViewControllerAnimated:YES];
                 NSLog(@"Correct user data!");
             }

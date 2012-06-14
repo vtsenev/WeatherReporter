@@ -9,7 +9,6 @@ Login Screen:
 Weather TableView:
 - date picker for latitude and longitude
 - handle bad url requests and errors
-- use activity indicator when waiting for information from server
 
 Additional:
 1. rocking view animation when passwords don't match

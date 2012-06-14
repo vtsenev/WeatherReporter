@@ -16,7 +16,8 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *usernameField;
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;
-@property (nonatomic, assign) id<LoginViewControllerDelegate> delegate;
+@property (nonatomic, assign) id<LoginViewControllerDelegate> weatherTableViewControllerDelegate;
+@property (nonatomic, assign) id<LoginViewControllerDelegate> profileViewControllerDelegate;
 
 - (IBAction)login:(id)sender;
 - (IBAction)registerNewUser:(id)sender;

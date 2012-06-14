@@ -33,7 +33,6 @@
     
     UIViewController *profileViewController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
     UINavigationController *profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
-    [profileViewController release];
     [profileNavigationController setTitle:@"Profile"];
     
     [tabBarController setViewControllers:[NSArray arrayWithObjects:weatherNavigationController, profileNavigationController, nil]];
@@ -46,8 +45,10 @@
     [self.window makeKeyAndVisible];
     
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-    loginViewController.delegate = weatherTableViewController;
+    loginViewController.weatherTableViewControllerDelegate = weatherTableViewController;
+    loginViewController.profileViewControllerDelegate = profileViewController;
     [weatherTableViewController release];
+    [profileViewController release];
     
     UINavigationController *loginNavigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [loginViewController release];

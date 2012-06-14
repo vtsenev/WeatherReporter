@@ -15,6 +15,11 @@
 
 @interface AddCityViewController ()
 
+- (void)initializeActivityIndicator;
+- (void)userInteractionEnabled:(BOOL)isEnabled;
+- (BOOL)isCityValid;
+- (void)updateCity;
+
 @end
 
 @implementation AddCityViewController
@@ -96,12 +101,27 @@
     }
 }
 
+- (BOOL)isCityValid {
+    BOOL validity = YES;
+    if ([self.cityNameField.text isEqualToString:@""] || [self.countryField.text isEqualToString:@""] ||
+        [self.latitudeField.text isEqualToString:@""] || [self.longitudeField.text isEqualToString:@""]) {
+        validity = NO;
+    }
+    return validity;
+}
+
 - (IBAction)addCity:(id)sender {
     [self updateCity];
-    if ([self.delegate respondsToSelector:@selector(didUpdateCity:)]) {
-        [self.delegate didUpdateCity:self.city];
+    if ([self isCityValid]) {
+        if ([self.delegate respondsToSelector:@selector(didUpdateCity:)]) {
+            [self.delegate didUpdateCity:self.city];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid city" message:@"One of the fields is missing." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateCity {
