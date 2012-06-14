@@ -16,6 +16,8 @@
 @synthesize passwordView;
 @synthesize passwordTextField;
 @synthesize confirmPassTextField;
+@synthesize warningLabel;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +39,8 @@
     [self setPasswordView:nil];
     [self setPasswordTextField:nil];
     [self setConfirmPassTextField:nil];
+    [self setWarningLabel:nil];
+    [self setDelegate:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -51,11 +55,34 @@
     [passwordView release];
     [passwordTextField release];
     [confirmPassTextField release];
+    [warningLabel release];
+    [delegate release];
     [super dealloc];
 }
 - (IBAction)cancelPassword:(id)sender {
+    
+    [self.delegate dismissPasswordView:self.view];
+    
 }
 
 - (IBAction)confirmPassword:(id)sender {
+    
+    NSString *password = self.passwordTextField.text;
+    NSString *confirmPass = self.confirmPassTextField.text;
+    
+    if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]){
+        self.warningLabel.text = @"Please fill in password and confirm it!";
+    }
+    else if([ password isEqualToString:confirmPass]){
+     
+        [self.delegate dismissPasswordView:self.view];
+        [self.delegate confirmPassword:password];
+    }
+    else {
+        self.warningLabel.text = @"Passwords do not match!";
+    }
+        
 }
+
+
 @end

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "DatePickerControllerDelegate.h"
+#import "PasswordViewControllerDelegate.h"
 
 @class User;
 
-@interface RegisterUserViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, DatePickerControllerDelegate>
+@interface RegisterUserViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate,
+                                        DatePickerControllerDelegate,PasswordViewControllerDelegate>
 
 @property (retain, nonatomic) User *user;
 @property (retain, nonatomic) NSDate *birthdayDate;
@@ -26,7 +28,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)registerNewUser:(id)sender;
-- (void) animateAppearFromBottomForView:(UIView *)view;
-
+- (void) appearFromBottomForView:(UIView *)view;
+- (void) hideToBottomForView:(UIView *)view;
 
 @end

@@ -2,6 +2,7 @@ todo:
 
 Login Screen:
 - custom view for passwords;
+- resign frist responder of the textfields when we move to another textfield
 - add UIScrollView to RegisterViewController
 - md5 hashing the password
 - clean up text fields in login screen
