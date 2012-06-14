@@ -8,14 +8,17 @@
 
 #import "RegisterUserViewController.h"
 #import "DatePickerViewController.h"
+#import "PasswordViewController.h"
 #import "DataManager.h"
 #import "User.h"
 
 @interface RegisterUserViewController ()
-- (IBAction)removeFromSuperviewDatePickerView:(id)sender;
+- (IBAction)removeFromSuperviewView:(id)sender;
+- (void) showPasswordView;
 @end
 
 @implementation RegisterUserViewController
+@synthesize scrollView;
 @synthesize usernameField;
 @synthesize firstnameField;
 @synthesize lastnameField;
@@ -33,6 +36,7 @@
     [lastnameField release];
     [dateOfBirthField release];
     [birthdayDate release];
+    [scrollView release];
     [super dealloc];
 }
 
@@ -45,6 +49,7 @@
     [self setLastnameField:nil];
     [self setDateOfBirthField:nil];
     [self setBirthdayDate:nil];
+    [self setScrollView:nil];
     [super viewDidUnload];
 }
 
@@ -58,6 +63,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.scrollView.contentSize = self.view.    frame.size;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -92,18 +99,12 @@
             
         } else {
             
-            User *newUser = [[DataManager defaultDataManager] addUser];
-            
-            newUser.username = self.usernameField.text;
-            newUser.firstName = self.firstnameField.text;
-            newUser.lastName = self.lastnameField.text;
-            newUser.birthdayDate = self.birthdayDate;
-            
-            self.user = newUser;
-            [self displayPasswordAlertView];
+            [self showPasswordView];
+//            [self displayPasswordAlertView];
         }
     }
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
@@ -122,58 +123,19 @@
     [alert show];
 }
 
-#pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != [alertView cancelButtonIndex]) {
-        
-        NSString *password = [[alertView textFieldAtIndex:0] text];
-        NSString *confirmPass = [[alertView textFieldAtIndex:1] text];
-        
-        if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]){
-            [alertView setTitle:@"Please fill in password and confirm it after!"];
-        }
-        else if([ password isEqualToString:confirmPass]){
-            
-            user.password = [[alertView textFieldAtIndex:0] text];
-            [[DataManager defaultDataManager] updateUser:user];
-            NSLog(@" Inserted user: %@, %@, %@, %@, %@", user.username, user.firstName, user.lastName, user.birthdayDate, user.password);
-            [self.navigationController popViewControllerAnimated:YES];
-        } 
-        else {
-            [alertView setTitle:@"Passwords do not match!"];
-        }
-    }
-}
-
-- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    if ([textField.text length] == 0) {
-        return NO;
-    }
-    return YES;
-}
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
+- (void)showPasswordView{
     
-    //If we begin editing in dateOfBirthField
-    if(textField.tag == 1)
-    {
-        
-        [textField resignFirstResponder];
-        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
-        datePickerViewController.delegate = self;
-        [self.view addSubview:datePickerViewController.view];
-        [self animateAppearFromBottomForView:datePickerViewController.view];
-    }
-    
+    PasswordViewController *passViewController = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
+    passViewController.delegate = self;
+    [self appearFromBottomForView:passViewController.view];
 }
 
 #pragma mark - Appear/Disapear View animations
 
-- (void)animateAppearFromBottomForView:(UIView *)view{
+- (void)appearFromBottomForView:(UIView *)view{
     int height = 480;
+    
+    [self.view addSubview:view];
     
     CGRect viewFrame = view.frame;
     // Set the popup view's frame so that it is off the bottom of the screen
@@ -188,7 +150,7 @@
     
 }
 
-- (void)dismissDatePickerView:(UIView *)view{
+- (void)hideToBottomForView:(UIView *)view{
     
     CGRect viewFrame = view.frame;
     
@@ -197,12 +159,15 @@
     viewFrame.origin.y += 480;
     view.frame = viewFrame;
     [UIView commitAnimations];
-    [self performSelector:@selector(removeFromSuperviewDatePickerView:) withObject:view afterDelay:0.5];
+    [self performSelector:@selector(removeFromSuperviewView:) withObject:view afterDelay:0.5];    
 }
-     
-- (IBAction)removeFromSuperviewDatePickerView:(id)sender {
+
+
+- (IBAction)removeFromSuperviewView:(id)sender {
     [sender removeFromSuperview]; 
 }
+
+
 #pragma mark - DatePickerViewController delegate methods
 
 - (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date{
@@ -214,7 +179,46 @@
 
 }
 
+- (void)dismissDatePickerView:(UIView *)view{
+    
+    [self hideToBottomForView:view];
+}
 
 
+#pragma mark - PasswordViewController Delegate Methods
+
+- (void)dismissPasswordView:(UIView *)view{
+    
+    [self hideToBottomForView:view];
+}
+
+- (void)confirmPassword:(NSString *)password{
+    
+    User *newUser = [[DataManager defaultDataManager] addUser];
+    
+    newUser.username = self.usernameField.text;
+    newUser.firstName = self.firstnameField.text;
+    newUser.lastName = self.lastnameField.text;
+    newUser.birthdayDate = self.birthdayDate;
+    
+    self.user = newUser;
+
+    user.password = password;
+    [[DataManager defaultDataManager] updateUser:user];
+    NSLog(@" Inserted user: %@, %@, %@, %@, %@", user.username, user.firstName, user.lastName, user.birthdayDate, user.password);
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //If we begin editing in dateOfBirthField
+    if(textField.tag == 1)
+    { 
+        [textField resignFirstResponder];
+        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+        datePickerViewController.delegate = self;
+        [self appearFromBottomForView:datePickerViewController.view];
+    }
+    
+}
 
 @end

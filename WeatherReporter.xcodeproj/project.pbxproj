@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E834D3215890263003D42DC /* PasswordViewController.xib */; };
+		3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89475B158A0CD6002966C0 /* PasswordViewController.m */; };
 		A078771615825B2900E62525 /* BasicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771515825B2900E62525 /* BasicParser.m */; };
 		A078771A15825B8A00E62525 /* WeatherParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771915825B8A00E62525 /* WeatherParser.m */; };
 		A078771D15825C8F00E62525 /* CustomConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771C15825C8F00E62525 /* CustomConnection.m */; };
@@ -92,6 +94,10 @@
 /* Begin PBXFileReference section */
 		3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerControllerDelegate.h; sourceTree = "<group>"; };
 		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
+		3E834D3215890263003D42DC /* PasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
+		3E89475A158A0CD5002966C0 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
+		3E89475B158A0CD6002966C0 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
+		3E89475D158A104E002966C0 /* PasswordViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordViewControllerDelegate.h; sourceTree = "<group>"; };
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
 		A078771815825B8A00E62525 /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherParser.h; sourceTree = "<group>"; };
@@ -259,33 +265,38 @@
 		A08569D615820DC400B06FA2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A08569D715820DE500B06FA2 /* ProfileViewController.h */,
-				A08569D815820DE500B06FA2 /* ProfileViewController.m */,
-				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
-				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
+				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
 				A0E346E3158603FE00C59EF5 /* AddCityViewController.h */,
 				A0E346E4158603FE00C59EF5 /* AddCityViewController.m */,
-				A0E346E81586041D00C59EF5 /* RegisterUserViewController.h */,
-				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
+				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
+				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
+				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
+				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
+				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
+				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
+				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
+				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 				A0E346ED1586043100C59EF5 /* LoginViewController.h */,
 				A0E346EE1586043100C59EF5 /* LoginViewController.m */,
 				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
-				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
-				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
-				A0E3470115861DF300C59EF5 /* MapViewController.h */,
-				A0E3470215861DF300C59EF5 /* MapViewController.m */,
-				A07D53C71587A7B0007D21F8 /* AddCityDelegate.h */,
-				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
-				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
-				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
-				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
 				A0AFCFBA1588CC660065DFC0 /* MapButton.h */,
 				A0AFCFBB1588CC660065DFC0 /* MapButton.m */,
+				A0E3470115861DF300C59EF5 /* MapViewController.h */,
+				A0E3470215861DF300C59EF5 /* MapViewController.m */,
+				3E89475A158A0CD5002966C0 /* PasswordViewController.h */,
+				3E89475B158A0CD6002966C0 /* PasswordViewController.m */,
+				3E89475D158A104E002966C0 /* PasswordViewControllerDelegate.h */,
+				A08569D715820DE500B06FA2 /* ProfileViewController.h */,
+				A08569D815820DE500B06FA2 /* ProfileViewController.m */,
+				A0E346E81586041D00C59EF5 /* RegisterUserViewController.h */,
+				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
 				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
 				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
 				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 				A00FE08B158A21A600179837 /* LogoutDelegate.h */,
+				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
+				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -299,6 +310,8 @@
 				A0E346EF1586043100C59EF5 /* LoginViewController.xib */,
 				A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */,
 				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
+				3E834D3215890263003D42DC /* PasswordViewController.xib */,
+				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
 				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
 				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
 				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
@@ -567,6 +580,7 @@
 				A0FB92BD1588A30F00BEC0F6 /* France.png in Resources */,
 				A0FB92BE1588A30F00BEC0F6 /* UK.png in Resources */,
 				A0AFCFB81588C14E0065DFC0 /* map.png in Resources */,
+				3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */,
 				A0AFCFDD1588FEF60065DFC0 /* DetailedForecastViewController.xib in Resources */,
 				A0B765061589F34900E997E4 /* Spain.png in Resources */,
 				A0B765071589F34900E997E4 /* Netherlands.png in Resources */,
@@ -646,6 +660,7 @@
 				A0B764FE1589EBDD00E997E4 /* GeoLocationParser.m in Sources */,
 				A0B765021589EC6400E997E4 /* GeoLocationResponse.m in Sources */,
 				A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */,
+				3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
