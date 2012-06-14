@@ -7,6 +7,7 @@
 //
 
 #import "PasswordViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PasswordViewController ()
 
@@ -24,7 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -32,7 +33,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.passwordView.layer.cornerRadius = 15.0;
+    self.passwordView.layer.masksToBounds = YES;
+    
+    // seems to look like a little bit better with this property
+    // when the view is shaked 
+//    self.passwordView.layer.shouldRasterize = YES;
 }
 
 - (void)viewDidUnload
@@ -101,7 +107,7 @@
     [UIView beginAnimations:@"shakeView" context:view];
     //[UIView setAnimationRepeatAutoreverses:YES];
     [UIView setAnimationRepeatCount:3];
-    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationDuration:0.09];
     [UIView setAnimationDelegate:self];
     view.transform = rightRotate;
     
