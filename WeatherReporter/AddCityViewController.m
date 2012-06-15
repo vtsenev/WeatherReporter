@@ -31,6 +31,7 @@
 @synthesize delegate;
 @synthesize activityIndicator;
 @synthesize getLocationBtn;
+@synthesize isCityFound;
 
 - (void)dealloc {
     [activityIndicator release];
@@ -70,6 +71,11 @@
     [self initializeActivityIndicator];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setIsCityFound:NO];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -93,7 +99,8 @@
 
 - (IBAction)getLocation:(id)sender {
     if (([self.cityNameField.text isEqualToString:@""]) || ([self.countryField.text isEqualToString:@""])) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Insufficient Information" message:@"Enter a city and select a country first." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        self.isCityFound = NO;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Insufficient Information" message:@"Enter a city and select a country first." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         [alertView release];
     } else {
@@ -102,23 +109,24 @@
 }
 
 - (BOOL)isCityValid {
-    BOOL validity = YES;
+    BOOL validity = YES && self.isCityFound;
     if ([self.cityNameField.text isEqualToString:@""] || [self.countryField.text isEqualToString:@""] ||
         [self.latitudeField.text isEqualToString:@""] || [self.longitudeField.text isEqualToString:@""]) {
-        validity = NO;
+        return NO;
     }
     return validity;
 }
 
 - (IBAction)addCity:(id)sender {
-    [self updateCity];
     if ([self isCityValid]) {
+        [self updateCity];
         if ([self.delegate respondsToSelector:@selector(didUpdateCity:)]) {
             [self.delegate didUpdateCity:self.city];
         }
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid city" message:@"One of the fields is missing." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        self.isCityFound = NO;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid city" message:@"One of the fields is missing or city is not in database." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     }
@@ -139,6 +147,7 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.isCityFound = NO;
     if (textField.tag == 1) {
         [textField resignFirstResponder];
         CountyPickerTableViewController *countryPickerViewController = [[CountyPickerTableViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -168,12 +177,14 @@
 - (void)connectionDidFailWithError:(NSString *)errorMessage {
     [self.activityIndicator removeFromSuperview];
     [self userInteractionEnabled:YES];
+    self.isCityFound = NO;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location not found" message:@"Type a different city or select another country from the list." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
 }
 
 - (void)connectionDidSucceedWithParsedData:(NSObject *)parsedData {
+    self.isCityFound = YES;
     GeoLocationResponse *geoLocationResponse = (GeoLocationResponse *)parsedData;
     [self.latitudeField setText:[geoLocationResponse.geoLocationInformation objectForKey:@"latitude"]];
     [self.longitudeField setText:[geoLocationResponse.geoLocationInformation objectForKey:@"longitude"]];

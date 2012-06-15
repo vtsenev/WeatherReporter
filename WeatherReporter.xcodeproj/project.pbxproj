@@ -66,6 +66,12 @@
 		A0B765071589F34900E997E4 /* Netherlands.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765041589F34900E997E4 /* Netherlands.png */; };
 		A0B765081589F34900E997E4 /* Austria.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765051589F34900E997E4 /* Austria.png */; };
 		A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B76516158A0FCF00E997E4 /* CustomLabel.m */; };
+		A0DC1588158B6469003DD61F /* Switzerland.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1583158B6469003DD61F /* Switzerland.png */; };
+		A0DC1589158B6469003DD61F /* Denmark.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1584158B6469003DD61F /* Denmark.png */; };
+		A0DC158A158B6469003DD61F /* Sweden.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1585158B6469003DD61F /* Sweden.png */; };
+		A0DC158B158B6469003DD61F /* Germany.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1586158B6469003DD61F /* Germany.png */; };
+		A0DC158C158B6469003DD61F /* Poland.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1587158B6469003DD61F /* Poland.png */; };
+		A0DC158E158B67E7003DD61F /* Italy.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC158D158B67E7003DD61F /* Italy.png */; };
 		A0E346E2158601E500C59EF5 /* WeatherPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E1158601E500C59EF5 /* WeatherPeriod.m */; };
 		A0E346E6158603FE00C59EF5 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E4158603FE00C59EF5 /* AddCityViewController.m */; };
 		A0E346E7158603FE00C59EF5 /* AddCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */; };
@@ -204,6 +210,12 @@
 		A0B76515158A0FCF00E997E4 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
 		A0B76516158A0FCF00E997E4 /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
 		A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserDelegate.h; sourceTree = "<group>"; };
+		A0DC1583158B6469003DD61F /* Switzerland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Switzerland.png; sourceTree = "<group>"; };
+		A0DC1584158B6469003DD61F /* Denmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Denmark.png; sourceTree = "<group>"; };
+		A0DC1585158B6469003DD61F /* Sweden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sweden.png; sourceTree = "<group>"; };
+		A0DC1586158B6469003DD61F /* Germany.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Germany.png; sourceTree = "<group>"; };
+		A0DC1587158B6469003DD61F /* Poland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poland.png; sourceTree = "<group>"; };
+		A0DC158D158B67E7003DD61F /* Italy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Italy.png; sourceTree = "<group>"; };
 		A0E346E0158601E500C59EF5 /* WeatherPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriod.h; sourceTree = "<group>"; };
 		A0E346E1158601E500C59EF5 /* WeatherPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriod.m; sourceTree = "<group>"; };
 		A0E346E3158603FE00C59EF5 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityViewController.h; sourceTree = "<group>"; };
@@ -349,6 +361,12 @@
 		A08569E11582107600B06FA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A0DC158D158B67E7003DD61F /* Italy.png */,
+				A0DC1583158B6469003DD61F /* Switzerland.png */,
+				A0DC1584158B6469003DD61F /* Denmark.png */,
+				A0DC1585158B6469003DD61F /* Sweden.png */,
+				A0DC1586158B6469003DD61F /* Germany.png */,
+				A0DC1587158B6469003DD61F /* Poland.png */,
 				A0B765031589F34900E997E4 /* Spain.png */,
 				A0B765041589F34900E997E4 /* Netherlands.png */,
 				A0B765051589F34900E997E4 /* Austria.png */,
@@ -613,6 +631,12 @@
 				A0B765071589F34900E997E4 /* Netherlands.png in Resources */,
 				A0B765081589F34900E997E4 /* Austria.png in Resources */,
 				A0052DDE158A506800A10926 /* BCrypt-java-copyright.txt in Resources */,
+				A0DC1588158B6469003DD61F /* Switzerland.png in Resources */,
+				A0DC1589158B6469003DD61F /* Denmark.png in Resources */,
+				A0DC158A158B6469003DD61F /* Sweden.png in Resources */,
+				A0DC158B158B6469003DD61F /* Germany.png in Resources */,
+				A0DC158C158B6469003DD61F /* Poland.png in Resources */,
+				A0DC158E158B67E7003DD61F /* Italy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

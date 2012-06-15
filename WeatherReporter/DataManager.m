@@ -70,7 +70,9 @@ static DataManager *defaultDataManager = nil;
     
     [context setUndoManager:nil];
     
-    countries = [[NSArray alloc] initWithObjects:@"Austria", @"Bulgaria", @"France", @"Netherlands", @"Spain", @"UK", nil];
+    countries = [[NSArray alloc] initWithObjects:@"Austria", @"Bulgaria", @"Denmark", @"France",
+                 @"Germany", @"Italy", @"Netherlands", @"Poland", @"Spain", @"Sweden",
+                 @"Switzerland", @"UK", nil];
     
     return self;
 }
@@ -188,9 +190,8 @@ static DataManager *defaultDataManager = nil;
 
     NSMutableArray *searchedCities = [[NSMutableArray alloc] init];
     if (![cityName isEqualToString:@""]) {
-
         for (City *city in allCities) {
-            if ([city.name hasPrefix:cityName]) {
+            if ([city.name hasPrefix:cityName] || [city.country hasPrefix:cityName]) {
                 [searchedCities addObject:city];
             }
         }

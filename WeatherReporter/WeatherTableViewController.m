@@ -232,7 +232,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar
     textDidChange:(NSString *)searchText {
-    NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchBar.text forUsername:self.user.username];
+    NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchText forUsername:self.user.username];
     
     [self.tableData removeAllObjects];
     [self.tableData addObjectsFromArray:results];

@@ -28,18 +28,25 @@
         NSString *latitude = [[self.parsedData objectForKey:@"location"] objectForKey:@"lat"];
         NSString *longitude = [[self.parsedData objectForKey:@"location"] objectForKey:@"lon"];
         
-        [geoLocationResponse.geoLocationInformation setValue:latitude forKey:@"latitude"];
-        [geoLocationResponse.geoLocationInformation setValue:longitude forKey:@"longitude"];
-        
-        if ([delegate respondsToSelector:@selector(parserDidSucceedWithData:withConnectionTag:)]){
+        if (latitude && longitude) {
+            [geoLocationResponse.geoLocationInformation setValue:latitude forKey:@"latitude"];
+            [geoLocationResponse.geoLocationInformation setValue:longitude forKey:@"longitude"];
             
-            [delegate parserDidSucceedWithData:geoLocationResponse withConnectionTag:connectionTag];
+            if ([delegate respondsToSelector:@selector(parserDidSucceedWithData:withConnectionTag:)]) {
+                [delegate parserDidSucceedWithData:geoLocationResponse withConnectionTag:connectionTag];
+            }
+        } else {
+            self.basicResponse.isSuccessful = NO;
+            if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]) {
+                NSLog(@"Data: %@", dataString);
+                [delegate parserDidFailWithError:@"Response is not of the expected format." withConnectionTag:connectionTag];
+            }   
         }
     }
     else {
         
         if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]){
-            
+            NSLog(@"Data: %@", dataString);
             [delegate parserDidFailWithError:self.basicResponse.errorMessage withConnectionTag:connectionTag];
         }     
     }

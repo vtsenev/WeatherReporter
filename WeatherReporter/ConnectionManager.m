@@ -11,6 +11,7 @@
 #import "CustomRequest.h"
 #import "WeatherParser.h"
 #import "GeoLocationParser.h"
+#import "BasicResponse.h"
 
 // connection tags
 NSString * const kGetForecastTag = @"GetForecast+%@";
@@ -163,6 +164,10 @@ static ConnectionManager *defaultConnectionManager = nil;
 
     for (id<CustomConnectionDelegate> delegate in customConnection.delegates) {
         if ([delegate respondsToSelector:@selector(connectionDidSucceedWithParsedData:)]) {
+            GeoLocationResponse *gr = (GeoLocationResponse *)parsedData;
+            BasicResponse *br = [gr basicResponse];
+            
+            NSLog(@"Success! BOOL: %i", [br isSuccessful]);
             [delegate connectionDidSucceedWithParsedData:parsedData];
         }
     }
@@ -175,6 +180,7 @@ static ConnectionManager *defaultConnectionManager = nil;
     
     for (id<CustomConnectionDelegate> delegate in customConnection.delegates) {
         if ([delegate respondsToSelector:@selector(connectionDidFailWithError:)]) {
+            NSLog(@"Failure! Error message: %@", errorMessage);
             [delegate connectionDidFailWithError:errorMessage];
         }
     }

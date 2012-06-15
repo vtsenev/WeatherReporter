@@ -70,49 +70,42 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
 }
 
 - (IBAction)login:(id)sender {
+    if ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
+        [self displayAlertWithTitle:@"Login error" alertMessage:@"Enter your username and password."];
+        return;
+    }
     User *user = [[DataManager defaultDataManager] fetchUserForUsername:self.usernameField.text];
     if (!user) {
-        
         NSString *wrongUsername = [NSString stringWithFormat:@"Username: \"%@\" doesn't exist!", self.usernameField.text];
-        
-        UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong username" message:wrongUsername delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        
-        [wrongUserAllertView show];
-        [wrongUserAllertView release];
-        
-        NSLog(@"Incorrect username!");
-        
+        [self displayAlertWithTitle:@"Login error" alertMessage:wrongUsername];
+        return;
     } else {
         NSString *salt = [user.password substringToIndex:29];
         NSString *hashedPassword = [self hashPassword:self.passwordField.text forSalt:salt];
-        NSLog(@"%@", hashedPassword);
         if (hashedPassword) {
             BOOL isPasswordCorrect = [user.password isEqualToString:hashedPassword];
             if (isPasswordCorrect) {
-                if ([self.weatherTableViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
+                if ([self.weatherTableViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)] &&
+                    [self.profileViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
+
                     [self.weatherTableViewControllerDelegate loginDidSucceedWithUser:user];
-                    if ([self.profileViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
-                        [self.profileViewControllerDelegate loginDidSucceedWithUser:user];
-                    }
+                    [self.profileViewControllerDelegate loginDidSucceedWithUser:user];
+                    
                     if (switchBtn.on) {
                         [self rememberUser];
                     } else {
                         [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:userDefaultsRememberMeKey];
                     }
+                    
                     UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
                     [tabBarController setSelectedIndex:0];
                     [self dismissModalViewControllerAnimated:YES];
-                    NSLog(@"Correct user data!");
                 }
             } else {
-                
-                UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong password" message:@"Incorrect Password!\n Try Again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                [wrongUserAllertView show];
-                [wrongUserAllertView release];
-                
-                NSLog(@"Incorrect user password!");
+                [self displayAlertWithTitle:@"Login error" alertMessage:@"Incorrect Password!\n Try Again!"];
             }
+        } else {
+            [self displayAlertWithTitle:@"Login error" alertMessage:@"Incorrect Password!\n Try Again!"];
         }
     }
 }
@@ -122,6 +115,12 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
     registerUserViewController.delegate = self;
     [self.navigationController pushViewController:registerUserViewController animated:YES];
     [registerUserViewController release];
+}
+
+- (void)displayAlertWithTitle:(NSString *)alertTitle alertMessage:(NSString *)alertMessage {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (void)rememberUser {

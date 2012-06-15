@@ -103,11 +103,11 @@
     [cell.imageView setImage:img];
     [img release];
 
-    CGRect labelFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 120, 7, 90, cell.frame.size.height - 14);
+    CGRect labelFrame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 105, 7, 85, cell.frame.size.height - 14);
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setNumberOfLines:2];
-    [label setFont:[UIFont boldSystemFontOfSize:13]];
+    [label setFont:[UIFont boldSystemFontOfSize:12]];
     [label setTextColor:[UIColor darkGrayColor]];
     [label setText:[weatherPeriod conditions]];
     [cell addSubview:label];
