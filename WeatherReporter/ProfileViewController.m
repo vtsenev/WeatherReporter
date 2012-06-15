@@ -29,6 +29,7 @@
 @synthesize cityCountLabel;
 @synthesize birthdayDate;
 @synthesize passwordChanged;
+@synthesize sortByField;
 
 - (void)dealloc {
     [birthdayDate release];
@@ -39,6 +40,7 @@
     [passwordField release];
     [logoutBtn release];
     [cityCountLabel release];
+    [sortByField release];
     [super dealloc];
 }
 
@@ -51,6 +53,7 @@
     [self setPasswordField:nil];
     [self setLogoutBtn:nil];
     [self setCityCountLabel:nil];
+    [self setSortByField:nil];
     [super viewDidUnload];
 }
 
@@ -165,7 +168,10 @@
     else if (textField.tag == 2) {
         self.passwordChanged = YES;
     }
-    
+    // If we begin editting sortBy field
+    else if (textField.tag == 3) {
+        // ...
+    }
 }
 
 #pragma mark - DatePickerViewController delegate methods

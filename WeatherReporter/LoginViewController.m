@@ -17,6 +17,12 @@
 NSString *const userDefaultsPasswordKey = @"password";
 NSString *const userDefaultsUsernameKey = @"username";
 NSString *const userDefaultsRememberMeKey = @"rememberMe";
+NSString *const loginErrorType = @"Login error";
+NSString *const wrongPasswordError = @"Incorrect Password!\n Try Again!";
+NSString *const missingUsernameOrPasswordError = @"Enter your username and password.";
+NSInteger const saltLength = 29;
+NSInteger const dontRememberMe = 0;
+NSInteger const doRememberMe = 1;
 
 @interface LoginViewController ()
 
@@ -71,13 +77,13 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
 
 - (IBAction)login:(id)sender {
     if ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
-        [self displayAlertWithTitle:@"Login error" alertMessage:@"Enter your username and password."];
+        [self displayAlertWithTitle:loginErrorType alertMessage:missingUsernameOrPasswordError];
         return;
     }
     User *user = [[DataManager defaultDataManager] fetchUserForUsername:self.usernameField.text];
     if (!user) {
         NSString *wrongUsername = [NSString stringWithFormat:@"Username: \"%@\" doesn't exist!", self.usernameField.text];
-        [self displayAlertWithTitle:@"Login error" alertMessage:wrongUsername];
+        [self displayAlertWithTitle:loginErrorType alertMessage:wrongUsername];
         return;
     } else {
         NSString *salt = [user.password substringToIndex:29];
@@ -94,7 +100,7 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
                     if (switchBtn.on) {
                         [self rememberUser];
                     } else {
-                        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:userDefaultsRememberMeKey];
+                        [[NSUserDefaults standardUserDefaults] setInteger:dontRememberMe forKey:userDefaultsRememberMeKey];
                     }
                     
                     UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
@@ -102,10 +108,12 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
                     [self dismissModalViewControllerAnimated:YES];
                 }
             } else {
-                [self displayAlertWithTitle:@"Login error" alertMessage:@"Incorrect Password!\n Try Again!"];
+                // password is wrong
+                [self displayAlertWithTitle:loginErrorType alertMessage:wrongPasswordError];
             }
         } else {
-            [self displayAlertWithTitle:@"Login error" alertMessage:@"Incorrect Password!\n Try Again!"];
+            // salt is wrong or missing
+            [self displayAlertWithTitle:loginErrorType alertMessage:wrongPasswordError];
         }
     }
 }
@@ -126,11 +134,11 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
 - (void)rememberUser {
     [[NSUserDefaults standardUserDefaults] setValue:self.usernameField.text forKey:userDefaultsUsernameKey];
     [[NSUserDefaults standardUserDefaults] setValue:self.passwordField.text forKey:userDefaultsPasswordKey];
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:userDefaultsRememberMeKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:doRememberMe forKey:userDefaultsRememberMeKey];
 }
 
 - (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt {
-    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH && salt.length == 29) {
+    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH && salt.length == saltLength) {
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
     }

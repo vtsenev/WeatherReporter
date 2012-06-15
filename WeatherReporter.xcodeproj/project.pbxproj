@@ -72,6 +72,8 @@
 		A0DC158B158B6469003DD61F /* Germany.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1586158B6469003DD61F /* Germany.png */; };
 		A0DC158C158B6469003DD61F /* Poland.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1587158B6469003DD61F /* Poland.png */; };
 		A0DC158E158B67E7003DD61F /* Italy.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC158D158B67E7003DD61F /* Italy.png */; };
+		A0DC1592158B8DFD003DD61F /* SortOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */; };
+		A0DC1593158B8DFD003DD61F /* SortOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */; };
 		A0E346E2158601E500C59EF5 /* WeatherPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E1158601E500C59EF5 /* WeatherPeriod.m */; };
 		A0E346E6158603FE00C59EF5 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E4158603FE00C59EF5 /* AddCityViewController.m */; };
 		A0E346E7158603FE00C59EF5 /* AddCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */; };
@@ -216,6 +218,9 @@
 		A0DC1586158B6469003DD61F /* Germany.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Germany.png; sourceTree = "<group>"; };
 		A0DC1587158B6469003DD61F /* Poland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poland.png; sourceTree = "<group>"; };
 		A0DC158D158B67E7003DD61F /* Italy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Italy.png; sourceTree = "<group>"; };
+		A0DC158F158B8DFA003DD61F /* SortOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortOptionsViewController.h; sourceTree = "<group>"; };
+		A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortOptionsViewController.m; sourceTree = "<group>"; };
+		A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SortOptionsViewController.xib; sourceTree = "<group>"; };
 		A0E346E0158601E500C59EF5 /* WeatherPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriod.h; sourceTree = "<group>"; };
 		A0E346E1158601E500C59EF5 /* WeatherPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriod.m; sourceTree = "<group>"; };
 		A0E346E3158603FE00C59EF5 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityViewController.h; sourceTree = "<group>"; };
@@ -334,6 +339,8 @@
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
 				A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */,
+				A0DC158F158B8DFA003DD61F /* SortOptionsViewController.h */,
+				A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -349,6 +356,7 @@
 				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
 				3E834D3215890263003D42DC /* PasswordViewController.xib */,
 				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
+				A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */,
 				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
 				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
 				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
@@ -637,6 +645,7 @@
 				A0DC158B158B6469003DD61F /* Germany.png in Resources */,
 				A0DC158C158B6469003DD61F /* Poland.png in Resources */,
 				A0DC158E158B67E7003DD61F /* Italy.png in Resources */,
+				A0DC1593158B8DFD003DD61F /* SortOptionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +724,7 @@
 				3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */,
 				A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */,
 				A0052DE0158A506800A10926 /* JFRandom.m in Sources */,
+				A0DC1592158B8DFD003DD61F /* SortOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

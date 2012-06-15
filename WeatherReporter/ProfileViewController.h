@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *logoutBtn;
 @property (retain, nonatomic) NSDate *birthdayDate;
 @property (nonatomic) BOOL passwordChanged;
+@property (retain, nonatomic) IBOutlet UITextField *sortByField;
 
 - (IBAction)updateUserInfo:(id)sender;
 - (IBAction)logoutUser:(id)sender;
