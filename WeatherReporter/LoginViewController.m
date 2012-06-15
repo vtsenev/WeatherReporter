@@ -12,6 +12,9 @@
 #import "User.h"
 #import "WeatherTableViewController.h"
 #import "ProfileViewController.h"
+#import "JFBCrypt.h"
+
+const NSInteger minPassLength = 4;
 
 @interface LoginViewController ()
 
@@ -78,29 +81,33 @@
         NSLog(@"Incorrect username!");
         
     } else {
-        BOOL isPasswordCorrect = [user.password isEqualToString:self.passwordField.text]; // pass should be hashed
-        if (isPasswordCorrect) {
-            if ([self.weatherTableViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
-                [self.weatherTableViewControllerDelegate loginDidSucceedWithUser:user];
-                if ([self.profileViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
-                    [self.profileViewControllerDelegate loginDidSucceedWithUser:user];
+        NSString *hashedPassword = [self hashPassword:self.passwordField.text];
+        NSLog(@"%@", hashedPassword);
+        if (hashedPassword) {
+            BOOL isPasswordCorrect = [user.password isEqualToString:hashedPassword];
+            if (isPasswordCorrect) {
+                if ([self.weatherTableViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
+                    [self.weatherTableViewControllerDelegate loginDidSucceedWithUser:user];
+                    if ([self.profileViewControllerDelegate respondsToSelector:@selector(loginDidSucceedWithUser:)]) {
+                        [self.profileViewControllerDelegate loginDidSucceedWithUser:user];
+                    }
+                    if (switchBtn.on) {
+                        [self rememberUser];
+                    }
+                    UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
+                    [tabBarController setSelectedIndex:0];
+                    [self dismissModalViewControllerAnimated:YES];
+                    NSLog(@"Correct user data!");
                 }
-                if (switchBtn.on) {
-                    [self rememberUser];
-                }
-                UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
-                [tabBarController setSelectedIndex:0];
-                [self dismissModalViewControllerAnimated:YES];
-                NSLog(@"Correct user data!");
+            } else {
+                
+                UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong password" message:@"Incorrect Password!\n Try Again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                
+                [wrongUserAllertView show];
+                [wrongUserAllertView release];
+                
+                NSLog(@"Incorrect user password!");
             }
-        } else {
-            
-            UIAlertView *wrongUserAllertView = [[UIAlertView alloc] initWithTitle:@"Wrong password" message:@"Incorrect Password!\n Try Again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            [wrongUserAllertView show];
-            [wrongUserAllertView release];
-            
-            NSLog(@"Incorrect user password!");
         }
     }
 }
@@ -115,6 +122,20 @@
     [[NSUserDefaults standardUserDefaults] setValue:self.usernameField.text forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setValue:self.passwordField.text forKey:@"password"];
     [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"rememberMe"];
+}
+
+- (NSString *)hashPassword:(NSString *)password {
+    if (![password isEqualToString:@""] && password.length >= minPassLength) {
+        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
+        NSString *hashedPassword = [JFBCrypt hashPassword: password withSalt: salt];
+        return hashedPassword;
+    }
+    
+    [JFBCrypt generateSaltWithNumberOfRounds:10];
+
+    
+    
+    return nil;
 }
 
 # pragma mark - UITextFieldDelegate methods

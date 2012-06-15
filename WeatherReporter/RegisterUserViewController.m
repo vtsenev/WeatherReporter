@@ -11,6 +11,9 @@
 #import "PasswordViewController.h"
 #import "DataManager.h"
 #import "User.h"
+#import "JFBCrypt.h"
+
+const NSInteger minimumPassLength = 4;
 
 @interface RegisterUserViewController ()
 - (IBAction)removeFromSuperviewView:(id)sender;
@@ -203,8 +206,8 @@
     
     self.user = newUser;
 
-    user.password = password;
-    [[DataManager defaultDataManager] updateUser:user];
+    user.password = [self hashPassword:password];
+    [[DataManager defaultDataManager] updateUser:user]; // update user is depricated :)
     NSLog(@" Inserted user: %@, %@, %@, %@, %@", user.username, user.firstName, user.lastName, user.birthdayDate, user.password);
 }
 
@@ -219,6 +222,15 @@
         [self appearFromBottomForView:datePickerViewController.view];
     }
     
+}
+
+- (NSString *)hashPassword:(NSString *)password {
+    if (![password isEqualToString:@""] && password.length >= minimumPassLength) {
+        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
+        NSString *hashedPassword = [JFBCrypt hashPassword: password withSalt: salt];
+        return hashedPassword;
+    }
+    return nil;
 }
 
 @end

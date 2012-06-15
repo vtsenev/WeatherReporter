@@ -10,6 +10,9 @@
 		3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E834D3215890263003D42DC /* PasswordViewController.xib */; };
 		3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89475B158A0CD6002966C0 /* PasswordViewController.m */; };
 		3E894768158A4516002966C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E894767158A4516002966C0 /* QuartzCore.framework */; };
+		A0052DDE158A506800A10926 /* BCrypt-java-copyright.txt in Resources */ = {isa = PBXBuildFile; fileRef = A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */; };
+		A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A0052DDA158A506800A10926 /* JFBCrypt.m */; };
+		A0052DE0158A506800A10926 /* JFRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = A0052DDD158A506800A10926 /* JFRandom.m */; };
 		A078771615825B2900E62525 /* BasicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771515825B2900E62525 /* BasicParser.m */; };
 		A078771A15825B8A00E62525 /* WeatherParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771915825B8A00E62525 /* WeatherParser.m */; };
 		A078771D15825C8F00E62525 /* CustomConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771C15825C8F00E62525 /* CustomConnection.m */; };
@@ -99,6 +102,12 @@
 		3E89475B158A0CD6002966C0 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		3E89475D158A104E002966C0 /* PasswordViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordViewControllerDelegate.h; sourceTree = "<group>"; };
 		3E894767158A4516002966C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BCrypt-java-copyright.txt"; sourceTree = "<group>"; };
+		A0052DD9158A506800A10926 /* JFBCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBCrypt.h; sourceTree = "<group>"; };
+		A0052DDA158A506800A10926 /* JFBCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBCrypt.m; sourceTree = "<group>"; };
+		A0052DDB158A506800A10926 /* JFGC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFGC.h; sourceTree = "<group>"; };
+		A0052DDC158A506800A10926 /* JFRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRandom.h; sourceTree = "<group>"; };
+		A0052DDD158A506800A10926 /* JFRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRandom.m; sourceTree = "<group>"; };
 		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
@@ -251,6 +260,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A0052DD7158A506800A10926 /* jfbcrypt */ = {
+			isa = PBXGroup;
+			children = (
+				A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */,
+				A0052DD9158A506800A10926 /* JFBCrypt.h */,
+				A0052DDA158A506800A10926 /* JFBCrypt.m */,
+				A0052DDB158A506800A10926 /* JFGC.h */,
+				A0052DDC158A506800A10926 /* JFRandom.h */,
+				A0052DDD158A506800A10926 /* JFRandom.m */,
+			);
+			path = jfbcrypt;
+			sourceTree = "<group>";
+		};
 		A08569D115820C2300B06FA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +463,7 @@
 		A0B142001581FC2F00378DE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0052DD7158A506800A10926 /* jfbcrypt */,
 				3E894767158A4516002966C0 /* QuartzCore.framework */,
 				A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */,
 				A0AFCFC51588D4D00065DFC0 /* MapKit.framework */,
@@ -589,6 +612,7 @@
 				A0B765061589F34900E997E4 /* Spain.png in Resources */,
 				A0B765071589F34900E997E4 /* Netherlands.png in Resources */,
 				A0B765081589F34900E997E4 /* Austria.png in Resources */,
+				A0052DDE158A506800A10926 /* BCrypt-java-copyright.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +689,8 @@
 				A0B765021589EC6400E997E4 /* GeoLocationResponse.m in Sources */,
 				A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */,
 				3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */,
+				A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */,
+				A0052DE0158A506800A10926 /* JFRandom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
