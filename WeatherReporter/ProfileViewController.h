@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewControllerDelegate.h"
 #import "DatePickerControllerDelegate.h"
+#import "SortOptionsDelegate.h"
 @class User;
 
-@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate>
+@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate, SortOptionsDelegate>
 
 @property (nonatomic, retain) User *user;
 @property (retain, nonatomic) IBOutlet UITextField *firstNameField;

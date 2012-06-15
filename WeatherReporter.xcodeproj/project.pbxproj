@@ -211,6 +211,7 @@
 		A0B765051589F34900E997E4 /* Austria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Austria.png; sourceTree = "<group>"; };
 		A0B76515158A0FCF00E997E4 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
 		A0B76516158A0FCF00E997E4 /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
+		A0DA7290158B95CB00BE6BD5 /* SortOptionsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortOptionsDelegate.h; sourceTree = "<group>"; };
 		A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserDelegate.h; sourceTree = "<group>"; };
 		A0DC1583158B6469003DD61F /* Switzerland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Switzerland.png; sourceTree = "<group>"; };
 		A0DC1584158B6469003DD61F /* Denmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Denmark.png; sourceTree = "<group>"; };
@@ -341,6 +342,7 @@
 				A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */,
 				A0DC158F158B8DFA003DD61F /* SortOptionsViewController.h */,
 				A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */,
+				A0DA7290158B95CB00BE6BD5 /* SortOptionsDelegate.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

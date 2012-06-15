@@ -12,6 +12,7 @@
 #import "WeatherTableViewController.h"
 #import "JFBCrypt.h"
 #import "DatePickerViewController.h"
+#import "SortOptionsViewController.h"
 
 @interface ProfileViewController ()
 
@@ -170,7 +171,11 @@
     }
     // If we begin editting sortBy field
     else if (textField.tag == 3) {
-        // ...
+        [textField resignFirstResponder];
+        SortOptionsViewController *sortOptionsViewController = [[SortOptionsViewController alloc] initWithNibName:@"SortOptionsViewController" bundle:nil];
+        sortOptionsViewController.delegate = self;
+        [self appearFromBottomForView:sortOptionsViewController
+         .view];
     }
 }
 
@@ -209,7 +214,7 @@
 }
 
 - (void)appearFromBottomForView:(UIView *)view{
-    int height = 480;
+    int height = 460;
     
     [self.view addSubview:view];
     
@@ -223,7 +228,17 @@
     viewFrame.origin.y -= height;
     view.frame = viewFrame;
     [UIView commitAnimations];
-    
+}
+
+# pragma mark - SortingOptionsDelegate methods
+
+- (void)didChooseSortingOption:(NSInteger)sortingOption {
+    [self.sortByField setText:[NSString stringWithFormat:@"%i", sortingOption]];
+    NSLog(@"%i", sortingOption);
+}
+
+- (void)dismissSortingOptionsView:(UIView *)view {
+    [self hideToBottomForView:view];
 }
 
 @end

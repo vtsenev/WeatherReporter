@@ -96,6 +96,18 @@ static DataManager *defaultDataManager = nil;
         [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
     }
     User *user = [result lastObject];
+
+//    sorting the cities by country first and then by name:
+//    NSSet *citySet = [user cities];
+//    NSArray *cities = [citySet allObjects];
+//    NSSortDescriptor *sd = [[[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES] autorelease];
+//    NSSortDescriptor *sd2= [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+//    NSArray *sortDescriptors = [NSArray arrayWithObjects:sd, sd2, nil];
+//    NSArray *sortedCities = [cities sortedArrayUsingDescriptors:sortDescriptors];
+//    for (City *city in sortedCities) {
+//        NSLog(@"%@", city.name);
+//    }
+    
     return [user cities];
 }
 
