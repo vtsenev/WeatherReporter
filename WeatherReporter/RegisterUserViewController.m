@@ -13,8 +13,6 @@
 #import "User.h"
 #import "JFBCrypt.h"
 
-const NSInteger minimumPassLength = 4;
-
 @interface RegisterUserViewController ()
 - (IBAction)removeFromSuperviewView:(id)sender;
 - (void) showPasswordView;
@@ -29,6 +27,7 @@ const NSInteger minimumPassLength = 4;
 @synthesize passwordField, confirmPasswordField;
 @synthesize user;
 @synthesize birthdayDate;
+@synthesize delegate;
 
 - (void)dealloc {
     [user release];
@@ -66,8 +65,7 @@ const NSInteger minimumPassLength = 4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.scrollView.contentSize = self.view.    frame.size;
+    self.scrollView.contentSize = self.view.frame.size;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -75,7 +73,6 @@ const NSInteger minimumPassLength = 4;
 }
 
 - (IBAction)registerNewUser:(id)sender {
-    
     
     if ([self.usernameField.text isEqualToString:@""] || [self.firstnameField.text isEqualToString:@""] ||
             [self.lastnameField.text isEqualToString:@""] || [self.dateOfBirthField.text isEqualToString:@""]){
@@ -206,9 +203,12 @@ const NSInteger minimumPassLength = 4;
     
     self.user = newUser;
 
-    user.password = [self hashPassword:password];
-    [[DataManager defaultDataManager] updateUser:user]; // update user is depricated :)
+    self.user.password = [self hashPassword:password];
     NSLog(@" Inserted user: %@, %@, %@, %@, %@", user.username, user.firstName, user.lastName, user.birthdayDate, user.password);
+    [self.navigationController popViewControllerAnimated:YES];
+    if ([self.delegate respondsToSelector:@selector(newUserIsRegistered:)]) {
+        [self.delegate newUserIsRegistered:self.user];
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -225,7 +225,7 @@ const NSInteger minimumPassLength = 4;
 }
 
 - (NSString *)hashPassword:(NSString *)password {
-    if (![password isEqualToString:@""] && password.length >= minimumPassLength) {
+    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH) {
         NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
         NSString *hashedPassword = [JFBCrypt hashPassword: password withSalt: salt];
         return hashedPassword;

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewControllerDelegate.h"
+#import "DatePickerControllerDelegate.h"
 @class User;
 
-@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate>
+@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate>
 
 @property (nonatomic, retain) User *user;
 @property (retain, nonatomic) IBOutlet UITextField *firstNameField;
@@ -19,6 +20,8 @@
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;
 @property (retain, nonatomic) IBOutlet UILabel *cityCountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *logoutBtn;
+@property (retain, nonatomic) NSDate *birthdayDate;
+@property (nonatomic) BOOL passwordChanged;
 
 - (IBAction)updateUserInfo:(id)sender;
 - (IBAction)logoutUser:(id)sender;

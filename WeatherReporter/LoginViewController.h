@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginViewControllerDelegate.h"
+#import "RegisterUserDelegate.h"
 
 @class User;
 @class WeatherTableViewController;
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@interface LoginViewController : UIViewController <UITextFieldDelegate, RegisterUserDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *usernameField;
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;

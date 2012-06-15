@@ -169,11 +169,6 @@ static DataManager *defaultDataManager = nil;
     return [self saveChanges];
 }
 
-- (void)updateUser:(User *)user {
-//    User *u = [self fetchUserForUsername:user.username];
-//    u = [[user retain] autorelease];
-}
-
 - (BOOL)saveChanges {
     NSError *err = nil;
     BOOL successful = [context save:&err];

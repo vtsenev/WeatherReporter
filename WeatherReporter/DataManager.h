@@ -28,7 +28,6 @@
 - (City *)addCityForUsername:(NSString *)username;
 - (User *)addUser;
 - (BOOL)removeObject:(NSManagedObject *)managedObj;
-- (void)updateUser:(User *)user;
 
 - (BOOL)saveChanges;
 

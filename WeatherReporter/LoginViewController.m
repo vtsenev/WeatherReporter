@@ -14,7 +14,9 @@
 #import "ProfileViewController.h"
 #import "JFBCrypt.h"
 
-const NSInteger minPassLength = 4;
+NSString *const userDefaultsPasswordKey = @"password";
+NSString *const userDefaultsUsernameKey = @"username";
+NSString *const userDefaultsRememberMeKey = @"rememberMe";
 
 @interface LoginViewController ()
 
@@ -51,13 +53,13 @@ const NSInteger minPassLength = 4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *defaultUsername = [[NSUserDefaults standardUserDefaults] valueForKey:@"username"];
-    [self.usernameField setText:defaultUsername];
-    NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:@"password"];
-    [self.passwordField setText:password];
-    NSInteger rememberMe = [[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"];
+    NSInteger rememberMe = [[NSUserDefaults standardUserDefaults] integerForKey:userDefaultsRememberMeKey];
     if (rememberMe == 1) {
+        NSString *defaultUsername = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsUsernameKey];
+        NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsPasswordKey];
         [self.switchBtn setOn:YES];
+        [self.usernameField setText:defaultUsername];
+        [self.passwordField setText:password];
     } else {
         [self.switchBtn setOn:NO];
     }
@@ -81,7 +83,8 @@ const NSInteger minPassLength = 4;
         NSLog(@"Incorrect username!");
         
     } else {
-        NSString *hashedPassword = [self hashPassword:self.passwordField.text];
+        NSString *salt = [user.password substringToIndex:29];
+        NSString *hashedPassword = [self hashPassword:self.passwordField.text forSalt:salt];
         NSLog(@"%@", hashedPassword);
         if (hashedPassword) {
             BOOL isPasswordCorrect = [user.password isEqualToString:hashedPassword];
@@ -93,6 +96,8 @@ const NSInteger minPassLength = 4;
                     }
                     if (switchBtn.on) {
                         [self rememberUser];
+                    } else {
+                        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:userDefaultsRememberMeKey];
                     }
                     UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
                     [tabBarController setSelectedIndex:0];
@@ -114,26 +119,22 @@ const NSInteger minPassLength = 4;
 
 - (IBAction)registerNewUser:(id)sender {
     RegisterUserViewController *registerUserViewController = [[RegisterUserViewController alloc] initWithNibName:@"RegisterUserViewController" bundle:nil];
+    registerUserViewController.delegate = self;
     [self.navigationController pushViewController:registerUserViewController animated:YES];
     [registerUserViewController release];
 }
 
 - (void)rememberUser {
-    [[NSUserDefaults standardUserDefaults] setValue:self.usernameField.text forKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] setValue:self.passwordField.text forKey:@"password"];
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"rememberMe"];
+    [[NSUserDefaults standardUserDefaults] setValue:self.usernameField.text forKey:userDefaultsUsernameKey];
+    [[NSUserDefaults standardUserDefaults] setValue:self.passwordField.text forKey:userDefaultsPasswordKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:userDefaultsRememberMeKey];
 }
 
-- (NSString *)hashPassword:(NSString *)password {
-    if (![password isEqualToString:@""] && password.length >= minPassLength) {
-        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
-        NSString *hashedPassword = [JFBCrypt hashPassword: password withSalt: salt];
+- (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt {
+    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH && salt.length == 29) {
+        NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
     }
-    
-    [JFBCrypt generateSaltWithNumberOfRounds:10];
-
-    
     
     return nil;
 }
@@ -146,9 +147,16 @@ const NSInteger minPassLength = 4;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""]) {
+    if (![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""] && textField.tag == 1) {
         [self login:nil];
     }
+}
+
+# pragma mark - Register user delegate
+
+- (void)newUserIsRegistered:(User *)user {
+    self.usernameField.text = user.username;
+    self.passwordField.text = @"";
 }
 
 @end

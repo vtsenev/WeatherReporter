@@ -10,6 +10,8 @@
 #import "User.h"
 #import "LoginViewController.h"
 #import "WeatherTableViewController.h"
+#import "JFBCrypt.h"
+#import "DatePickerViewController.h"
 
 @interface ProfileViewController ()
 
@@ -25,8 +27,11 @@
 @synthesize dateOfBirthField;
 @synthesize passwordField;
 @synthesize cityCountLabel;
+@synthesize birthdayDate;
+@synthesize passwordChanged;
 
 - (void)dealloc {
+    [birthdayDate release];
     [user release];
     [firstNameField release];
     [lastNameField release];
@@ -38,6 +43,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setBirthdayDate:nil];
     [self setUser:nil];
     [self setFirstNameField:nil];
     [self setLastNameField:nil];
@@ -68,6 +74,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateView];
+    self.passwordChanged = NO;
+    self.birthdayDate = self.user.birthdayDate;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -77,8 +85,14 @@
 - (IBAction)updateUserInfo:(id)sender {
     [self.user setFirstName:self.firstNameField.text];
     [self.user setLastName:self.lastNameField.text];
-//  set user birthday date
-    [self.user setPassword:self.passwordField.text];
+    [self.user setBirthdayDate:self.birthdayDate];
+    if (self.passwordChanged) {
+        NSString *newPass = [self hashPassword:self.passwordField.text];
+        [self.user setPassword:newPass];
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info Updated!" message:@"User information is updated." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (IBAction)logoutUser:(id)sender {
@@ -115,6 +129,15 @@
     }
 }
 
+- (NSString *)hashPassword:(NSString *)password {
+    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH) {
+        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds:10];
+        NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
+        return hashedPassword;
+    }
+    return nil;
+}
+
 # pragma mark - LoginViewControllerDelegate methods
 
 - (void)loginDidSucceedWithUser:(User *)theUser {
@@ -127,6 +150,74 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
     return success;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //If we begin editing in dateOfBirthField
+    if(textField.tag == 1) { 
+        [textField resignFirstResponder];
+        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+        datePickerViewController.delegate = self;
+        [self appearFromBottomForView:datePickerViewController.view];
+    } 
+    // If we begin editting the password field
+    else if (textField.tag == 2) {
+        self.passwordChanged = YES;
+    }
+    
+}
+
+#pragma mark - DatePickerViewController delegate methods
+
+- (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date{
+    self.birthdayDate = date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
+    self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
+    
+}
+
+- (void)dismissDatePickerView:(UIView *)view{
+    [self hideToBottomForView:view];
+}
+
+#pragma mark - Appear/Disapear View animations
+
+- (void)hideToBottomForView:(UIView *)view{
+    
+    CGRect viewFrame = view.frame;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    viewFrame.origin.y += 480;
+    view.frame = viewFrame;
+    [UIView commitAnimations];
+    [self performSelector:@selector(removeFromSuperviewView:) withObject:view afterDelay:0.5];    
+}
+
+
+- (IBAction)removeFromSuperviewView:(id)sender {
+    [sender removeFromSuperview]; 
+}
+
+- (void)appearFromBottomForView:(UIView *)view{
+    int height = 480;
+    
+    [self.view addSubview:view];
+    
+    CGRect viewFrame = view.frame;
+    // Set the popup view's frame so that it is off the bottom of the screen
+    viewFrame.origin.y = CGRectGetMaxY(self.view.bounds);
+    view.frame  = viewFrame; 
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    viewFrame.origin.y -= height;
+    view.frame = viewFrame;
+    [UIView commitAnimations];
+    
 }
 
 @end

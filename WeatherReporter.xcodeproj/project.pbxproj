@@ -108,7 +108,6 @@
 		A0052DDB158A506800A10926 /* JFGC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFGC.h; sourceTree = "<group>"; };
 		A0052DDC158A506800A10926 /* JFRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRandom.h; sourceTree = "<group>"; };
 		A0052DDD158A506800A10926 /* JFRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRandom.m; sourceTree = "<group>"; };
-		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
 		A078771815825B8A00E62525 /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherParser.h; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		A0B765051589F34900E997E4 /* Austria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Austria.png; sourceTree = "<group>"; };
 		A0B76515158A0FCF00E997E4 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
 		A0B76516158A0FCF00E997E4 /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
+		A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserDelegate.h; sourceTree = "<group>"; };
 		A0E346E0158601E500C59EF5 /* WeatherPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriod.h; sourceTree = "<group>"; };
 		A0E346E1158601E500C59EF5 /* WeatherPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriod.m; sourceTree = "<group>"; };
 		A0E346E3158603FE00C59EF5 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityViewController.h; sourceTree = "<group>"; };
@@ -319,9 +319,9 @@
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
 				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
 				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
-				A00FE08B158A21A600179837 /* LogoutDelegate.h */,
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
+				A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
