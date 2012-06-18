@@ -10,10 +10,9 @@
 #import "LoginViewControllerDelegate.h"
 #import "DatePickerControllerDelegate.h"
 #import "PasswordViewControllerDelegate.h"
-#import "SortOptionsDelegate.h"
 @class User;
 
-@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate, PasswordViewControllerDelegate, SortOptionsDelegate>
+@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate, PasswordViewControllerDelegate>
 
 @property (nonatomic, retain) User *user;
 @property (retain, nonatomic) IBOutlet UITextField *firstNameField;
@@ -24,7 +23,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *logoutBtn;
 @property (retain, nonatomic) NSDate *birthdayDate;
 @property (nonatomic) BOOL passwordChanged;
-@property (retain, nonatomic) IBOutlet UITextField *sortByField;
+@property (nonatomic) NSInteger sortingOption;
+@property (retain, nonatomic) IBOutlet UISegmentedControl *sortingOptions;
 
 - (IBAction)updateUserInfo:(id)sender;
 - (IBAction)logoutUser:(id)sender;
