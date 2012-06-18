@@ -14,12 +14,13 @@
 #import "DatePickerViewController.h"
 #import "PasswordViewController.h"
 #import "CustomAnimationUtilities.h"
-#import "SortOptionsViewController.h"
 #import "Constants.h"
+#import "DataManager.h"
 
 @interface ProfileViewController ()
 
 - (void)updateView;
+- (NSString *)hashPassword:(NSString *)password;
 
 @end
 
@@ -99,12 +100,12 @@
         [self.user setPassword:newPass];
     }
     if ([self.sortingOptions selectedSegmentIndex] == 0) {
-        [[NSUserDefaults standardUserDefaults] setValue:@"city" forKey:@"sortBy"];
+        [[NSUserDefaults standardUserDefaults] setValue:sortByCity forKey:userDefaultsSortByKey];
     } else {
-        [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+        [[NSUserDefaults standardUserDefaults] setValue:sortByCountry forKey:userDefaultsSortByKey];
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info Updated!" message:@"User information is updated." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:profileUpdatedTitle message:profileUpdatedMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
 }
@@ -127,6 +128,8 @@
     [loginNavigationController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:loginNavigationController animated:YES completion:NULL];
     [loginNavigationController release];
+    
+    [[DataManager defaultDataManager] saveChanges];
 }
 
 - (void)updateView {
@@ -135,28 +138,28 @@
         [self.lastNameField setText:self.user.lastName];
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
+        [dateFormatter setDateFormat:dateFormat];
         [self.dateOfBirthField setText:[dateFormatter stringFromDate:self.user.birthdayDate]];
         [dateFormatter release];
         
         [self.cityCountLabel setText:[NSString stringWithFormat:@"%d", self.user.cities.count]];
         
-        NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:@"sortBy"];
+        NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsSortByKey];
         if (sortBy) {
-            if ([sortBy isEqualToString:@"city"]) {
+            if ([sortBy isEqualToString:sortByCity]) {
                 [self.sortingOptions setSelectedSegmentIndex:0];
             } else {
                 [self.sortingOptions setSelectedSegmentIndex:1];
             }
         } else {
-            [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+            [[NSUserDefaults standardUserDefaults] setValue:sortByDefault forKey:userDefaultsSortByKey];
             [self.sortingOptions setSelectedSegmentIndex:1];
         }
     }
 }
 
 - (NSString *)hashPassword:(NSString *)password {
-    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH) {
+    if (![password isEqualToString:@""] && password.length >= minPassLength) {
         NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds:10];
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
@@ -200,10 +203,10 @@
 
 #pragma mark - DatePickerViewController delegate methods
 
-- (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date{
+- (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date {
     self.birthdayDate = date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
+    [dateFormatter setDateFormat: dateFormat];
     self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
     [dateFormatter release];
     
@@ -211,8 +214,7 @@
 
 #pragma mark - PasswordViewController Delegate methods
 
-- (void)confirmPassword:(NSString *)password
-{
+- (void)confirmPassword:(NSString *)password {
     self.passwordField.text = password;
 }
 

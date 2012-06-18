@@ -6,13 +6,17 @@
 //  Copyright (c) 2012 MentorMate. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "PasswordViewController.h"
 #import "CustomAnimationUtilities.h"
-#import <QuartzCore/QuartzCore.h>
+#import "Constants.h"
+
 
 @interface PasswordViewController ()
 
 - (void)shakeView:(UIView *)view onAngle:(NSInteger)angle;
+- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
+
 @end
 
 @implementation PasswordViewController
@@ -22,40 +26,32 @@
 @synthesize warningLabel;
 @synthesize delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-
-    }
+    if (self) {}
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.passwordView.layer.cornerRadius = 15.0;
     self.passwordView.layer.masksToBounds = YES;
     
     // seems to look like a little bit better with this property
     // when the view is shaked 
-//    self.passwordView.layer.shouldRasterize = YES;
+    // self.passwordView.layer.shouldRasterize = YES;
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setPasswordView:nil];
     [self setPasswordTextField:nil];
     [self setConfirmPassTextField:nil];
     [self setWarningLabel:nil];
     [self setDelegate:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -67,10 +63,9 @@
     [delegate release];
     [super dealloc];
 }
+
 - (IBAction)cancelPassword:(id)sender {
-    
     [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
-    
 }
 
 - (IBAction)confirmPassword:(id)sender {
@@ -78,16 +73,16 @@
     NSString *password = self.passwordTextField.text;
     NSString *confirmPass = self.confirmPassTextField.text;
     
-    if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]){
-        self.warningLabel.text = @"Please, fill in fields!";
+    if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]) {
+        self.warningLabel.text = missingFieldsError;
     }
-    else if(password.length < MIN_PASS_LENGTH){
-        self.warningLabel.text = @"Password is too short. Minimum 4 chars!";
+    else if(password.length < minPassLength) {
+        self.warningLabel.text = passwordTooShortError;
         [self shakeView:self.passwordView onAngle:5];
         self.passwordTextField.text = @""; 
         self.confirmPassTextField.text = @""; 
     }
-    else if([ password isEqualToString:confirmPass]){
+    else if([ password isEqualToString:confirmPass]) {
         self.warningLabel.text = @"";
         [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
         [self.delegate confirmPassword:password];
@@ -101,7 +96,7 @@
         
 }
 
-- (void)shakeView:(UIView *)view onAngle:(NSInteger)angle{
+- (void)shakeView:(UIView *)view onAngle:(NSInteger)angle {
     
     float radiansAngle = (angle / 180.0 * M_PI);
     
@@ -124,18 +119,11 @@
 
 }
 
-
-- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context 
-{
-    if ([finished boolValue]) 
-    {
+- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    if ([finished boolValue]) {
         UIView* item = (UIView *)context;
         item.transform = CGAffineTransformIdentity;
     }
 }
-    
-
-
-
 
 @end

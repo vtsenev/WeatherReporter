@@ -9,16 +9,16 @@
 #import "CustomAnimationUtilities.h"
 
 @interface CustomAnimationUtilities ()
+
 + (void)removeFromSuperviewView:(id)sender;
+
 @end
 
 @implementation CustomAnimationUtilities
 
-
 #pragma mark - Appear/Disapear View animations
 
-+ (void)appearView:(UIView *)appearView FromBottomOfView:(UIView *)parentView  withHeight:(NSInteger)height withDuration:(float)duration{
-
++ (void)appearView:(UIView *)appearView FromBottomOfView:(UIView *)parentView  withHeight:(NSInteger)height withDuration:(float)duration {
     
     [parentView addSubview:appearView];
     
@@ -31,9 +31,9 @@
     [UIView setAnimationDuration:duration];
     viewFrame.origin.y -= height;
     appearView.frame = viewFrame;
-    [UIView commitAnimations];
-    
+    [UIView commitAnimations];    
 }
+
 + (void)hideViewToBottom:(UIView *)view withHeight:(NSInteger)height withDuration:(float)duration{
     
     CGRect viewFrame = view.frame;

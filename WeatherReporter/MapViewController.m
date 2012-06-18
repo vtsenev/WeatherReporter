@@ -7,6 +7,7 @@
 //
 
 #import "MapViewController.h"
+#import "Constants.h"
 
 @interface MapViewController ()
 
@@ -50,7 +51,7 @@
 
 - (void)initializeMapView {    
     CLLocationCoordinate2D mapCenter = CLLocationCoordinate2DMake([self.city.latitude doubleValue], [self.city.longitude doubleValue]);
-    MKCoordinateSpan mapSpan = MKCoordinateSpanMake(0.200, 0.200);
+    MKCoordinateSpan mapSpan = MKCoordinateSpanMake(defaultMapSpan, defaultMapSpan);
     MKCoordinateRegion mapRegion = MKCoordinateRegionMake(mapCenter, mapSpan);
     
     self.theMapView.region = mapRegion;

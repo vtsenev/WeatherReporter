@@ -12,6 +12,7 @@
 #import "CountyPickerTableViewController.h"
 #import "GeoLocationResponse.h"
 #import "ConnectionManager.h"
+#import "Constants.h"
 
 @interface AddCityViewController ()
 
@@ -100,7 +101,7 @@
 - (IBAction)getLocation:(id)sender {
     if (([self.cityNameField.text isEqualToString:@""]) || ([self.countryField.text isEqualToString:@""])) {
         self.isCityFound = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Insufficient Information" message:@"Enter a city and select a country first." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:invalidCityErrorType message:invalidCityError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         [alertView release];
     } else {
@@ -126,7 +127,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         self.isCityFound = NO;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid city" message:@"One of the fields is missing or city is not in database." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:invalidCityErrorType message:cityNotFoundError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     }
@@ -178,7 +179,7 @@
     [self.activityIndicator removeFromSuperview];
     [self userInteractionEnabled:YES];
     self.isCityFound = NO;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location not found" message:@"Type a different city or select another country from the list." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:invalidCityErrorType message:cityNotFoundError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
 }

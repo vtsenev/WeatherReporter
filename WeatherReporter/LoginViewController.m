@@ -13,19 +13,14 @@
 #import "WeatherTableViewController.h"
 #import "ProfileViewController.h"
 #import "JFBCrypt.h"
-
-NSString *const userDefaultsPasswordKey = @"password";
-NSString *const userDefaultsUsernameKey = @"username";
-NSString *const userDefaultsSortingOptionsKey = @"sortBy";
-NSString *const userDefaultsRememberMeKey = @"rememberMe";
-NSString *const loginErrorType = @"Login error";
-NSString *const wrongPasswordError = @"Incorrect Password!\n Try Again!";
-NSString *const missingUsernameOrPasswordError = @"Enter your username and password.";
-NSInteger const saltLength = 29;
-NSInteger const dontRememberMe = 0;
-NSInteger const doRememberMe = 1;
+#import "Constants.h"
 
 @interface LoginViewController ()
+
+- (void)displayAlertWithTitle:(NSString *)alertTitle alertMessage:(NSString *)alertMessage;
+- (void)rememberUser;
+- (void)forgetUser;
+- (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt;
 
 @end
 
@@ -147,7 +142,7 @@ NSInteger const doRememberMe = 1;
 }
 
 - (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt {
-    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH && salt.length == saltLength) {
+    if (![password isEqualToString:@""] && password.length >= minPassLength && salt.length == saltLength) {
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
     }

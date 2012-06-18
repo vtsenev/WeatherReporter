@@ -13,12 +13,13 @@
 #import "DataManager.h"
 #import "User.h"
 #import "JFBCrypt.h"
-
-NSString *const userWithThisUsernameExistsError = @"Username Already Exists";
-NSString *const requeredFieldAreEmptyError = @"Required Fields Empty!";
+#import "Constants.h"
 
 @interface RegisterUserViewController ()
+
 - (void) showPasswordView;
+- (NSString *)hashPassword:(NSString *)password;
+
 @end
 
 @implementation RegisterUserViewController
@@ -101,12 +102,10 @@ NSString *const requeredFieldAreEmptyError = @"Required Fields Empty!";
     [alert release];
 }
 
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
     return success;
 }
-
 
 - (void)showPasswordView{
     
@@ -117,23 +116,18 @@ NSString *const requeredFieldAreEmptyError = @"Required Fields Empty!";
 
 }
 
-
-
 #pragma mark - DatePickerViewController delegate methods
 
 - (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date{
     self.birthdayDate = date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
+    [dateFormatter setDateFormat:dateFormat];
     self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
     [dateFormatter release];
 
 }
 
-
-
 #pragma mark - PasswordViewController Delegate Methods
-
 
 - (void)confirmPassword:(NSString *)password{
     
@@ -168,9 +162,9 @@ NSString *const requeredFieldAreEmptyError = @"Required Fields Empty!";
 }
 
 - (NSString *)hashPassword:(NSString *)password {
-    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH) {
-        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
-        NSString *hashedPassword = [JFBCrypt hashPassword: password withSalt: salt];
+    if (![password isEqualToString:@""] && password.length >= minPassLength) {
+        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds:10];
+        NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
     }
     return nil;

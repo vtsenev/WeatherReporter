@@ -11,38 +11,28 @@
 
 @interface DatePickerViewController ()
 
-
 @end
 
 @implementation DatePickerViewController
+
 @synthesize datePickerController, delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    if (self) {}
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setDatePickerController:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -50,21 +40,14 @@
     [datePickerController release];
     [super dealloc];
 }
-- (IBAction)cancelDatePicker:(id)sender {
-    
-    [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
 
+- (IBAction)cancelDatePicker:(id)sender {
+    [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
 }
 
 - (IBAction)addDate:(id)sender {
-    
     [self.delegate datePickerController:self didPickDate:[self.datePickerController date]];
     [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
-
-    
 }
-
-
-
 
 @end

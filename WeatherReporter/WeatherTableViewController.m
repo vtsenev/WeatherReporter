@@ -15,6 +15,7 @@
 #import "MapButton.h"
 #import "MapViewController.h"
 #import "WeatherPeriodsViewController.h"
+#import "Constants.h"
 
 @interface WeatherTableViewController ()
 
@@ -22,6 +23,7 @@
 
 - (void)addCity;
 - (IBAction)showMapForCity:(id)sender;
+- (void)sortCities:(NSArray *)cities;
 
 @end
 
@@ -103,15 +105,15 @@
 - (void)sortCities:(NSArray *)cities {
     NSArray *sortedCities = [[NSArray alloc] init];
     
-    NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:@"sortBy"];
+    NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsSortByKey];
     if (sortBy) {
-        if ([sortBy isEqualToString:@"city"]) {
+        if ([sortBy isEqualToString:sortByCity]) {
             sortedCities = [[DataManager defaultDataManager] sortCitiesByCityName:cities];
         } else {
             sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
         }
     } else {
-        [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+        [[NSUserDefaults standardUserDefaults] setValue:sortByDefault forKey:userDefaultsSortByKey];
         sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
     }
     

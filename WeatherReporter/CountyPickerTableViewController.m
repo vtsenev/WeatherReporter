@@ -11,9 +11,12 @@
 
 @interface CountyPickerTableViewController ()
 
+- (void)cancel;
+
 @end
 
 @implementation CountyPickerTableViewController
+
 @synthesize tableData, delegate;
 
 - (void)dealloc {

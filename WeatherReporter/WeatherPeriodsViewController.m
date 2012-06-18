@@ -16,10 +16,12 @@
 @interface WeatherPeriodsViewController ()
 
 - (void)initializeActivityIndicator;
+- (void)userInteractionEnabled:(BOOL)isEnabled;
 
 @end
 
 @implementation WeatherPeriodsViewController
+
 @synthesize cityName, country, tableData, activityIndicator;
 
 - (void)dealloc {

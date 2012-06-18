@@ -10,6 +10,7 @@
 #import "WeatherPeriod.h"
 
 @interface DetailedForecastViewController : UIViewController
+
 @property (retain, nonatomic) IBOutlet UILabel *locationField;
 @property (retain, nonatomic) IBOutlet UILabel *dateField;
 @property (retain, nonatomic) IBOutlet UILabel *lowTempField;
