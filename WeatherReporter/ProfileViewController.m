@@ -14,6 +14,7 @@
 #import "DatePickerViewController.h"
 #import "CustomAnimationUtilities.h"
 #import "SortOptionsViewController.h"
+#import "Constants.h"
 
 @interface ProfileViewController ()
 
@@ -31,7 +32,8 @@
 @synthesize cityCountLabel;
 @synthesize birthdayDate;
 @synthesize passwordChanged;
-@synthesize sortByField;
+@synthesize sortingOption;
+@synthesize sortingOptions;
 
 - (void)dealloc {
     [birthdayDate release];
@@ -42,7 +44,7 @@
     [passwordField release];
     [logoutBtn release];
     [cityCountLabel release];
-    [sortByField release];
+    [sortingOptions release];
     [super dealloc];
 }
 
@@ -55,7 +57,7 @@
     [self setPasswordField:nil];
     [self setLogoutBtn:nil];
     [self setCityCountLabel:nil];
-    [self setSortByField:nil];
+    [self setSortingOptions:nil];
     [super viewDidUnload];
 }
 
@@ -95,6 +97,12 @@
         NSString *newPass = [self hashPassword:self.passwordField.text];
         [self.user setPassword:newPass];
     }
+    if ([self.sortingOptions selectedSegmentIndex] == 0) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"city" forKey:@"sortBy"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+    }
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info Updated!" message:@"User information is updated." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release];
@@ -131,6 +139,18 @@
         [dateFormatter release];
         
         [self.cityCountLabel setText:[NSString stringWithFormat:@"%d", self.user.cities.count]];
+        
+        NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:@"sortBy"];
+        if (sortBy) {
+            if ([sortBy isEqualToString:@"city"]) {
+                [self.sortingOptions setSelectedSegmentIndex:0];
+            } else {
+                [self.sortingOptions setSelectedSegmentIndex:1];
+            }
+        } else {
+            [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+            [self.sortingOptions setSelectedSegmentIndex:1];
+        }
     }
 }
 
@@ -147,6 +167,17 @@
 
 - (void)loginDidSucceedWithUser:(User *)theUser {
     self.user = theUser;
+    NSString *sortByValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"sortBy"];
+    if (sortByValue) {
+        if ([sortByValue isEqualToString:@"city"]) {
+            self.sortingOption = 0;
+        } else {
+            self.sortingOption = 1;
+        }
+    } else {
+        [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+        self.sortingOption = 1;
+    }
     [self updateView];
 }
 
@@ -170,13 +201,6 @@
     else if (textField.tag == 2) {
         self.passwordChanged = YES;
     }
-    // If we begin editting sortBy field
-    else if (textField.tag == 3) {
-        [textField resignFirstResponder];
-        SortOptionsViewController *sortOptionsViewController = [[SortOptionsViewController alloc] initWithNibName:@"SortOptionsViewController" bundle:nil];
-        sortOptionsViewController.delegate = self;
-        [CustomAnimationUtilities appearView:sortOptionsViewController.view FromBottomOfView:self.view withHeight:460 withDuration:0.4];
-    }
 }
 
 #pragma mark - DatePickerViewController delegate methods
@@ -187,19 +211,6 @@
     [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
     self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
     [dateFormatter release];
-    
-}
-
-
-# pragma mark - SortingOptionsDelegate methods
-
-- (void)didChooseSortingOption:(NSInteger)sortingOption {
-    [self.sortByField setText:[NSString stringWithFormat:@"%i", sortingOption]];
-    NSLog(@"%i", sortingOption);
-}
-
-- (void)dismissSortingOptionsView:(UIView *)view {
-    [CustomAnimationUtilities hideViewToBottom:view withHeight:460 withDuration:0.4];
 }
 
 @end

@@ -83,6 +83,13 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.user) {
+        [self sortCities:[self.user.cities allObjects]];
+    }
+}
+
 - (void)addCity {
     City *newCity = [[DataManager defaultDataManager] addCityForUsername:self.user.username];
     AddCityViewController *addCityViewController = [[AddCityViewController alloc] initWithNibName:@"AddCityViewController" bundle:nil];
@@ -91,6 +98,25 @@
     
     [self.navigationController pushViewController:addCityViewController animated:YES];
     [addCityViewController release];
+}
+
+- (void)sortCities:(NSArray *)cities {
+    NSArray *sortedCities = [[NSArray alloc] init];
+    
+    NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:@"sortBy"];
+    if (sortBy) {
+        if ([sortBy isEqualToString:@"city"]) {
+            sortedCities = [[DataManager defaultDataManager] sortCitiesByCityName:cities];
+        } else {
+            sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
+        }
+    } else {
+        [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
+        sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
+    }
+    
+    self.tableData = [NSMutableArray arrayWithArray:sortedCities];
+    [self.tableView reloadData];
 }
 
 # pragma mark - AddCityDelegate methods
@@ -114,12 +140,7 @@
 - (void)loginDidSucceedWithUser:(User *)theUser {
     self.user = theUser;
     NSArray *citiesForCurrentUser = [[[DataManager defaultDataManager] fetchCitiesForUserWithUsername:self.user.username] allObjects];
-//  get sorting options
-//  default - sort by country and then by name
-    NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:citiesForCurrentUser];
-    self.tableData = [NSMutableArray arrayWithArray:sortedCities];
-    
-    [self.tableView reloadData];
+    [self sortCities:citiesForCurrentUser];
 }
 
 #pragma mark - Table view data source
