@@ -28,7 +28,5 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)registerNewUser:(id)sender;
-- (void) appearFromBottomForView:(UIView *)view;
-- (void) hideToBottomForView:(UIView *)view;
 
 @end

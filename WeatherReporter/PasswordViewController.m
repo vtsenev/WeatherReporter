@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface PasswordViewController ()
-
+- (IBAction)removeFromSuperviewView:(id)sender;
 - (void)shakeView:(UIView *)view onAngle:(NSInteger)angle;
 @end
 
@@ -68,7 +68,8 @@
 }
 - (IBAction)cancelPassword:(id)sender {
     
-    [self.delegate dismissPasswordView:self.view];
+    [self hideToBottom];
+//    [self.delegate dismissPasswordView:self.view];
     
 }
 
@@ -127,6 +128,42 @@
     }
 }
     
+
+#pragma mark - Appear/Disapear View animations
+
+- (void)appearFromBottomOfVeiw:(UIView *)view{
+    int height = 480;
+    
+    [view addSubview:self.view];
+    
+    CGRect viewFrame = self.view.frame;
+    // Set the popup view's frame so that it is off the bottom of the screen
+    viewFrame.origin.y = CGRectGetMaxY(self.view.bounds);
+    self.view.frame  = viewFrame; 
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    viewFrame.origin.y -= height;
+    self.view.frame = viewFrame;
+    [UIView commitAnimations];
+    
+}
+- (void)hideToBottom{
+    
+    CGRect viewFrame = self.view.frame;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    viewFrame.origin.y += 480;
+    self.view.frame = viewFrame;
+    [UIView commitAnimations];
+    [self performSelector:@selector(removeFromSuperviewView:) withObject:self.view afterDelay:0.5];    
+}
+
+- (IBAction)removeFromSuperviewView:(id)sender {
+    [sender removeFromSuperview]; 
+}
+
 
 
 

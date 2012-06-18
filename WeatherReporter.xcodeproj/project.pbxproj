@@ -282,6 +282,7 @@
 				A0E346ED1586043100C59EF5 /* LoginViewController.h */,
 				A0E346EE1586043100C59EF5 /* LoginViewController.m */,
 				A07D53C515879A97007D21F8 /* LoginViewControllerDelegate.h */,
+				A00FE08B158A21A600179837 /* LogoutDelegate.h */,
 				A0AFCFBA1588CC660065DFC0 /* MapButton.h */,
 				A0AFCFBB1588CC660065DFC0 /* MapButton.m */,
 				A0E3470115861DF300C59EF5 /* MapViewController.h */,
@@ -295,11 +296,10 @@
 				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
 				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
-				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
-				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
-				A00FE08B158A21A600179837 /* LogoutDelegate.h */,
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
+				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
+				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

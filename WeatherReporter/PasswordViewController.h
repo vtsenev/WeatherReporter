@@ -18,4 +18,8 @@
 
 - (IBAction)cancelPassword:(id)sender;
 - (IBAction)confirmPassword:(id)sender;
+
+- (void)hideToBottom;
+- (void)appearFromBottomOfVeiw:(UIView *)view;
+
 @end

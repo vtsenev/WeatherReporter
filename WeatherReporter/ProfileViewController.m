@@ -10,6 +10,7 @@
 #import "User.h"
 #import "LoginViewController.h"
 #import "WeatherTableViewController.h"
+#import "DatePickerViewController.h"
 
 @interface ProfileViewController ()
 
@@ -128,5 +129,32 @@
     BOOL success = [textField resignFirstResponder];
     return success;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //If we begin editing in dateOfBirthField
+    if(textField.tag == 1)
+    { 
+        [textField resignFirstResponder];
+        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+        
+        [datePickerViewController appearFromBottomOfVeiw:self.navigationController.view];
+        
+    }
+
+
+}
+
+
+#pragma mark - DatePickerViewController delegate methods
+
+- (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
+    self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
+    [dateFormatter release];
+    
+}
+
 
 @end
