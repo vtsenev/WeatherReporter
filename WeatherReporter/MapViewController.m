@@ -50,7 +50,7 @@
 
 - (void)initializeMapView {    
     CLLocationCoordinate2D mapCenter = CLLocationCoordinate2DMake([self.city.latitude doubleValue], [self.city.longitude doubleValue]);
-    MKCoordinateSpan mapSpan = MKCoordinateSpanMake(0.195, 0.195);
+    MKCoordinateSpan mapSpan = MKCoordinateSpanMake(0.200, 0.200);
     MKCoordinateRegion mapRegion = MKCoordinateRegionMake(mapCenter, mapSpan);
     
     self.theMapView.region = mapRegion;

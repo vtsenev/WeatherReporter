@@ -70,7 +70,9 @@ static DataManager *defaultDataManager = nil;
     
     [context setUndoManager:nil];
     
-    countries = [[NSArray alloc] initWithObjects:@"Austria", @"Bulgaria", @"France", @"Netherlands", @"Spain", @"UK", nil];
+    countries = [[NSArray alloc] initWithObjects:@"Austria", @"Bulgaria", @"Denmark", @"France",
+                 @"Germany", @"Italy", @"Netherlands", @"Poland", @"Spain", @"Sweden",
+                 @"Switzerland", @"UK", nil];
     
     return self;
 }
@@ -94,6 +96,18 @@ static DataManager *defaultDataManager = nil;
         [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
     }
     User *user = [result lastObject];
+
+//    sorting the cities by country first and then by name:
+//    NSSet *citySet = [user cities];
+//    NSArray *cities = [citySet allObjects];
+//    NSSortDescriptor *sd = [[[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES] autorelease];
+//    NSSortDescriptor *sd2= [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+//    NSArray *sortDescriptors = [NSArray arrayWithObjects:sd, sd2, nil];
+//    NSArray *sortedCities = [cities sortedArrayUsingDescriptors:sortDescriptors];
+//    for (City *city in sortedCities) {
+//        NSLog(@"%@", city.name);
+//    }
+    
     return [user cities];
 }
 
@@ -169,11 +183,6 @@ static DataManager *defaultDataManager = nil;
     return [self saveChanges];
 }
 
-- (void)updateUser:(User *)user {
-//    User *u = [self fetchUserForUsername:user.username];
-//    u = [[user retain] autorelease];
-}
-
 - (BOOL)saveChanges {
     NSError *err = nil;
     BOOL successful = [context save:&err];
@@ -185,6 +194,24 @@ static DataManager *defaultDataManager = nil;
 
 - (NSArray *)countries {
     return countries;
+}
+
+- (NSArray *)searchCitiesForCity:(NSString *)cityName forUsername:(NSString *)username {
+    User *user = [self fetchUserForUsername:username];
+    NSSet *allCities = user.cities;
+
+    NSMutableArray *searchedCities = [[NSMutableArray alloc] init];
+    if (![cityName isEqualToString:@""]) {
+        for (City *city in allCities) {
+            if ([city.name hasPrefix:cityName] || [city.country hasPrefix:cityName]) {
+                [searchedCities addObject:city];
+            }
+        }
+    } else {
+        [searchedCities addObjectsFromArray:[allCities allObjects]];
+    }
+    
+    return searchedCities;
 }
 
 @end

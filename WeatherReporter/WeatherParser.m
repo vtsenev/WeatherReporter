@@ -20,21 +20,24 @@
 - (void)parseResponseWithString:(NSString *)dataString withDelegate:(id<BasicParserDelegate>)delegate withConnectionTag:(NSString *)connectionTag {
     [super parseResponseWithString:dataString withDelegate:delegate withConnectionTag:connectionTag];
     
-    if (self.basicResponse.isSuccessful){
-        
+    if (self.basicResponse.isSuccessful) {
         WeatherResponse *weatherResponse = [[WeatherResponse alloc] init];
         weatherResponse.basicResponse = self.basicResponse;
         
         NSArray *forecastInfoArray = [[[self.parsedData objectForKey:@"forecast"] objectForKey:@"simpleforecast"] objectForKey:@"forecastday"];
         NSArray *forecastDetailsArray = [[[self.parsedData objectForKey:@"forecast"] objectForKey:@"txt_forecast"] objectForKey:@"forecastday"];
         
-        
         NSString *currentTemp = [NSString stringWithFormat:@"%@ °C",[[self.parsedData objectForKey:@"current_observation"] objectForKey:@"temp_c"]];
         NSString *currentLocation = [[[self.parsedData objectForKey:@"current_observation"] objectForKey:@"display_location"] objectForKey:@"full"];
         
+        if (!(forecastInfoArray && forecastDetailsArray && currentTemp && currentLocation)) {
+            weatherResponse.isSuccessful = NO;
+            NSLog(@"Data: %@", dataString);
+            [delegate parserDidFailWithError:@"Response is not of the expected format." withConnectionTag:connectionTag];
+        }
+        
         int period = 0;
         for (NSDictionary* forecastInfo in forecastInfoArray) {
-            
             WeatherPeriod *weatherPeriod = [[WeatherPeriod alloc] init];
             weatherPeriod.currentTemp = currentTemp;
             weatherPeriod.location = currentLocation;
@@ -43,8 +46,8 @@
             NSString *year = [NSString stringWithFormat:@"%@", [[forecastInfo objectForKey:@"date"] objectForKey:@"year"]];
             
             weatherPeriod.date = [NSString stringWithFormat:@"%@ %@, %@", monthName, day, year];
-            weatherPeriod.maxTemp = [[forecastInfo objectForKey:@"high"] objectForKey:@"celsius"];
-            weatherPeriod.minTemp = [[forecastInfo objectForKey:@"low"] objectForKey:@"celsius"];
+            weatherPeriod.maxTemp = [NSString stringWithFormat:@"%@ °C", [[forecastInfo objectForKey:@"high"] objectForKey:@"celsius"]];
+            weatherPeriod.minTemp = [NSString stringWithFormat:@"%@ °C", [[forecastInfo objectForKey:@"low"] objectForKey:@"celsius"]];
             weatherPeriod.conditions = [forecastInfo objectForKey:@"conditions"];
             weatherPeriod.iconURL = [forecastInfo objectForKey:@"icon_url"];
             
@@ -62,15 +65,13 @@
             period += 2;
         }
         
-        if ([delegate respondsToSelector:@selector(parserDidSucceedWithData:withConnectionTag:)]){
-            
+        if ([delegate respondsToSelector:@selector(parserDidSucceedWithData:withConnectionTag:)]) {
             [delegate parserDidSucceedWithData:weatherResponse withConnectionTag:connectionTag];
         }
     }
     else {
-    
-        if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]){
-            
+        if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]) {
+            NSLog(@"Data: %@", dataString);
             [delegate parserDidFailWithError:self.basicResponse.errorMessage withConnectionTag:connectionTag];
         }     
     }

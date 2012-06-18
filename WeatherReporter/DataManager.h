@@ -28,12 +28,12 @@
 - (City *)addCityForUsername:(NSString *)username;
 - (User *)addUser;
 - (BOOL)removeObject:(NSManagedObject *)managedObj;
-- (void)updateUser:(User *)user;
 
 - (BOOL)saveChanges;
 
 - (NSString *)pathInDocumentDirectory:(NSString *)fileName;
 
 - (NSArray *)countries;
+- (NSArray *)searchCitiesForCity:(NSString *)cityName forUsername:(NSString *)username;
 
 @end

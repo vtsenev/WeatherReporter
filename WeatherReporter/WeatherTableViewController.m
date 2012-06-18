@@ -18,6 +18,8 @@
 
 @interface WeatherTableViewController ()
 
+@property (nonatomic, retain) UIView *disableViewOverlay;
+
 - (void)addCity;
 - (IBAction)showMapForCity:(id)sender;
 
@@ -28,8 +30,10 @@
 @synthesize tableData;
 @synthesize theSearchBar;
 @synthesize user;
+@synthesize disableViewOverlay;
 
 - (void)dealloc {
+    [disableViewOverlay release];
     [user release];
     [tableData release];
     [theSearchBar release];
@@ -37,6 +41,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setDisableViewOverlay:nil];
     [self setUser:nil];
     [self setTableData:nil];
     [self setTheSearchBar:nil];
@@ -66,11 +71,17 @@
     searchBarFrame.size.height = 44;
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:searchBarFrame];
     self.theSearchBar = searchBar;
+    self.theSearchBar.delegate = self;
     
     [self.tableView setTableHeaderView:searchBar];
     [searchBar release];
     
     tableData = [[NSMutableArray alloc] init];
+    
+//    self.disableViewOverlay = [[UIView alloc]
+//                               initWithFrame:CGRectMake(0.0f,44.0f,320.0f,416.0f)];
+//    self.disableViewOverlay.backgroundColor=[UIColor blackColor];
+//    self.disableViewOverlay.alpha = 0;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -178,6 +189,54 @@
     
     [self.navigationController pushViewController:weatherPeriodsViewController animated:YES];
     [weatherPeriodsViewController release];
+}
+
+# pragma mark - UISearchBarDelegate methods
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self searchBar:searchBar activate:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text=@"";
+    [self searchBar:searchBar activate:NO];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchBar.text forUsername:self.user.username];
+	
+    [self searchBar:searchBar activate:NO];
+	
+    [self.tableData removeAllObjects];
+    [self.tableData addObjectsFromArray:results];
+    [self.tableView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar activate:(BOOL)active {	
+    self.tableView.allowsSelection = !active;
+    self.tableView.scrollEnabled = !active;
+    if (!active) {
+//        [disableViewOverlay removeFromSuperview];
+        [searchBar resignFirstResponder];
+    } else {
+//        self.disableViewOverlay.alpha = 0;
+//        [self.view addSubview:self.disableViewOverlay];
+//		
+//        [UIView beginAnimations:@"FadeIn" context:nil];
+//        [UIView setAnimationDuration:0.5];
+//        self.disableViewOverlay.alpha = 0.6;
+//        [UIView commitAnimations];
+    }
+    [searchBar setShowsCancelButton:active animated:YES];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar
+    textDidChange:(NSString *)searchText {
+    NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchText forUsername:self.user.username];
+    
+    [self.tableData removeAllObjects];
+    [self.tableData addObjectsFromArray:results];
+    [self.tableView reloadData];
 }
 
 @end

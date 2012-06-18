@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E834D3215890263003D42DC /* PasswordViewController.xib */; };
 		3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89475B158A0CD6002966C0 /* PasswordViewController.m */; };
-		3E894768158A4516002966C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E894767158A4516002966C0 /* QuartzCore.framework */; };
-		A0052DDE158A506800A10926 /* BCrypt-java-copyright.txt in Resources */ = {isa = PBXBuildFile; fileRef = A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */; };
-		A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A0052DDA158A506800A10926 /* JFBCrypt.m */; };
-		A0052DE0158A506800A10926 /* JFRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = A0052DDD158A506800A10926 /* JFRandom.m */; };
 		A078771615825B2900E62525 /* BasicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771515825B2900E62525 /* BasicParser.m */; };
 		A078771A15825B8A00E62525 /* WeatherParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771915825B8A00E62525 /* WeatherParser.m */; };
 		A078771D15825C8F00E62525 /* CustomConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A078771C15825C8F00E62525 /* CustomConnection.m */; };
@@ -66,14 +62,6 @@
 		A0B765071589F34900E997E4 /* Netherlands.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765041589F34900E997E4 /* Netherlands.png */; };
 		A0B765081589F34900E997E4 /* Austria.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B765051589F34900E997E4 /* Austria.png */; };
 		A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B76516158A0FCF00E997E4 /* CustomLabel.m */; };
-		A0DC1588158B6469003DD61F /* Switzerland.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1583158B6469003DD61F /* Switzerland.png */; };
-		A0DC1589158B6469003DD61F /* Denmark.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1584158B6469003DD61F /* Denmark.png */; };
-		A0DC158A158B6469003DD61F /* Sweden.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1585158B6469003DD61F /* Sweden.png */; };
-		A0DC158B158B6469003DD61F /* Germany.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1586158B6469003DD61F /* Germany.png */; };
-		A0DC158C158B6469003DD61F /* Poland.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1587158B6469003DD61F /* Poland.png */; };
-		A0DC158E158B67E7003DD61F /* Italy.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC158D158B67E7003DD61F /* Italy.png */; };
-		A0DC1592158B8DFD003DD61F /* SortOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */; };
-		A0DC1593158B8DFD003DD61F /* SortOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */; };
 		A0E346E2158601E500C59EF5 /* WeatherPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E1158601E500C59EF5 /* WeatherPeriod.m */; };
 		A0E346E6158603FE00C59EF5 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E4158603FE00C59EF5 /* AddCityViewController.m */; };
 		A0E346E7158603FE00C59EF5 /* AddCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */; };
@@ -105,17 +93,14 @@
 
 /* Begin PBXFileReference section */
 		3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DatePickerControllerDelegate.h; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		A00FE08B158A21A600179837 /* LogoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutDelegate.h; sourceTree = "<group>"; };
+=======
 		3E834D3215890263003D42DC /* PasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
 		3E89475A158A0CD5002966C0 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
 		3E89475B158A0CD6002966C0 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		3E89475D158A104E002966C0 /* PasswordViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordViewControllerDelegate.h; sourceTree = "<group>"; };
-		3E894767158A4516002966C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BCrypt-java-copyright.txt"; sourceTree = "<group>"; };
-		A0052DD9158A506800A10926 /* JFBCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBCrypt.h; sourceTree = "<group>"; };
-		A0052DDA158A506800A10926 /* JFBCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBCrypt.m; sourceTree = "<group>"; };
-		A0052DDB158A506800A10926 /* JFGC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFGC.h; sourceTree = "<group>"; };
-		A0052DDC158A506800A10926 /* JFRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRandom.h; sourceTree = "<group>"; };
-		A0052DDD158A506800A10926 /* JFRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRandom.m; sourceTree = "<group>"; };
+>>>>>>> ef963bf5aab443eba9fa0924d018d0dcd77b9a4b
 		A078771415825B2900E62525 /* BasicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicParser.h; sourceTree = "<group>"; };
 		A078771515825B2900E62525 /* BasicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicParser.m; sourceTree = "<group>"; };
 		A078771815825B8A00E62525 /* WeatherParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherParser.h; sourceTree = "<group>"; };
@@ -211,17 +196,6 @@
 		A0B765051589F34900E997E4 /* Austria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Austria.png; sourceTree = "<group>"; };
 		A0B76515158A0FCF00E997E4 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
 		A0B76516158A0FCF00E997E4 /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
-		A0DA7290158B95CB00BE6BD5 /* SortOptionsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortOptionsDelegate.h; sourceTree = "<group>"; };
-		A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserDelegate.h; sourceTree = "<group>"; };
-		A0DC1583158B6469003DD61F /* Switzerland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Switzerland.png; sourceTree = "<group>"; };
-		A0DC1584158B6469003DD61F /* Denmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Denmark.png; sourceTree = "<group>"; };
-		A0DC1585158B6469003DD61F /* Sweden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sweden.png; sourceTree = "<group>"; };
-		A0DC1586158B6469003DD61F /* Germany.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Germany.png; sourceTree = "<group>"; };
-		A0DC1587158B6469003DD61F /* Poland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poland.png; sourceTree = "<group>"; };
-		A0DC158D158B67E7003DD61F /* Italy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Italy.png; sourceTree = "<group>"; };
-		A0DC158F158B8DFA003DD61F /* SortOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortOptionsViewController.h; sourceTree = "<group>"; };
-		A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SortOptionsViewController.m; sourceTree = "<group>"; };
-		A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SortOptionsViewController.xib; sourceTree = "<group>"; };
 		A0E346E0158601E500C59EF5 /* WeatherPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriod.h; sourceTree = "<group>"; };
 		A0E346E1158601E500C59EF5 /* WeatherPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriod.m; sourceTree = "<group>"; };
 		A0E346E3158603FE00C59EF5 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityViewController.h; sourceTree = "<group>"; };
@@ -255,7 +229,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E894768158A4516002966C0 /* QuartzCore.framework in Frameworks */,
 				A0AFCFC91588D60E0065DFC0 /* CoreLocation.framework in Frameworks */,
 				A0AFCFC61588D4D00065DFC0 /* MapKit.framework in Frameworks */,
 				A0B142381581FF7300378DE6 /* CoreData.framework in Frameworks */,
@@ -278,19 +251,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A0052DD7158A506800A10926 /* jfbcrypt */ = {
-			isa = PBXGroup;
-			children = (
-				A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */,
-				A0052DD9158A506800A10926 /* JFBCrypt.h */,
-				A0052DDA158A506800A10926 /* JFBCrypt.m */,
-				A0052DDB158A506800A10926 /* JFGC.h */,
-				A0052DDC158A506800A10926 /* JFRandom.h */,
-				A0052DDD158A506800A10926 /* JFRandom.m */,
-			);
-			path = jfbcrypt;
-			sourceTree = "<group>";
-		};
 		A08569D115820C2300B06FA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,14 +295,14 @@
 				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
 				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
+<<<<<<< HEAD
 				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
 				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
+				A00FE08B158A21A600179837 /* LogoutDelegate.h */,
+=======
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
-				A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */,
-				A0DC158F158B8DFA003DD61F /* SortOptionsViewController.h */,
-				A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */,
-				A0DA7290158B95CB00BE6BD5 /* SortOptionsDelegate.h */,
+>>>>>>> ef963bf5aab443eba9fa0924d018d0dcd77b9a4b
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -358,12 +318,14 @@
 				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
 				3E834D3215890263003D42DC /* PasswordViewController.xib */,
 				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
-				A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */,
 				A0E346FE1586051000C59EF5 /* WeatherPeriodCustomCell.h */,
 				A0E346FF1586051000C59EF5 /* WeatherPeriodCustomCell.m */,
+<<<<<<< HEAD
 				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
 				A0B76515158A0FCF00E997E4 /* CustomLabel.h */,
 				A0B76516158A0FCF00E997E4 /* CustomLabel.m */,
+=======
+>>>>>>> ef963bf5aab443eba9fa0924d018d0dcd77b9a4b
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -371,12 +333,6 @@
 		A08569E11582107600B06FA2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A0DC158D158B67E7003DD61F /* Italy.png */,
-				A0DC1583158B6469003DD61F /* Switzerland.png */,
-				A0DC1584158B6469003DD61F /* Denmark.png */,
-				A0DC1585158B6469003DD61F /* Sweden.png */,
-				A0DC1586158B6469003DD61F /* Germany.png */,
-				A0DC1587158B6469003DD61F /* Poland.png */,
 				A0B765031589F34900E997E4 /* Spain.png */,
 				A0B765041589F34900E997E4 /* Netherlands.png */,
 				A0B765051589F34900E997E4 /* Austria.png */,
@@ -491,8 +447,6 @@
 		A0B142001581FC2F00378DE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0052DD7158A506800A10926 /* jfbcrypt */,
-				3E894767158A4516002966C0 /* QuartzCore.framework */,
 				A0AFCFC81588D60E0065DFC0 /* CoreLocation.framework */,
 				A0AFCFC51588D4D00065DFC0 /* MapKit.framework */,
 				A0856A031582585F00B06FA2 /* SBJSON */,
@@ -640,14 +594,6 @@
 				A0B765061589F34900E997E4 /* Spain.png in Resources */,
 				A0B765071589F34900E997E4 /* Netherlands.png in Resources */,
 				A0B765081589F34900E997E4 /* Austria.png in Resources */,
-				A0052DDE158A506800A10926 /* BCrypt-java-copyright.txt in Resources */,
-				A0DC1588158B6469003DD61F /* Switzerland.png in Resources */,
-				A0DC1589158B6469003DD61F /* Denmark.png in Resources */,
-				A0DC158A158B6469003DD61F /* Sweden.png in Resources */,
-				A0DC158B158B6469003DD61F /* Germany.png in Resources */,
-				A0DC158C158B6469003DD61F /* Poland.png in Resources */,
-				A0DC158E158B67E7003DD61F /* Italy.png in Resources */,
-				A0DC1593158B8DFD003DD61F /* SortOptionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,11 +668,11 @@
 				A0AFCFDC1588FEF60065DFC0 /* DetailedForecastViewController.m in Sources */,
 				A0B764FE1589EBDD00E997E4 /* GeoLocationParser.m in Sources */,
 				A0B765021589EC6400E997E4 /* GeoLocationResponse.m in Sources */,
+<<<<<<< HEAD
 				A0B76517158A0FCF00E997E4 /* CustomLabel.m in Sources */,
+=======
 				3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */,
-				A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */,
-				A0052DE0158A506800A10926 /* JFRandom.m in Sources */,
-				A0DC1592158B8DFD003DD61F /* SortOptionsViewController.m in Sources */,
+>>>>>>> ef963bf5aab443eba9fa0924d018d0dcd77b9a4b
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

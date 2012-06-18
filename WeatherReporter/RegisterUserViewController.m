@@ -11,6 +11,10 @@
 #import "PasswordViewController.h"
 #import "DataManager.h"
 #import "User.h"
+#import "JFBCrypt.h"
+
+NSString *const userWithThisUsernameExistsError = @"Username Already Exists";
+NSString *const requeredFieldAreEmptyError = @"Required Fileds Empty!";
 
 @interface RegisterUserViewController ()
 - (IBAction)removeFromSuperviewView:(id)sender;
@@ -26,6 +30,7 @@
 @synthesize passwordField, confirmPasswordField;
 @synthesize user;
 @synthesize birthdayDate;
+@synthesize delegate;
 
 - (void)dealloc {
     [user release];
@@ -63,8 +68,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.scrollView.contentSize = self.view.    frame.size;
+    self.scrollView.contentSize = self.view.frame.size;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -73,36 +77,29 @@
 
 - (IBAction)registerNewUser:(id)sender {
     
-    
     if ([self.usernameField.text isEqualToString:@""] || [self.firstnameField.text isEqualToString:@""] ||
             [self.lastnameField.text isEqualToString:@""] || [self.dateOfBirthField.text isEqualToString:@""]){
         
-        UIAlertView *emptyRequiredAllertView = [[UIAlertView alloc] initWithTitle:@"Empty Required Fileds!" message:@"Please fill in required fields!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        
-        [emptyRequiredAllertView show];
-        [emptyRequiredAllertView release];
+        [self displayAlertWithTitle:requeredFieldAreEmptyError alertMessage:requeredFieldAreEmptyError];
     }
     else{
-        
         BOOL isUsernameExists = [[DataManager defaultDataManager] checkIfUserExistsWithUsername:self.usernameField.text];
-        
         if (isUsernameExists) {
             
             NSString *existingUsername = [NSString stringWithFormat:@"Username: \"%@\" already exists!", self.usernameField.text];
-            
-            UIAlertView *existingUsernameAllertView = [[UIAlertView alloc] initWithTitle:@"Username Already Exists" message:existingUsername delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            
-            [existingUsernameAllertView show];
-            [existingUsernameAllertView release];
-            
+            [self displayAlertWithTitle:userWithThisUsernameExistsError alertMessage:existingUsername];
             NSLog(@"Incorrect username!");
-            
-        } else {
-            
+        } else {   
             [self showPasswordView];
 //            [self displayPasswordAlertView];
         }
     }
+}
+
+- (void)displayAlertWithTitle:(NSString *)alertTitle alertMessage:(NSString *)alertMessage {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 
@@ -160,9 +157,12 @@
     
     self.user = newUser;
 
-    user.password = password;
-    [[DataManager defaultDataManager] updateUser:user];
+    self.user.password = [self hashPassword:password];
     NSLog(@" Inserted user: %@, %@, %@, %@, %@", user.username, user.firstName, user.lastName, user.birthdayDate, user.password);
+    [self.navigationController popViewControllerAnimated:YES];
+    if ([self.delegate respondsToSelector:@selector(newUserIsRegistered:)]) {
+        [self.delegate newUserIsRegistered:self.user];
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -177,6 +177,15 @@
 //        [self appearFromBottomForView:datePickerViewController.view];
     }
     
+}
+
+- (NSString *)hashPassword:(NSString *)password {
+    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH) {
+        NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds: 10];
+        NSString *hashedPassword = [JFBCrypt hashPassword: password withSalt: salt];
+        return hashedPassword;
+    }
+    return nil;
 }
 
 @end

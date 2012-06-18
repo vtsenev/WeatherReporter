@@ -23,6 +23,7 @@
 @property (nonatomic, assign) id<AddCityDelegate> delegate;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (retain, nonatomic) IBOutlet UIButton *getLocationBtn;
+@property (nonatomic) BOOL isCityFound;
 
 - (IBAction)addCity:(id)sender;
 - (IBAction)getLocation:(id)sender;

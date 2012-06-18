@@ -1,12 +1,14 @@
 todo:
 
 Login Screen:
-- after confirm password return to the login screen
-- editing date of birth in profile view with datePicker
 - add UIScrollView to RegisterViewController
-- md5 hashing the password
-- clean up text fields in login screen
 
 Weather TableView:
-- date picker for latitude and longitude
-- handle bad url requests and errors
+
+
+- reuse DatePicker Delegate for the sorting options view ... or think of something better
+- a user shouldn't have duplicating cities
+- sorting the cities by name and by country (and then by name)
+
+- add methods to DataManager which return arrays of sorted cities
+	each of the methods fetch the cities for a given user (which we have)
