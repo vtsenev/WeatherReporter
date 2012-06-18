@@ -12,7 +12,7 @@
 #import "PasswordViewControllerDelegate.h"
 @class User;
 
-@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate>
+@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate, PasswordViewControllerDelegate>
 
 @property (nonatomic, retain) User *user;
 @property (retain, nonatomic) IBOutlet UITextField *firstNameField;

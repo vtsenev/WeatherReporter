@@ -12,6 +12,7 @@
 #import "WeatherTableViewController.h"
 #import "JFBCrypt.h"
 #import "DatePickerViewController.h"
+#import "PasswordViewController.h"
 #import "CustomAnimationUtilities.h"
 #import "SortOptionsViewController.h"
 #import "Constants.h"
@@ -167,17 +168,6 @@
 
 - (void)loginDidSucceedWithUser:(User *)theUser {
     self.user = theUser;
-    NSString *sortByValue = [[NSUserDefaults standardUserDefaults] valueForKey:@"sortBy"];
-    if (sortByValue) {
-        if ([sortByValue isEqualToString:@"city"]) {
-            self.sortingOption = 0;
-        } else {
-            self.sortingOption = 1;
-        }
-    } else {
-        [[NSUserDefaults standardUserDefaults] setValue:@"country" forKey:@"sortBy"];
-        self.sortingOption = 1;
-    }
     [self updateView];
 }
 
@@ -199,6 +189,11 @@
     } 
     // If we begin editting the password field
     else if (textField.tag == 2) {
+        PasswordViewController *passViewController = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
+        passViewController.delegate = self;
+        [CustomAnimationUtilities appearView:passViewController.view 
+                            FromBottomOfView:self.navigationController.view withHeight:460 withDuration:0.4];
+        
         self.passwordChanged = YES;
     }
 }
@@ -211,6 +206,14 @@
     [dateFormatter setDateFormat: @"yyyy-MMMM-dd"];
     self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
     [dateFormatter release];
+    
+}
+
+#pragma mark - PasswordViewController Delegate methods
+
+- (void)confirmPassword:(NSString *)password
+{
+    self.passwordField.text = password;
 }
 
 @end
