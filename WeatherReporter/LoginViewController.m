@@ -21,6 +21,7 @@ NSString *const userDefaultsRememberMeKey = @"rememberMe";
 NSString *const loginErrorType = @"Login error";
 NSString *const wrongPasswordError = @"Incorrect Password!\n Try Again!";
 NSString *const missingUsernameOrPasswordError = @"Enter your username and password.";
+NSString *const emptyString =  @"";
 NSInteger const saltLength = 29;
 NSInteger const dontRememberMe = 0;
 NSInteger const doRememberMe = 1;
@@ -68,8 +69,8 @@ NSInteger const doRememberMe = 1;
         [self.usernameField setText:defaultUsername];
         [self.passwordField setText:password];
     } else {
-        [self.usernameField setText:@""];
-        [self.passwordField setText:@""];
+        [self.usernameField setText:emptyString];
+        [self.passwordField setText:emptyString];
         [self.switchBtn setOn:NO];
     }
 }
@@ -79,7 +80,7 @@ NSInteger const doRememberMe = 1;
 }
 
 - (IBAction)login:(id)sender {
-    if ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
+    if ([self.usernameField.text isEqualToString:emptyString] || [self.passwordField.text isEqualToString:emptyString]) {
         [self displayAlertWithTitle:loginErrorType alertMessage:missingUsernameOrPasswordError];
         return;
     }
@@ -141,13 +142,13 @@ NSInteger const doRememberMe = 1;
 }
 
 - (void)forgetUser {
-    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:userDefaultsUsernameKey];
+    [[NSUserDefaults standardUserDefaults] setValue:emptyString forKey:userDefaultsUsernameKey];
     [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userDefaultsPasswordKey];
     [[NSUserDefaults standardUserDefaults] setInteger:dontRememberMe forKey:userDefaultsRememberMeKey];
 }
 
 - (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt {
-    if (![password isEqualToString:@""] && password.length >= MIN_PASS_LENGTH && salt.length == saltLength) {
+    if (![password isEqualToString:emptyString] && password.length >= MIN_PASS_LENGTH && salt.length == saltLength) {
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
     }
@@ -163,7 +164,7 @@ NSInteger const doRememberMe = 1;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""] && textField.tag == 1) {
+    if (![self.usernameField.text isEqualToString:emptyString] && ![self.passwordField.text isEqualToString:emptyString] && textField.tag == 1) {
         [self login:nil];
     }
 }
@@ -172,7 +173,7 @@ NSInteger const doRememberMe = 1;
 
 - (void)newUserIsRegistered:(User *)user {
     self.usernameField.text = user.username;
-    self.passwordField.text = @"";
+    self.passwordField.text = emptyString;
 }
 
 @end

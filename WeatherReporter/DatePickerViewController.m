@@ -60,11 +60,6 @@
     
     [self.delegate datePickerController:self didPickDate:[self.datePickerController date]];
     [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
-
-    
 }
-
-
-
 
 @end
