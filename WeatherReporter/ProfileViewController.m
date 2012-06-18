@@ -12,6 +12,7 @@
 #import "WeatherTableViewController.h"
 #import "JFBCrypt.h"
 #import "DatePickerViewController.h"
+#import "PasswordViewController.h"
 #import "CustomAnimationUtilities.h"
 #import "SortOptionsViewController.h"
 
@@ -168,6 +169,11 @@
     } 
     // If we begin editting the password field
     else if (textField.tag == 2) {
+        PasswordViewController *passViewController = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
+        passViewController.delegate = self;
+        [CustomAnimationUtilities appearView:passViewController.view 
+                            FromBottomOfView:self.navigationController.view withHeight:460 withDuration:0.4];
+        
         self.passwordChanged = YES;
     }
     // If we begin editting sortBy field
@@ -188,6 +194,13 @@
     self.dateOfBirthField.text = [dateFormatter stringFromDate:date];
     [dateFormatter release];
     
+}
+
+#pragma mark - PasswordViewController Delegate methods
+
+- (void)confirmPassword:(NSString *)password
+{
+    self.passwordField.text = password;
 }
 
 

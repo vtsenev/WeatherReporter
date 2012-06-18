@@ -13,7 +13,7 @@
 #import "SortOptionsDelegate.h"
 @class User;
 
-@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate, SortOptionsDelegate>
+@interface ProfileViewController : UIViewController <LoginViewControllerDelegate, UITextFieldDelegate, DatePickerControllerDelegate, PasswordViewControllerDelegate, SortOptionsDelegate>
 
 @property (nonatomic, retain) User *user;
 @property (retain, nonatomic) IBOutlet UITextField *firstNameField;
