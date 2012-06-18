@@ -16,6 +16,7 @@
 #import "MapViewController.h"
 #import "WeatherPeriodsViewController.h"
 #import "Constants.h"
+#import "Helpers.h"
 
 @interface WeatherTableViewController ()
 
@@ -127,8 +128,8 @@
     [self.tableData addObject:theCity];
     NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:self.tableData];
     self.tableData = [NSMutableArray arrayWithArray:sortedCities];
-    
     NSLog(@"%@, %@, %@, %@", theCity.name, theCity.country, theCity.latitude, theCity.longitude);
+    
     [self.tableView reloadData];
 }
 

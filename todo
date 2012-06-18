@@ -4,9 +4,4 @@ Login Screen:
 - add UIScrollView to RegisterViewController
 
 Weather TableView:
-
-- should the application save your password ?
-
-- reuse DatePicker Delegate for the sorting options view ... or think of something better
 - a user shouldn't have duplicating cities
-- sorting the cities by name and by country (and then by name)

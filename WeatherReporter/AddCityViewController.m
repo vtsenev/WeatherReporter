@@ -13,6 +13,7 @@
 #import "GeoLocationResponse.h"
 #import "ConnectionManager.h"
 #import "Constants.h"
+#import "Helpers.h"
 
 @interface AddCityViewController ()
 
@@ -77,6 +78,15 @@
     [self setIsCityFound:NO];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (![self isCityValid]) {
+        if ([self.delegate respondsToSelector:@selector(didCancelCity:)]) {
+            [self.delegate didCancelCity:self.city];
+        }
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -101,9 +111,7 @@
 - (IBAction)getLocation:(id)sender {
     if (([self.cityNameField.text isEqualToString:@""]) || ([self.countryField.text isEqualToString:@""])) {
         self.isCityFound = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:invalidCityErrorType message:invalidCityError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-        [alertView release];
+        [Helpers showAlertViewWithTitle:invalidCityErrorType withMessage:invalidCityError withDelegate:self];
     } else {
         [self requestLatitudeAndLongitudeForCity:self.cityNameField.text inCountry:self.countryField.text];
     }
@@ -111,8 +119,8 @@
 
 - (BOOL)isCityValid {
     BOOL validity = YES && self.isCityFound;
-    if ([self.cityNameField.text isEqualToString:@""] || [self.countryField.text isEqualToString:@""] ||
-        [self.latitudeField.text isEqualToString:@""] || [self.longitudeField.text isEqualToString:@""]) {
+    if ([self.cityNameField.text isEqualToString:@""] || [self.countryField.text isEqualToString:emptyString] ||
+        [self.latitudeField.text isEqualToString:@""] || [self.longitudeField.text isEqualToString:emptyString]) {
         return NO;
     }
     return validity;
@@ -127,9 +135,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         self.isCityFound = NO;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:invalidCityErrorType message:cityNotFoundError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
+        [Helpers showAlertViewWithTitle:invalidCityErrorType withMessage:cityNotFoundError withDelegate:self];
     }
 }
 
@@ -179,9 +185,7 @@
     [self.activityIndicator removeFromSuperview];
     [self userInteractionEnabled:YES];
     self.isCityFound = NO;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:invalidCityErrorType message:cityNotFoundError delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+    [Helpers showAlertViewWithTitle:invalidCityErrorType withMessage:cityNotFoundError withDelegate:self];
 }
 
 - (void)connectionDidSucceedWithParsedData:(NSObject *)parsedData {
