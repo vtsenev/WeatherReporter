@@ -34,6 +34,8 @@ NSString *const profileUpdatedMessage = @"Your settings have been updated.";
 
 NSString *const dateFormat = @"yyyy-MMMM-dd";
 
+NSString *const emptyString =  @"";
+
 NSInteger const saltLength = 29;
 NSInteger const minPassLength = 4;
 

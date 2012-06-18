@@ -15,11 +15,11 @@
 @interface PasswordViewController ()
 
 - (void)shakeView:(UIView *)view onAngle:(NSInteger)angle;
-- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 
 @end
 
 @implementation PasswordViewController
+
 @synthesize passwordView;
 @synthesize passwordTextField;
 @synthesize confirmPassTextField;
@@ -76,11 +76,8 @@
     if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]) {
         self.warningLabel.text = missingFieldsError;
     }
-    else if(password.length < minPassLength) {
-        self.warningLabel.text = passwordTooShortError;
-        [self shakeView:self.passwordView onAngle:5];
-        self.passwordTextField.text = @""; 
-        self.confirmPassTextField.text = @""; 
+    else if(password.length < minPassLength){
+        [self passwordViewWithWarning:passwordTooShortError withClearContent:YES animated:YES];
     }
     else if([ password isEqualToString:confirmPass]) {
         self.warningLabel.text = @"";
@@ -88,12 +85,8 @@
         [self.delegate confirmPassword:password];
     }
     else {
-        [self shakeView:self.passwordView onAngle:5];
-        self.warningLabel.text = @"";
-        self.passwordTextField.text = @""; 
-        self.confirmPassTextField.text = @""; 
+        [self passwordViewWithWarning:@"" withClearContent:YES animated:YES];   
     }
-        
 }
 
 - (void)shakeView:(UIView *)view onAngle:(NSInteger)angle {
@@ -116,14 +109,23 @@
     //When finish set the view to it's identity posiotion
     [UIView setAnimationDidStopSelector:@selector(shakeViewEnded:finished:context:)];
     [UIView commitAnimations];
-
 }
 
-- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-    if ([finished boolValue]) {
-        UIView* item = (UIView *)context;
-        item.transform = CGAffineTransformIdentity;
+//- (void)shakeViewEnded:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+//    if ([finished boolValue]) {
+//        UIView* item = (UIView *)context;
+//        item.transform = CGAffineTransformIdentity;
+//=======
+- (void)passwordViewWithWarning:(NSString *)warning withClearContent:(BOOL)clearCont animated:(BOOL)animated{
+    if(animated){
+        [CustomAnimationUtilities shakeView:self.passwordView onAngle:5];        
     }
+   
+    if(clearCont){
+        self.passwordTextField.text = @""; 
+        self.confirmPassTextField.text = @""; 
+    }
+    self.warningLabel.text = warning;
 }
 
 @end

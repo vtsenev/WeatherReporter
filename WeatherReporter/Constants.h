@@ -20,6 +20,8 @@ extern float const defaultMapSpan;
 
 extern NSString *const dateFormat;
 
+extern NSString *const emptyString;
+
 extern NSString *const userDefaultsUsernameKey;
 extern NSString *const userDefaultsPasswordKey;
 extern NSString *const userDefaultsRememberMeKey;

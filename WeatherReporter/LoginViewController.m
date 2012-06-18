@@ -63,8 +63,8 @@
         [self.usernameField setText:defaultUsername];
         [self.passwordField setText:password];
     } else {
-        [self.usernameField setText:@""];
-        [self.passwordField setText:@""];
+        [self.usernameField setText:emptyString];
+        [self.passwordField setText:emptyString];
         [self.switchBtn setOn:NO];
     }
 }
@@ -74,7 +74,7 @@
 }
 
 - (IBAction)login:(id)sender {
-    if ([self.usernameField.text isEqualToString:@""] || [self.passwordField.text isEqualToString:@""]) {
+    if ([self.usernameField.text isEqualToString:emptyString] || [self.passwordField.text isEqualToString:emptyString]) {
         [self displayAlertWithTitle:loginErrorType alertMessage:missingUsernameOrPasswordError];
         return;
     }
@@ -136,13 +136,13 @@
 }
 
 - (void)forgetUser {
-    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:userDefaultsUsernameKey];
+    [[NSUserDefaults standardUserDefaults] setValue:emptyString forKey:userDefaultsUsernameKey];
     [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userDefaultsPasswordKey];
     [[NSUserDefaults standardUserDefaults] setInteger:dontRememberMe forKey:userDefaultsRememberMeKey];
 }
 
 - (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt {
-    if (![password isEqualToString:@""] && password.length >= minPassLength && salt.length == saltLength) {
+    if (![password isEqualToString:emptyString] && password.length >= minPassLength && salt.length == saltLength) {
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;
     }
@@ -158,7 +158,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (![self.usernameField.text isEqualToString:@""] && ![self.passwordField.text isEqualToString:@""] && textField.tag == 1) {
+    if (![self.usernameField.text isEqualToString:emptyString] && ![self.passwordField.text isEqualToString:emptyString] && textField.tag == 1) {
         [self login:nil];
     }
 }
@@ -167,7 +167,7 @@
 
 - (void)newUserIsRegistered:(User *)user {
     self.usernameField.text = user.username;
-    self.passwordField.text = @"";
+    self.passwordField.text = emptyString;
 }
 
 @end
