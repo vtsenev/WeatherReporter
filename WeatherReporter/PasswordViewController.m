@@ -81,6 +81,12 @@
     if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]){
         self.warningLabel.text = @"Please, fill in fields!";
     }
+    else if(password.length < MIN_PASS_LENGTH){
+        self.warningLabel.text = @"Password is too short. Minimum 4 chars!";
+        [self shakeView:self.passwordView onAngle:5];
+        self.passwordTextField.text = @""; 
+        self.confirmPassTextField.text = @""; 
+    }
     else if([ password isEqualToString:confirmPass]){
         self.warningLabel.text = @"";
         [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
