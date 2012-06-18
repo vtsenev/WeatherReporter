@@ -13,6 +13,4 @@
 
 -(void)datePickerController:(DatePickerViewController *) datePickerViewController didPickDate:(NSDate *)date; 
 
-- (void)dismissDatePickerView:(UIView *)view;
-
 @end

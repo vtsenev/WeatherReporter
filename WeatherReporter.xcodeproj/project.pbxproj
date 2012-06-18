@@ -10,6 +10,7 @@
 		3E834D3415890263003D42DC /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E834D3215890263003D42DC /* PasswordViewController.xib */; };
 		3E89475C158A0CD6002966C0 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E89475B158A0CD6002966C0 /* PasswordViewController.m */; };
 		3E894768158A4516002966C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E894767158A4516002966C0 /* QuartzCore.framework */; };
+		3E8A7B6B158F486A00816BB0 /* CustomAnimationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8A7B6A158F486900816BB0 /* CustomAnimationUtilities.m */; };
 		A0052DDE158A506800A10926 /* BCrypt-java-copyright.txt in Resources */ = {isa = PBXBuildFile; fileRef = A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */; };
 		A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A0052DDA158A506800A10926 /* JFBCrypt.m */; };
 		A0052DE0158A506800A10926 /* JFRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = A0052DDD158A506800A10926 /* JFRandom.m */; };
@@ -110,6 +111,8 @@
 		3E89475B158A0CD6002966C0 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		3E89475D158A104E002966C0 /* PasswordViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordViewControllerDelegate.h; sourceTree = "<group>"; };
 		3E894767158A4516002966C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3E8A7B69158F486900816BB0 /* CustomAnimationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnimationUtilities.h; sourceTree = "<group>"; };
+		3E8A7B6A158F486900816BB0 /* CustomAnimationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnimationUtilities.m; sourceTree = "<group>"; };
 		A0052DD8158A506800A10926 /* BCrypt-java-copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BCrypt-java-copyright.txt"; sourceTree = "<group>"; };
 		A0052DD9158A506800A10926 /* JFBCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFBCrypt.h; sourceTree = "<group>"; };
 		A0052DDA158A506800A10926 /* JFBCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFBCrypt.m; sourceTree = "<group>"; };
@@ -314,9 +317,9 @@
 				A0FB92BF1588A35900BEC0F6 /* CountryPickerDelegate.h */,
 				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
 				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
-				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
 				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
 				A0E346F31586046200C59EF5 /* DatePickerViewController.m */,
+				3E834D091588C235003D42DC /* DatePickerControllerDelegate.h */,
 				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
 				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 				A0E346ED1586043100C59EF5 /* LoginViewController.h */,
@@ -333,16 +336,18 @@
 				A08569D815820DE500B06FA2 /* ProfileViewController.m */,
 				A0E346E81586041D00C59EF5 /* RegisterUserViewController.h */,
 				A0E346E91586041D00C59EF5 /* RegisterUserViewController.m */,
+				A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */,
 				A0AFCFCE1588DAAF0065DFC0 /* WeatherPeriodsViewController.h */,
 				A0AFCFCF1588DAB00065DFC0 /* WeatherPeriodsViewController.m */,
 				A0AFCFD91588FEF50065DFC0 /* DetailedForecastViewController.h */,
 				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
-				A0DC1582158B59DE003DD61F /* RegisterUserDelegate.h */,
 				A0DC158F158B8DFA003DD61F /* SortOptionsViewController.h */,
 				A0DC1590158B8DFC003DD61F /* SortOptionsViewController.m */,
 				A0DA7290158B95CB00BE6BD5 /* SortOptionsDelegate.h */,
+				3E8A7B69158F486900816BB0 /* CustomAnimationUtilities.h */,
+				3E8A7B6A158F486900816BB0 /* CustomAnimationUtilities.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				A0052DDF158A506800A10926 /* JFBCrypt.m in Sources */,
 				A0052DE0158A506800A10926 /* JFRandom.m in Sources */,
 				A0DC1592158B8DFD003DD61F /* SortOptionsViewController.m in Sources */,
+				3E8A7B6B158F486A00816BB0 /* CustomAnimationUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

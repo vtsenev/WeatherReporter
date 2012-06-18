@@ -18,4 +18,5 @@
 
 - (IBAction)cancelPassword:(id)sender;
 - (IBAction)confirmPassword:(id)sender;
+
 @end

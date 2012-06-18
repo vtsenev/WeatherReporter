@@ -31,7 +31,5 @@
 @property (assign) id<RegisterUserDelegate> delegate;
 
 - (IBAction)registerNewUser:(id)sender;
-- (void) appearFromBottomForView:(UIView *)view;
-- (void) hideToBottomForView:(UIView *)view;
 
 @end

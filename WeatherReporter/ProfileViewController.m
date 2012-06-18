@@ -12,6 +12,7 @@
 #import "WeatherTableViewController.h"
 #import "JFBCrypt.h"
 #import "DatePickerViewController.h"
+#import "CustomAnimationUtilities.h"
 #import "SortOptionsViewController.h"
 
 @interface ProfileViewController ()
@@ -163,11 +164,18 @@
         [textField resignFirstResponder];
         DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
         datePickerViewController.delegate = self;
-        [self appearFromBottomForView:datePickerViewController.view];
+        [CustomAnimationUtilities appearView:datePickerViewController.view FromBottomOfView:self.view withHeight:480 withDuration:0.4];
     } 
     // If we begin editting the password field
     else if (textField.tag == 2) {
         self.passwordChanged = YES;
+    }
+    // If we begin editting sortBy field
+    else if (textField.tag == 3) {
+        [textField resignFirstResponder];
+        SortOptionsViewController *sortOptionsViewController = [[SortOptionsViewController alloc] initWithNibName:@"SortOptionsViewController" bundle:nil];
+        sortOptionsViewController.delegate = self;
+        [CustomAnimationUtilities appearView:sortOptionsViewController.view FromBottomOfView:self.view withHeight:460 withDuration:0.4];
     }
 }
 
@@ -182,45 +190,6 @@
     
 }
 
-- (void)dismissDatePickerView:(UIView *)view{
-    [self hideToBottomForView:view];
-}
-
-#pragma mark - Appear/Disapear View animations
-
-- (void)hideToBottomForView:(UIView *)view{
-    
-    CGRect viewFrame = view.frame;
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.4];
-    viewFrame.origin.y += 480;
-    view.frame = viewFrame;
-    [UIView commitAnimations];
-    [self performSelector:@selector(removeFromSuperviewView:) withObject:view afterDelay:0.5];    
-}
-
-
-- (IBAction)removeFromSuperviewView:(id)sender {
-    [sender removeFromSuperview]; 
-}
-
-- (void)appearFromBottomForView:(UIView *)view{
-    int height = 460;
-    
-    [self.view addSubview:view];
-    
-    CGRect viewFrame = view.frame;
-    // Set the popup view's frame so that it is off the bottom of the screen
-    viewFrame.origin.y = CGRectGetMaxY(self.view.bounds);
-    view.frame  = viewFrame; 
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.4];
-    viewFrame.origin.y -= height;
-    view.frame = viewFrame;
-    [UIView commitAnimations];
-}
 
 # pragma mark - SortingOptionsDelegate methods
 
@@ -230,7 +199,7 @@
 }
 
 - (void)dismissSortingOptionsView:(UIView *)view {
-    [self hideToBottomForView:view];
+    [CustomAnimationUtilities hideViewToBottom:view withHeight:460 withDuration:0.4];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "PasswordViewController.h"
+#import "CustomAnimationUtilities.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface PasswordViewController ()
@@ -68,7 +69,7 @@
 }
 - (IBAction)cancelPassword:(id)sender {
     
-    [self.delegate dismissPasswordView:self.view];
+    [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
     
 }
 
@@ -82,7 +83,7 @@
     }
     else if([ password isEqualToString:confirmPass]){
         self.warningLabel.text = @"";
-        [self.delegate dismissPasswordView:self.view];
+        [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
         [self.delegate confirmPassword:password];
     }
     else {
@@ -127,6 +128,7 @@
     }
 }
     
+
 
 
 

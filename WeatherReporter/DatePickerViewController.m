@@ -7,8 +7,10 @@
 //
 
 #import "DatePickerViewController.h"
+#import "CustomAnimationUtilities.h"
 
 @interface DatePickerViewController ()
+
 
 @end
 
@@ -50,13 +52,19 @@
 }
 - (IBAction)cancelDatePicker:(id)sender {
     
-    [self.delegate dismissDatePickerView:self.view];
+    [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
+
 }
 
 - (IBAction)addDate:(id)sender {
     
     [self.delegate datePickerController:self didPickDate:[self.datePickerController date]];
-    [self.delegate dismissDatePickerView:self.view];
+    [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
+
     
 }
+
+
+
+
 @end

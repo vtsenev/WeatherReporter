@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewControllerDelegate.h"
 #import "DatePickerControllerDelegate.h"
+#import "PasswordViewControllerDelegate.h"
 #import "SortOptionsDelegate.h"
 @class User;
 
