@@ -85,7 +85,7 @@
         [self.delegate confirmPassword:password];
     }
     else {
-        [self passwordViewWithWarning:@"" withClearContent:YES animated:YES];   
+        [self passwordViewWithWarning:emptyString withClearContent:YES animated:YES];   
     }
 }
 

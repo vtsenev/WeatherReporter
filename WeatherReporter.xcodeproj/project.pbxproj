@@ -310,6 +310,19 @@
 			name = Delegates;
 			sourceTree = "<group>";
 		};
+		A01FEC99158F910500C5A2BD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A01FEC91158F5D7900C5A2BD /* Constants.h */,
+				A01FEC92158F5D7A00C5A2BD /* Constants.m */,
+				A01FEC96158F87AD00C5A2BD /* Helpers.h */,
+				A01FEC97158F87B000C5A2BD /* Helpers.m */,
+				3E8A7B69158F486900816BB0 /* CustomAnimationUtilities.h */,
+				3E8A7B6A158F486900816BB0 /* CustomAnimationUtilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		A08569D115820C2300B06FA2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,8 +364,6 @@
 				A0AFCFDA1588FEF50065DFC0 /* DetailedForecastViewController.m */,
 				A08569E61582110C00B06FA2 /* WeatherTableViewController.h */,
 				A08569E71582110C00B06FA2 /* WeatherTableViewController.m */,
-				3E8A7B69158F486900816BB0 /* CustomAnimationUtilities.h */,
-				3E8A7B6A158F486900816BB0 /* CustomAnimationUtilities.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -516,10 +527,7 @@
 		A0B142071581FC2F00378DE6 /* WeatherReporter */ = {
 			isa = PBXGroup;
 			children = (
-				A01FEC91158F5D7900C5A2BD /* Constants.h */,
-				A01FEC92158F5D7A00C5A2BD /* Constants.m */,
-				A01FEC96158F87AD00C5A2BD /* Helpers.h */,
-				A01FEC97158F87B000C5A2BD /* Helpers.m */,
+				A01FEC99158F910500C5A2BD /* Utilities */,
 				A01FEC95158F7A2C00C5A2BD /* Delegates */,
 				A08569F615823C1600B06FA2 /* Data Manager */,
 				A08569F215823BA000B06FA2 /* Web Service */,

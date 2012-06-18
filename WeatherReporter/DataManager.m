@@ -9,6 +9,7 @@
 #import "DataManager.h"
 #import "User.h"
 #import "City.h"
+#import "Constants.h"
 
 static DataManager *defaultDataManager = nil;
 
@@ -189,7 +190,7 @@ static DataManager *defaultDataManager = nil;
     NSSet *allCities = user.cities;
 
     NSMutableArray *searchedCities = [[[NSMutableArray alloc] init] autorelease];
-    if (![cityName isEqualToString:@""]) {
+    if (![cityName isEqualToString:emptyString]) {
         for (City *city in allCities) {
             if ([city.name hasPrefix:cityName] || [city.country hasPrefix:cityName]) {
                 [searchedCities addObject:city];

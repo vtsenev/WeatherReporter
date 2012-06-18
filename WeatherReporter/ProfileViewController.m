@@ -159,7 +159,7 @@
 }
 
 - (NSString *)hashPassword:(NSString *)password {
-    if (![password isEqualToString:@""] && password.length >= minPassLength) {
+    if (![password isEqualToString:emptyString] && password.length >= minPassLength) {
         NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds:10];
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;

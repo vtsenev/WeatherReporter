@@ -78,8 +78,8 @@
 
 - (IBAction)registerNewUser:(id)sender {
     
-    if ([self.usernameField.text isEqualToString:@""] || [self.firstnameField.text isEqualToString:@""] ||
-            [self.lastnameField.text isEqualToString:@""] || [self.dateOfBirthField.text isEqualToString:@""]){
+    if ([self.usernameField.text isEqualToString:emptyString] || [self.firstnameField.text isEqualToString:emptyString] ||
+            [self.lastnameField.text isEqualToString:emptyString] || [self.dateOfBirthField.text isEqualToString:emptyString]){
         
         [self displayAlertWithTitle:requeredFieldAreEmptyError alertMessage:requeredFieldAreEmptyError];
     }
@@ -162,7 +162,7 @@
 }
 
 - (NSString *)hashPassword:(NSString *)password {
-    if (![password isEqualToString:@""] && password.length >= minPassLength) {
+    if (![password isEqualToString:emptyString] && password.length >= minPassLength) {
         NSString *salt = [JFBCrypt generateSaltWithNumberOfRounds:10];
         NSString *hashedPassword = [JFBCrypt hashPassword:password withSalt:salt];
         return hashedPassword;

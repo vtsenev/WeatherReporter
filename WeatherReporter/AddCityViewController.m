@@ -109,7 +109,7 @@
 }
 
 - (IBAction)getLocation:(id)sender {
-    if (([self.cityNameField.text isEqualToString:@""]) || ([self.countryField.text isEqualToString:@""])) {
+    if (([self.cityNameField.text isEqualToString:emptyString]) || ([self.countryField.text isEqualToString:emptyString])) {
         self.isCityFound = NO;
         [Helpers showAlertViewWithTitle:invalidCityErrorType withMessage:invalidCityError withDelegate:self];
     } else {
@@ -119,8 +119,8 @@
 
 - (BOOL)isCityValid {
     BOOL validity = YES && self.isCityFound;
-    if ([self.cityNameField.text isEqualToString:@""] || [self.countryField.text isEqualToString:emptyString] ||
-        [self.latitudeField.text isEqualToString:@""] || [self.longitudeField.text isEqualToString:emptyString]) {
+    if ([self.cityNameField.text isEqualToString:emptyString] || [self.countryField.text isEqualToString:emptyString] ||
+        [self.latitudeField.text isEqualToString:emptyString] || [self.longitudeField.text isEqualToString:emptyString]) {
         return NO;
     }
     return validity;
@@ -168,7 +168,7 @@
 
 - (void)didSelectCountry:(NSString *)country {
     countryField.text = country;
-    if (![self.cityNameField.text isEqualToString:@""]) {
+    if (![self.cityNameField.text isEqualToString:emptyString]) {
         [self requestLatitudeAndLongitudeForCity:self.cityNameField.text inCountry:country];
     }
 }
