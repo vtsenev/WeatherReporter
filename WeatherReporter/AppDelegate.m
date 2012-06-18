@@ -31,7 +31,7 @@
 
     [weatherNavigationController setTitle:@"Weather"];
     
-    UIViewController *profileViewController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil];
     UINavigationController *profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
     [profileNavigationController setTitle:@"Profile"];
     

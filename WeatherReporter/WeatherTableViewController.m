@@ -222,7 +222,7 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    searchBar.text=@"";
+    searchBar.text = emptyString;
     [self searchBar:searchBar activate:NO];
 }
 

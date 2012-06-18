@@ -73,14 +73,14 @@
     NSString *password = self.passwordTextField.text;
     NSString *confirmPass = self.confirmPassTextField.text;
     
-    if([password isEqualToString:@""] || [confirmPass isEqualToString:@""]) {
+    if([password isEqualToString:emptyString] || [confirmPass isEqualToString:emptyString]) {
         self.warningLabel.text = missingFieldsError;
     }
     else if(password.length < minPassLength){
         [self passwordViewWithWarning:passwordTooShortError withClearContent:YES animated:YES];
     }
     else if([ password isEqualToString:confirmPass]) {
-        self.warningLabel.text = @"";
+        self.warningLabel.text = emptyString;
         [CustomAnimationUtilities hideViewToBottom:self.view withHeight:480 withDuration:0.4];
         [self.delegate confirmPassword:password];
     }
@@ -122,8 +122,8 @@
     }
    
     if(clearCont){
-        self.passwordTextField.text = @""; 
-        self.confirmPassTextField.text = @""; 
+        self.passwordTextField.text = emptyString; 
+        self.confirmPassTextField.text = emptyString; 
     }
     self.warningLabel.text = warning;
 }

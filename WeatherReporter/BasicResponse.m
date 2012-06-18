@@ -11,12 +11,10 @@
 @implementation BasicResponse
 @synthesize errorMessage, isSuccessful;
 
-- (void)dealloc{
-
+- (void)dealloc {
     [errorMessage release];
     [super dealloc];
 }
-
 
 - (id)init {
     self = [super init];
