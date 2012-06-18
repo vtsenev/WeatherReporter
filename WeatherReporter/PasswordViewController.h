@@ -19,4 +19,6 @@
 - (IBAction)cancelPassword:(id)sender;
 - (IBAction)confirmPassword:(id)sender;
 
+- (void)passwordViewWithWarning:(NSString *)warning withClearContent:(BOOL)clearCont animated:(BOOL)animated;
+
 @end

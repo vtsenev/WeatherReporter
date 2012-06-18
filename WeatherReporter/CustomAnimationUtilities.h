@@ -12,5 +12,6 @@
 
 + (void)hideViewToBottom:(UIView *)view withHeight:(NSInteger)height withDuration:(float)duration;
 + (void)appearView:(UIView *)appearView FromBottomOfView:(UIView *)parentView  withHeight:(NSInteger)height withDuration:(float)duration;
++ (void)shakeView:(UIView *)view onAngle:(NSInteger)angle;
 
 @end
