@@ -77,11 +77,6 @@
     [searchBar release];
     
     tableData = [[NSMutableArray alloc] init];
-    
-//    self.disableViewOverlay = [[UIView alloc]
-//                               initWithFrame:CGRectMake(0.0f,44.0f,320.0f,416.0f)];
-//    self.disableViewOverlay.backgroundColor=[UIColor blackColor];
-//    self.disableViewOverlay.alpha = 0;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -102,6 +97,9 @@
 
 - (void)didUpdateCity:(City *)theCity {
     [self.tableData addObject:theCity];
+    NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:self.tableData];
+    self.tableData = [NSMutableArray arrayWithArray:sortedCities];
+    
     NSLog(@"%@, %@, %@, %@", theCity.name, theCity.country, theCity.latitude, theCity.longitude);
     [self.tableView reloadData];
 }
@@ -115,8 +113,11 @@
 
 - (void)loginDidSucceedWithUser:(User *)theUser {
     self.user = theUser;
-    NSSet *citiesForCurrentUser = [[DataManager defaultDataManager] fetchCitiesForUserWithUsername:self.user.username];
-    self.tableData = [NSMutableArray arrayWithArray:[citiesForCurrentUser allObjects]];
+    NSArray *citiesForCurrentUser = [[[DataManager defaultDataManager] fetchCitiesForUserWithUsername:self.user.username] allObjects];
+//  get sorting options
+//  default - sort by country and then by name
+    NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:citiesForCurrentUser];
+    self.tableData = [NSMutableArray arrayWithArray:sortedCities];
     
     [self.tableView reloadData];
 }
@@ -204,7 +205,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchBar.text forUsername:self.user.username];
-	
+	results = [[DataManager defaultDataManager] sortCitiesByCountry:results];
     [self searchBar:searchBar activate:NO];
 	
     [self.tableData removeAllObjects];
@@ -216,16 +217,7 @@
     self.tableView.allowsSelection = !active;
     self.tableView.scrollEnabled = !active;
     if (!active) {
-//        [disableViewOverlay removeFromSuperview];
         [searchBar resignFirstResponder];
-    } else {
-//        self.disableViewOverlay.alpha = 0;
-//        [self.view addSubview:self.disableViewOverlay];
-//		
-//        [UIView beginAnimations:@"FadeIn" context:nil];
-//        [UIView setAnimationDuration:0.5];
-//        self.disableViewOverlay.alpha = 0.6;
-//        [UIView commitAnimations];
     }
     [searchBar setShowsCancelButton:active animated:YES];
 }
@@ -233,6 +225,7 @@
 - (void)searchBar:(UISearchBar *)searchBar
     textDidChange:(NSString *)searchText {
     NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchText forUsername:self.user.username];
+    results = [[DataManager defaultDataManager] sortCitiesByCountry:results];
     
     [self.tableData removeAllObjects];
     [self.tableData addObjectsFromArray:results];

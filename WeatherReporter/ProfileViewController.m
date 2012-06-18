@@ -169,14 +169,6 @@
     else if (textField.tag == 2) {
         self.passwordChanged = YES;
     }
-    // If we begin editting sortBy field
-    else if (textField.tag == 3) {
-        [textField resignFirstResponder];
-        SortOptionsViewController *sortOptionsViewController = [[SortOptionsViewController alloc] initWithNibName:@"SortOptionsViewController" bundle:nil];
-        sortOptionsViewController.delegate = self;
-        [self appearFromBottomForView:sortOptionsViewController
-         .view];
-    }
 }
 
 #pragma mark - DatePickerViewController delegate methods

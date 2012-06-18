@@ -21,7 +21,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.basicResponse = [[BasicResponse alloc] init];
+        self.basicResponse = [[[BasicResponse alloc] init] autorelease];
     }
     return self;
 }

@@ -35,5 +35,7 @@
 
 - (NSArray *)countries;
 - (NSArray *)searchCitiesForCity:(NSString *)cityName forUsername:(NSString *)username;
+- (NSArray *)sortCitiesByCityName:(NSArray *)cities;
+- (NSArray *)sortCitiesByCountry:(NSArray *)cities;
 
 @end

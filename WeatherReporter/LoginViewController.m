@@ -16,6 +16,7 @@
 
 NSString *const userDefaultsPasswordKey = @"password";
 NSString *const userDefaultsUsernameKey = @"username";
+NSString *const userDefaultsSortingOptionsKey = @"sortBy";
 NSString *const userDefaultsRememberMeKey = @"rememberMe";
 NSString *const loginErrorType = @"Login error";
 NSString *const wrongPasswordError = @"Incorrect Password!\n Try Again!";
@@ -67,6 +68,8 @@ NSInteger const doRememberMe = 1;
         [self.usernameField setText:defaultUsername];
         [self.passwordField setText:password];
     } else {
+        [self.usernameField setText:@""];
+        [self.passwordField setText:@""];
         [self.switchBtn setOn:NO];
     }
 }
@@ -100,7 +103,7 @@ NSInteger const doRememberMe = 1;
                     if (switchBtn.on) {
                         [self rememberUser];
                     } else {
-                        [[NSUserDefaults standardUserDefaults] setInteger:dontRememberMe forKey:userDefaultsRememberMeKey];
+                        [self forgetUser];
                     }
                     
                     UITabBarController *tabBarController = (UITabBarController *)[self presentingViewController];
@@ -135,6 +138,12 @@ NSInteger const doRememberMe = 1;
     [[NSUserDefaults standardUserDefaults] setValue:self.usernameField.text forKey:userDefaultsUsernameKey];
     [[NSUserDefaults standardUserDefaults] setValue:self.passwordField.text forKey:userDefaultsPasswordKey];
     [[NSUserDefaults standardUserDefaults] setInteger:doRememberMe forKey:userDefaultsRememberMeKey];
+}
+
+- (void)forgetUser {
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:userDefaultsUsernameKey];
+    [[NSUserDefaults standardUserDefaults] setValue:nil forKey:userDefaultsPasswordKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:dontRememberMe forKey:userDefaultsRememberMeKey];
 }
 
 - (NSString *)hashPassword:(NSString *)password forSalt:(NSString *)salt {

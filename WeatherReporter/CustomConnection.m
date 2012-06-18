@@ -23,7 +23,7 @@
     self = [super initWithRequest:request delegate:delegate startImmediately:YES];
     if (self) {
         self.customRequest = (CustomRequest *)request;
-        self.delegates = [[NSMutableArray alloc] init];
+        delegates = [[NSMutableArray alloc] init];
     }
     return self;
 }

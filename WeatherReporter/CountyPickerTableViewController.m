@@ -39,7 +39,9 @@
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:toolBarFrame];
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
     [toolBar setItems:[NSArray arrayWithObject:backBtn]];
+    [backBtn release];
     [self.tableView setTableHeaderView:toolBar];
+    [toolBar release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

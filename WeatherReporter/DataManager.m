@@ -26,7 +26,7 @@ static DataManager *defaultDataManager = nil;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [self defaultDataManager];
+    return [[self defaultDataManager] retain];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -96,18 +96,6 @@ static DataManager *defaultDataManager = nil;
         [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
     }
     User *user = [result lastObject];
-
-//    sorting the cities by country first and then by name:
-//    NSSet *citySet = [user cities];
-//    NSArray *cities = [citySet allObjects];
-//    NSSortDescriptor *sd = [[[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES] autorelease];
-//    NSSortDescriptor *sd2= [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
-//    NSArray *sortDescriptors = [NSArray arrayWithObjects:sd, sd2, nil];
-//    NSArray *sortedCities = [cities sortedArrayUsingDescriptors:sortDescriptors];
-//    for (City *city in sortedCities) {
-//        NSLog(@"%@", city.name);
-//    }
-    
     return [user cities];
 }
 
@@ -200,7 +188,7 @@ static DataManager *defaultDataManager = nil;
     User *user = [self fetchUserForUsername:username];
     NSSet *allCities = user.cities;
 
-    NSMutableArray *searchedCities = [[NSMutableArray alloc] init];
+    NSMutableArray *searchedCities = [[[NSMutableArray alloc] init] autorelease];
     if (![cityName isEqualToString:@""]) {
         for (City *city in allCities) {
             if ([city.name hasPrefix:cityName] || [city.country hasPrefix:cityName]) {
@@ -212,6 +200,21 @@ static DataManager *defaultDataManager = nil;
     }
     
     return searchedCities;
+}
+
+- (NSArray *)sortCitiesByCityName:(NSArray *)cities {
+    NSSortDescriptor *sd = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sd];
+    NSArray *sortedCities = [cities sortedArrayUsingDescriptors:sortDescriptors];
+    return sortedCities;
+}
+
+- (NSArray *)sortCitiesByCountry:(NSArray *)cities {
+    NSSortDescriptor *sdByCountry = [[[NSSortDescriptor alloc] initWithKey:@"country" ascending:YES] autorelease];
+    NSSortDescriptor *sdByName = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sdByCountry, sdByName, nil];
+    NSArray *sortedCities = [cities sortedArrayUsingDescriptors:sortDescriptors];
+    return sortedCities;
 }
 
 @end

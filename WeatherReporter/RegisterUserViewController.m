@@ -118,6 +118,7 @@ NSString *const requeredFieldAreEmptyError = @"Required Fileds Empty!";
     [[alert textFieldAtIndex:1] setPlaceholder:@"confirm password"];
     
     [alert show];
+    [alert release];
 }
 
 - (void)showPasswordView{
