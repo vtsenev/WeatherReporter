@@ -102,22 +102,22 @@
     [addCityViewController release];
 }
 
-- (void)sortCities:(NSArray *)cities {
-    NSArray *sortedCities = [[NSArray alloc] init];
-    
+- (void)sortCities:(NSArray *)cities {    
     NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsSortByKey];
     if (sortBy) {
         if ([sortBy isEqualToString:sortByCity]) {
-            sortedCities = [[DataManager defaultDataManager] sortCitiesByCityName:cities];
+            NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCityName:cities];
+            self.tableData = [NSMutableArray arrayWithArray:sortedCities];
         } else {
-            sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
+            NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
+            self.tableData = [NSMutableArray arrayWithArray:sortedCities];
         }
     } else {
         [[NSUserDefaults standardUserDefaults] setValue:sortByDefault forKey:userDefaultsSortByKey];
-        sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
+        NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:cities];
+        self.tableData = [NSMutableArray arrayWithArray:sortedCities];
     }
     
-    self.tableData = [NSMutableArray arrayWithArray:sortedCities];
     [self.tableView reloadData];
 }
 
