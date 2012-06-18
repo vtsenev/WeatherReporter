@@ -24,6 +24,7 @@
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (retain, nonatomic) IBOutlet UIButton *getLocationBtn;
 @property (nonatomic) BOOL isCityFound;
+@property (nonatomic) BOOL isGoingBackToParentView;
 
 - (IBAction)addCity:(id)sender;
 - (IBAction)getLocation:(id)sender;

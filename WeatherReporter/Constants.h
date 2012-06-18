@@ -40,6 +40,7 @@ extern NSString *const passwordTooShortError;
 extern NSString *const missingFieldsError;
 extern NSString *const invalidCityErrorType;
 extern NSString *const invalidCityError;
+extern NSString *const duplicateCityError;
 extern NSString *const cityNotFoundError;
 extern NSString *const profileUpdatedTitle;
 extern NSString *const profileUpdatedMessage;

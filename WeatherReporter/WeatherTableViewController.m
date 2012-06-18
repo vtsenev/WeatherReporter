@@ -125,6 +125,18 @@
 # pragma mark - AddCityDelegate methods
 
 - (void)didUpdateCity:(City *)theCity {
+    for (City *anyCity in self.tableData) {
+        NSLog(@"1 - %@, %@, %@, %@", anyCity.name, anyCity.country, anyCity.latitude, anyCity.longitude);
+        NSLog(@"2 - %@, %@, %@, %@", theCity.name, theCity.country, theCity.latitude, theCity.longitude);
+        if ([anyCity.name isEqualToString:theCity.name] && [anyCity.country isEqualToString:theCity.country] &&
+            [anyCity.latitude isEqual:theCity.latitude] && [anyCity.longitude isEqual:theCity.longitude]) {
+            
+            [Helpers showAlertViewWithTitle:invalidCityErrorType withMessage:duplicateCityError withDelegate:self];
+            [self didCancelCity:theCity];
+            return;
+        }
+    }
+    
     [self.tableData addObject:theCity];
     NSArray *sortedCities = [[DataManager defaultDataManager] sortCitiesByCountry:self.tableData];
     self.tableData = [NSMutableArray arrayWithArray:sortedCities];

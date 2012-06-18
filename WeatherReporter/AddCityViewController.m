@@ -34,6 +34,7 @@
 @synthesize activityIndicator;
 @synthesize getLocationBtn;
 @synthesize isCityFound;
+@synthesize isGoingBackToParentView;
 
 - (void)dealloc {
     [activityIndicator release];
@@ -76,11 +77,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setIsCityFound:NO];
+    self.isGoingBackToParentView = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    if (![self isCityValid]) {
+    if (![self isCityValid] && isGoingBackToParentView) {
         if ([self.delegate respondsToSelector:@selector(didCancelCity:)]) {
             [self.delegate didCancelCity:self.city];
         }
@@ -156,6 +158,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.isCityFound = NO;
     if (textField.tag == 1) {
+        self.isGoingBackToParentView = NO;
         [textField resignFirstResponder];
         CountyPickerTableViewController *countryPickerViewController = [[CountyPickerTableViewController alloc] initWithStyle:UITableViewStylePlain];
         countryPickerViewController.delegate = self;
@@ -167,6 +170,7 @@
 # pragma mark - CountryPickerDelegate methods
 
 - (void)didSelectCountry:(NSString *)country {
+    self.isGoingBackToParentView = YES;
     countryField.text = country;
     if (![self.cityNameField.text isEqualToString:emptyString]) {
         [self requestLatitudeAndLongitudeForCity:self.cityNameField.text inCountry:country];

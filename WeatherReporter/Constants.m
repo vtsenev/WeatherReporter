@@ -29,6 +29,7 @@ NSString *const missingFieldsError = @"Please, fill in fields!";
 NSString *const invalidCityErrorType = @"Insufficient Information";
 NSString *const invalidCityError = @"Type a city name and select a country.";
 NSString *const cityNotFoundError = @"One of the fields is missing or city is not in database.";
+NSString *const duplicateCityError = @"City already exists in your collection.";
 NSString *const profileUpdatedTitle = @"Profile Updated";
 NSString *const profileUpdatedMessage = @"Your settings have been updated.";
 
