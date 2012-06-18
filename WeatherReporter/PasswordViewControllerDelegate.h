@@ -10,7 +10,6 @@
 
 @protocol PasswordViewControllerDelegate <NSObject>
 
-- (void) dismissPasswordView:(UIView *)view;
 - (void) confirmPassword:(NSString *)password;
 
 @end

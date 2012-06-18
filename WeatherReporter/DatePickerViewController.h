@@ -17,6 +17,4 @@
 - (IBAction)cancelDatePicker:(id)sender;
 - (IBAction)addDate:(id)sender;
 
-- (void)hideToBottomOfVeiw;
-- (void)appearFromBottomOfVeiw:(UIView *)view;
 @end

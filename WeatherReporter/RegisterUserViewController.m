@@ -9,15 +9,15 @@
 #import "RegisterUserViewController.h"
 #import "DatePickerViewController.h"
 #import "PasswordViewController.h"
+#import "CustomAnimationUtilities.h"
 #import "DataManager.h"
 #import "User.h"
 #import "JFBCrypt.h"
 
 NSString *const userWithThisUsernameExistsError = @"Username Already Exists";
-NSString *const requeredFieldAreEmptyError = @"Required Fileds Empty!";
+NSString *const requeredFieldAreEmptyError = @"Required Fields Empty!";
 
 @interface RegisterUserViewController ()
-- (IBAction)removeFromSuperviewView:(id)sender;
 - (void) showPasswordView;
 @end
 
@@ -91,7 +91,6 @@ NSString *const requeredFieldAreEmptyError = @"Required Fileds Empty!";
             NSLog(@"Incorrect username!");
         } else {   
             [self showPasswordView];
-//            [self displayPasswordAlertView];
         }
     }
 }
@@ -108,24 +107,14 @@ NSString *const requeredFieldAreEmptyError = @"Required Fileds Empty!";
     return success;
 }
 
-- (void)displayPasswordAlertView {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Login" message:@""
-                                                   delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Submit", nil];
-    
-    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [[alert textFieldAtIndex:0] setPlaceholder:@"password"];
-    [[alert textFieldAtIndex:0] setSecureTextEntry:YES];
-    [[alert textFieldAtIndex:1] setPlaceholder:@"confirm password"];
-    
-    [alert show];
-}
 
 - (void)showPasswordView{
     
     PasswordViewController *passViewController = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
     passViewController.delegate = self;
-    [passViewController appearFromBottomOfVeiw:self.view];
-//    [self appearFromBottomForView:passViewController.view];
+    [CustomAnimationUtilities appearView:passViewController.view 
+                        FromBottomOfView:self.navigationController.view withHeight:480 withDuration:0.4];
+
 }
 
 
@@ -173,8 +162,7 @@ NSString *const requeredFieldAreEmptyError = @"Required Fileds Empty!";
         [textField resignFirstResponder];
         DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
         datePickerViewController.delegate = self;
-        [datePickerViewController appearFromBottomOfVeiw:self.navigationController.view];
-//        [self appearFromBottomForView:datePickerViewController.view];
+        [CustomAnimationUtilities appearView:datePickerViewController.view FromBottomOfView:self.navigationController.view withHeight:480 withDuration:0.4];
     }
     
 }
