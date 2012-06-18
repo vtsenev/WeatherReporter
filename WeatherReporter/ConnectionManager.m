@@ -43,7 +43,7 @@ static ConnectionManager *defaultConnectionManager = nil;
 }
 
 + (id)allocWithZone:(NSZone *)zone {
-    return [self defaultConnectionManager];
+    return [[self defaultConnectionManager] retain];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -94,12 +94,15 @@ static ConnectionManager *defaultConnectionManager = nil;
         WeatherParser *weatherParser = [[WeatherParser alloc] init];
 
         CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createForecastURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:weatherParser];
+        [weatherParser release];
         
         CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+        [newRequest release];
         [newConnection.delegates addObject:delegate];
         newConnection.connectionTag = tagString;
         
         [connectionDict setObject:newConnection forKey:tagString];
+        [newConnection release];
     } else {
         [customConnection.delegates addObject:delegate];
     }
@@ -114,12 +117,15 @@ static ConnectionManager *defaultConnectionManager = nil;
         GeoLocationParser *geoLocationParser = [[GeoLocationParser alloc] init];
         
         CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createGeoLocationURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:geoLocationParser];
+        [geoLocationParser release];
         
         CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+        [newRequest release];
         [newConnection.delegates addObject:delegate];
         newConnection.connectionTag = tagString;
         
         [connectionDict setObject:newConnection forKey:tagString];
+        [newConnection release];
     } else {
         [customConnection.delegates addObject:delegate];
     }
@@ -155,6 +161,7 @@ static ConnectionManager *defaultConnectionManager = nil;
     CustomConnection *customConnection = (CustomConnection *)connection;
     NSString *dataStr = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
     [customConnection.customRequest.basicParser parseResponseWithString:dataStr withDelegate:self withConnectionTag:customConnection.connectionTag];
+    [dataStr release];
 }
 
 # pragma mark - BasicParserDelegate methods

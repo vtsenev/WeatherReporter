@@ -62,12 +62,14 @@
             weatherPeriod.detailedForecast =  [NSString stringWithFormat:@"%@\n%@", dayDetails, nightDetails];
             
             [weatherResponse.weatherPeriods addObject:weatherPeriod];
+            [weatherPeriod release];
             period += 2;
         }
         
         if ([delegate respondsToSelector:@selector(parserDidSucceedWithData:withConnectionTag:)]) {
             [delegate parserDidSucceedWithData:weatherResponse withConnectionTag:connectionTag];
         }
+        [weatherResponse release];
     }
     else {
         if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]) {

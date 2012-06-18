@@ -40,8 +40,9 @@
             if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]) {
                 NSLog(@"Data: %@", dataString);
                 [delegate parserDidFailWithError:@"Response is not of the expected format." withConnectionTag:connectionTag];
-            }   
+            }
         }
+        [geoLocationResponse release];
     }
     else {
         
