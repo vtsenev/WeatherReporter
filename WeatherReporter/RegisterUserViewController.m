@@ -33,6 +33,7 @@
 @synthesize user;
 @synthesize birthdayDate;
 @synthesize delegate;
+@synthesize keyboardVisible;
 
 - (void)dealloc {
     [user release];
@@ -73,6 +74,19 @@
     self.scrollView.contentSize = self.view.frame.size;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    keyboardVisible = NO;
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewWillDisappear:animated];
+    
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -82,7 +96,7 @@
     if ([self.usernameField.text isEqualToString:emptyString] || [self.firstnameField.text isEqualToString:emptyString] ||
             [self.lastnameField.text isEqualToString:emptyString] || [self.dateOfBirthField.text isEqualToString:emptyString]){
         
-        [self displayAlertWithTitle:requeredFieldAreEmptyError alertMessage:requeredFieldAreEmptyError];
+        [self displayAlertWithTitle:requeredFieldAreEmptyError alertMessage:missingFieldsError];
     }
     else{
         BOOL isUsernameExists = [[DataManager defaultDataManager] checkIfUserExistsWithUsername:self.usernameField.text];
@@ -103,7 +117,7 @@
     [alert release];
 }
 
-- (void)showPasswordView{
+- (void)showPasswordView {
     
     PasswordViewController *passViewController = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
     passViewController.delegate = self;
@@ -114,7 +128,7 @@
 
 #pragma mark - DatePickerViewController delegate methods
 
-- (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date{
+- (void)datePickerController:(id)datePickerViewController didPickDate:(NSDate *)date {
     self.birthdayDate = date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:dateFormat];
@@ -125,7 +139,7 @@
 
 #pragma mark - PasswordViewController Delegate Methods
 
-- (void)confirmPassword:(NSString *)password{
+- (void)confirmPassword:(NSString *)password {
     
     User *newUser = [[DataManager defaultDataManager] addUser];
     
@@ -146,27 +160,46 @@
 
 #pragma mark - UITextFieldDelegate methods
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if(textField.tag == 1)
-    { 
-        [self.view endEditing:YES];
-        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
-        datePickerViewController.delegate = self;
-        [CustomAnimationUtilities appearView:datePickerViewController.view FromBottomOfView:self.navigationController.view withHeight:480 withDuration:0.4];
-        return YES;
-    }
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    NSLog(@"dsf");
-}
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+//    if(textField.tag == 1)
+//    { 
+//        [self.view endEditing:YES];
+//        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+//        datePickerViewController.delegate = self;
+//        [CustomAnimationUtilities appearView:datePickerViewController.view FromBottomOfView:self.navigationController.view withHeight:480 withDuration:0.4];
+//        return YES;
+//    }
+//    return YES;
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     BOOL success = [textField resignFirstResponder];
     return success;
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    if(textField.tag == 1){
+        for(UIView *subView in self.scrollView.subviews){
+            if([subView isKindOfClass:[UITextField class]] && subView.isFirstResponder){// && (subView.tag !=1)){
+                [subView resignFirstResponder];
+            }
+        }
+        DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
+        datePickerViewController.delegate = self;
+        [CustomAnimationUtilities appearView:datePickerViewController.view FromBottomOfView:self.navigationController.view withHeight:480 withDuration:0.4];
+        
+        return YES;
+    }
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    NSLog(@"sad");
+    //If we begin editing in dateOfBirthField
+    if(textField.tag == 1){
+        [textField resignFirstResponder];
+    }
+}
 
 #pragma mark - Private methods
 
@@ -179,4 +212,43 @@
     return nil;
 }
 
+#pragma mark - Keyboard handlers
+
+-(void)keyboardDidShow:(NSNotification *)notif
+{
+    if(keyboardVisible)
+    {
+        return;
+    }
+    
+    //Get the origin of the keyboard when it sinishes animating
+    NSDictionary* info = [notif userInfo ]; 
+    NSValue* aValue = [info objectForKey:UIKeyboardFrameEndUserInfoKey ];
+    
+    //Get the top of the keyboard in view's coordinate system.
+    //We need to set the bottom of the scroll view to line up with it
+    
+    CGRect keyboardRect = [aValue CGRectValue ];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil ];
+    CGFloat keyboardTop = keyboardRect.origin.y;        
+    //Resize the scroll view to make room for the keyboard
+    
+    CGRect viewFrame = self.view.bounds;
+    viewFrame.size.height = keyboardTop - self.view.bounds.origin.y;    
+    self.scrollView.frame = viewFrame;
+    keyboardVisible = YES; 
+    
+    
+}
+
+-(void)keyboardDidHide:(NSNotification *)notif{
+    if(!keyboardVisible){
+        return;        
+    }
+    
+    //Resize the scroll view back to the full size of our view
+    self.scrollView.frame = self.view.bounds;
+    keyboardVisible = NO;
+    
+}
 @end
