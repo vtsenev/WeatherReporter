@@ -30,6 +30,4 @@
 
 @property (assign) id<RegisterUserDelegate> delegate;
 
-- (IBAction)registerNewUser:(id)sender;
-
 @end

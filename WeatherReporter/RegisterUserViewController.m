@@ -19,6 +19,7 @@
 
 - (void) showPasswordView;
 - (NSString *)hashPassword:(NSString *)password;
+- (IBAction)registerNewUser:(id)sender;
 
 @end
 
@@ -102,11 +103,6 @@
     [alert release];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    BOOL success = [textField resignFirstResponder];
-    return success;
-}
-
 - (void)showPasswordView{
     
     PasswordViewController *passViewController = [[PasswordViewController alloc] initWithNibName:@"PasswordViewController" bundle:nil];
@@ -148,18 +144,31 @@
     }
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    //If we begin editing in dateOfBirthField
+#pragma mark - UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if(textField.tag == 1)
     { 
-        [textField resignFirstResponder];
+        [self.view endEditing:YES];
         DatePickerViewController* datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
         datePickerViewController.delegate = self;
         [CustomAnimationUtilities appearView:datePickerViewController.view FromBottomOfView:self.navigationController.view withHeight:480 withDuration:0.4];
+        return YES;
     }
-    
+    return YES;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    NSLog(@"dsf");
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    BOOL success = [textField resignFirstResponder];
+    return success;
+}
+
+
+#pragma mark - Private methods
 
 - (NSString *)hashPassword:(NSString *)password {
     if (![password isEqualToString:emptyString] && password.length >= minPassLength) {

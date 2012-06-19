@@ -21,6 +21,8 @@
 @interface WeatherTableViewController ()
 
 @property (nonatomic, retain) UIView *disableViewOverlay;
+@property (retain, nonatomic) NSMutableArray *tableData;
+@property (retain, nonatomic) UISearchBar *theSearchBar;
 
 - (void)addCity;
 - (IBAction)showMapForCity:(id)sender;
