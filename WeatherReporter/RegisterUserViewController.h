@@ -28,8 +28,12 @@
 @property (retain, nonatomic) UITextField *confirmPasswordField;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic, assign) BOOL keyboardVisible;
 @property (assign) id<RegisterUserDelegate> delegate;
 
 - (IBAction)registerNewUser:(id)sender;
+
+- (void)keyboardDidShow:(NSNotification *)notif;
+- (void)keyboardDidHide:(NSNotification *)notif;
 
 @end
