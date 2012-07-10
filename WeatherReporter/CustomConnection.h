@@ -14,8 +14,10 @@
 @interface CustomConnection : NSURLConnection
 
 @property (nonatomic, retain) CustomRequest *customRequest;
-@property (nonatomic, assign) NSMutableArray *delegates;
-@property (nonatomic, retain) NSData *receivedData;
+@property (nonatomic, retain) NSMutableArray *delegates;
 @property (nonatomic, retain) NSString *connectionTag;
+@property (nonatomic, assign) id<BasicParserDelegate> delegate;
+
+- (id)initWithRequest:(NSURLRequest *)request startImmediately:(BOOL)startImmediately;
 
 @end

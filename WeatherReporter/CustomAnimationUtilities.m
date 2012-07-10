@@ -44,7 +44,7 @@
     viewFrame.origin.y += height;
     view.frame = viewFrame;
     [UIView commitAnimations];
-    [self performSelector:@selector(removeFromSuperviewView:) withObject:view afterDelay:0.5];    
+    [self performSelector:@selector(removeFromSuperviewView:) withObject:view afterDelay:duration];
 }
 
 + (void)removeFromSuperviewView:(id)sender {

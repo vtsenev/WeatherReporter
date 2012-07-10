@@ -44,14 +44,6 @@
         }
         [geoLocationResponse release];
     }
-    else {
-        
-        if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]){
-            NSLog(@"Data: %@", dataString);
-            [delegate parserDidFailWithError:self.basicResponse.errorMessage withConnectionTag:connectionTag];
-        }     
-    }
-    
 }
 
 @end

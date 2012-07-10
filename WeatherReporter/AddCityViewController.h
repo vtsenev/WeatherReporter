@@ -12,21 +12,12 @@
 #import "CustomConnectionDelegate.h"
 
 @class City;
+@class User;
 
 @interface AddCityViewController : UIViewController <UITextFieldDelegate, CountryPickerDelegate, CustomConnectionDelegate>
 
+@property (nonatomic, retain) User *user;
 @property (nonatomic, retain) City *city;
-@property (retain, nonatomic) IBOutlet UITextField *cityNameField;
-@property (retain, nonatomic) IBOutlet UITextField *countryField;
-@property (retain, nonatomic) IBOutlet UITextField *latitudeField;
-@property (retain, nonatomic) IBOutlet UITextField *longitudeField;
 @property (nonatomic, assign) id<AddCityDelegate> delegate;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
-@property (retain, nonatomic) IBOutlet UIButton *getLocationBtn;
-@property (nonatomic) BOOL isCityFound;
-@property (nonatomic) BOOL isGoingBackToParentView;
-
-- (IBAction)addCity:(id)sender;
-- (IBAction)getLocation:(id)sender;
 
 @end

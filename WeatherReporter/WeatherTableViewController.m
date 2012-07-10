@@ -21,7 +21,6 @@
 @interface WeatherTableViewController ()
 
 @property (nonatomic, retain) UIView *disableViewOverlay;
-@property (retain, nonatomic) NSMutableArray *tableData;
 @property (retain, nonatomic) UISearchBar *theSearchBar;
 
 - (void)addCity;
@@ -96,9 +95,10 @@
 }
 
 - (void)addCity {
-    City *newCity = [[DataManager defaultDataManager] addCityForUsername:self.user.username];
+    //City *newCity = [[DataManager defaultDataManager] addCityForUsername:self.user.username];
     AddCityViewController *addCityViewController = [[AddCityViewController alloc] initWithNibName:@"AddCityViewController" bundle:nil];
-    addCityViewController.city = newCity;
+    //addCityViewController.city = newCity;
+    addCityViewController.user = self.user;
     addCityViewController.delegate = self;
     
     [self.navigationController pushViewController:addCityViewController animated:YES];
@@ -243,7 +243,14 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchBar.text forUsername:self.user.username];
-	results = [[DataManager defaultDataManager] sortCitiesByCountry:results];
+    
+    NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsSortByKey];
+    if ([sortBy isEqualToString:@"country"]) {
+        results = [[DataManager defaultDataManager] sortCitiesByCountry:results];
+    } else if ([sortBy isEqualToString:@"city"]) {
+        results = [[DataManager defaultDataManager] sortCitiesByCityName:results];
+    }
+	
     [self searchBar:searchBar activate:NO];
 	
     [self.tableData removeAllObjects];
@@ -263,7 +270,13 @@
 - (void)searchBar:(UISearchBar *)searchBar
     textDidChange:(NSString *)searchText {
     NSArray *results = [[DataManager defaultDataManager] searchCitiesForCity:searchText forUsername:self.user.username];
-    results = [[DataManager defaultDataManager] sortCitiesByCountry:results];
+    
+    NSString *sortBy = [[NSUserDefaults standardUserDefaults] valueForKey:userDefaultsSortByKey];
+    if ([sortBy isEqualToString:@"country"]) {
+        results = [[DataManager defaultDataManager] sortCitiesByCountry:results];
+    } else if ([sortBy isEqualToString:@"city"]) {
+        results = [[DataManager defaultDataManager] sortCitiesByCityName:results];
+    }
     
     [self.tableData removeAllObjects];
     [self.tableData addObjectsFromArray:results];

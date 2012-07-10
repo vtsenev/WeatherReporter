@@ -14,10 +14,14 @@ NSString *const sortByDefault = @"country";
 NSString *const sortByCountry = @"country";
 NSString *const sortByCity = @"city";
 
+#pragma mark - UserDefaults keys
+
 NSString *const userDefaultsPasswordKey = @"password";
 NSString *const userDefaultsUsernameKey = @"username";
 NSString *const userDefaultsSortByKey = @"sortBy";
 NSString *const userDefaultsRememberMeKey = @"rememberMe";
+
+#pragma mark - Strings
 
 NSString *const loginErrorType = @"Login error";
 NSString *const wrongPasswordError = @"Incorrect Password!\n Try Again!";
@@ -42,6 +46,7 @@ NSInteger const minPassLength = 4;
 
 NSInteger const dontRememberMe = 0;
 NSInteger const doRememberMe = 1;
+
 
 float const defaultMapSpan = 0.200;
 

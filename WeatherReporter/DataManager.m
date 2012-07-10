@@ -51,29 +51,30 @@ static DataManager *defaultDataManager = nil;
         return defaultDataManager;
     }
     self = [super init];
-    
-    model = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
-    
-    NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    
-    NSString *path = [self pathInDocumentDirectory:@"db.sqlite"];
-    NSURL *storeURL = [NSURL fileURLWithPath:path];
-    
-    NSError *error = nil;
-    
-    if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        [NSException raise:@"Open failed" format:@"Reason: %@", [error localizedDescription]];
+    if (self) {
+        model = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+        
+        NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+        
+        NSString *path = [self pathInDocumentDirectory:@"db.sqlite"];
+        NSURL *storeURL = [NSURL fileURLWithPath:path];
+        
+        NSError *error = nil;
+        
+        if (![psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+            [NSException raise:@"Open failed" format:@"Reason: %@", [error localizedDescription]];
+        }
+        
+        context = [[NSManagedObjectContext alloc] init];
+        [context setPersistentStoreCoordinator:psc];
+        [psc release];
+        
+        [context setUndoManager:nil];
+        
+        countries = [[NSArray alloc] initWithObjects:@"Austria", @"Bulgaria", @"Denmark", @"France",
+                     @"Germany", @"Italy", @"Netherlands", @"Poland", @"Spain", @"Sweden",
+                     @"Switzerland", @"UK", nil];
     }
-    
-    context = [[NSManagedObjectContext alloc] init];
-    [context setPersistentStoreCoordinator:psc];
-    [psc release];
-    
-    [context setUndoManager:nil];
-    
-    countries = [[NSArray alloc] initWithObjects:@"Austria", @"Bulgaria", @"Denmark", @"France",
-                 @"Germany", @"Italy", @"Netherlands", @"Poland", @"Spain", @"Sweden",
-                 @"Switzerland", @"UK", nil];
     
     return self;
 }
@@ -123,12 +124,7 @@ static DataManager *defaultDataManager = nil;
 //- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError{
 
 - (BOOL)checkIfUserExistsWithUsername:(NSString *)username {
-    User *user = [self fetchUserForUsername:username];
-    if (user) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return [self fetchUserForUsername:username] != nil;
 }
 
 - (User *)fetchUserForUsername:(NSString *)username {

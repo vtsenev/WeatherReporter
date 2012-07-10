@@ -14,13 +14,26 @@
 #import "ConnectionManager.h"
 #import "Constants.h"
 #import "Helpers.h"
+#import "User.h"
 
 @interface AddCityViewController ()
+
+@property (retain, nonatomic) IBOutlet UITextField *cityNameField;
+@property (retain, nonatomic) IBOutlet UITextField *countryField;
+@property (retain, nonatomic) IBOutlet UITextField *latitudeField;
+@property (retain, nonatomic) IBOutlet UITextField *longitudeField;
+@property (nonatomic, retain) UIView *activityIndicator;
+@property (retain, nonatomic) IBOutlet UIButton *getLocationBtn;
+@property (nonatomic, assign) BOOL isCityFound;
+@property (nonatomic, assign) BOOL isGoingBackToParentView;
 
 - (void)initializeActivityIndicator;
 - (void)userInteractionEnabled:(BOOL)isEnabled;
 - (BOOL)isCityValid;
 - (void)updateCity;
+
+- (IBAction)addCity:(id)sender;
+- (IBAction)getLocation:(id)sender;
 
 @end
 
@@ -35,6 +48,7 @@
 @synthesize getLocationBtn;
 @synthesize isCityFound;
 @synthesize isGoingBackToParentView;
+@synthesize user;
 
 - (void)dealloc {
     [activityIndicator release];
@@ -62,7 +76,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [self.navigationItem setTitle:@"Add City"];
-        UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCity:)];
+        UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(addCity:)];
         [self.navigationItem setRightBarButtonItem:addBtn];
         [addBtn release];
     }
@@ -82,11 +96,11 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    if (![self isCityValid] && isGoingBackToParentView) {
-        if ([self.delegate respondsToSelector:@selector(didCancelCity:)]) {
-            [self.delegate didCancelCity:self.city];
-        }
-    }
+//    if (![self isCityValid] && isGoingBackToParentView) {
+//        if ([self.delegate respondsToSelector:@selector(didCancelCity:)]) {
+//            [self.delegate didCancelCity:self.city];
+//        }
+//    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -94,12 +108,10 @@
 }
 
 - (void)initializeActivityIndicator {
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    CGPoint center = self.view.center;
-    center.y -= 50;
-    [self.activityIndicator setColor:[UIColor darkGrayColor]];
-    [self.activityIndicator setCenter:center];
-    [self.activityIndicator startAnimating];
+    self.activityIndicator = [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
+    CGRect newFrame = self.activityIndicator.frame;
+    newFrame.size.height = self.view.frame.size.height - 49.0f;
+    self.activityIndicator.frame = newFrame;
 }
 
 - (void)userInteractionEnabled:(BOOL)isEnabled {
@@ -111,6 +123,8 @@
 }
 
 - (IBAction)getLocation:(id)sender {
+    self.latitudeField.text = @"";
+    self.longitudeField.text = @"";
     if (([self.cityNameField.text isEqualToString:emptyString]) || ([self.countryField.text isEqualToString:emptyString])) {
         self.isCityFound = NO;
         [Helpers showAlertViewWithTitle:invalidCityErrorType withMessage:invalidCityError withDelegate:self];
@@ -120,7 +134,7 @@
 }
 
 - (BOOL)isCityValid {
-    BOOL validity = YES && self.isCityFound;
+    BOOL validity = self.isCityFound;
     if ([self.cityNameField.text isEqualToString:emptyString] || [self.countryField.text isEqualToString:emptyString] ||
         [self.latitudeField.text isEqualToString:emptyString] || [self.longitudeField.text isEqualToString:emptyString]) {
         return NO;
@@ -130,10 +144,13 @@
 
 - (IBAction)addCity:(id)sender {
     if ([self isCityValid]) {
+        self.city = [[DataManager defaultDataManager] addCityForUsername:self.user.username];
         [self updateCity];
+        
         if ([self.delegate respondsToSelector:@selector(didUpdateCity:)]) {
             [self.delegate didUpdateCity:self.city];
         }
+        
         [self.navigationController popViewControllerAnimated:YES];
     } else {
         self.isCityFound = NO;

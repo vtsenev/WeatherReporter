@@ -159,7 +159,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (![self.usernameField.text isEqualToString:emptyString] && ![self.passwordField.text isEqualToString:emptyString] && textField.tag == 1) {
-        [self login:nil];
+        [self login:self];
     }
 }
 

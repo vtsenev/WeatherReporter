@@ -15,5 +15,6 @@
 @interface WeatherTableViewController : UITableViewController <UISearchBarDelegate, LoginViewControllerDelegate, AddCityDelegate>
 
 @property (retain, nonatomic) User *user;
+@property (retain, nonatomic) NSMutableArray *tableData;
 
 @end

@@ -40,6 +40,10 @@
     } else {
         self.basicResponse.errorMessage = [errorDict objectForKey:@"description"];
         self.basicResponse.isSuccessful = NO;
+        if ([delegate respondsToSelector:@selector(parserDidFailWithError:withConnectionTag:)]){
+            NSLog(@"Data: %@", dataString);
+            [delegate parserDidFailWithError:self.basicResponse.errorMessage withConnectionTag:connectionTag];
+        }
     }
 }
 

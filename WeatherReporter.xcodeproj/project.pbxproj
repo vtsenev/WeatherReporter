@@ -76,6 +76,7 @@
 		A0DC158C158B6469003DD61F /* Poland.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1587158B6469003DD61F /* Poland.png */; };
 		A0DC158E158B67E7003DD61F /* Italy.png in Resources */ = {isa = PBXBuildFile; fileRef = A0DC158D158B67E7003DD61F /* Italy.png */; };
 		A0DC1593158B8DFD003DD61F /* SortOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */; };
+		A0E210F91599F409003BDA42 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E210F81599F409003BDA42 /* LoadingView.xib */; };
 		A0E346E2158601E500C59EF5 /* WeatherPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E1158601E500C59EF5 /* WeatherPeriod.m */; };
 		A0E346E6158603FE00C59EF5 /* AddCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E346E4158603FE00C59EF5 /* AddCityViewController.m */; };
 		A0E346E7158603FE00C59EF5 /* AddCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */; };
@@ -226,6 +227,7 @@
 		A0DC1587158B6469003DD61F /* Poland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poland.png; sourceTree = "<group>"; };
 		A0DC158D158B67E7003DD61F /* Italy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Italy.png; sourceTree = "<group>"; };
 		A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SortOptionsViewController.xib; sourceTree = "<group>"; };
+		A0E210F81599F409003BDA42 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		A0E346E0158601E500C59EF5 /* WeatherPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherPeriod.h; sourceTree = "<group>"; };
 		A0E346E1158601E500C59EF5 /* WeatherPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherPeriod.m; sourceTree = "<group>"; };
 		A0E346E3158603FE00C59EF5 /* AddCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCityViewController.h; sourceTree = "<group>"; };
@@ -340,8 +342,17 @@
 		A08569D615820DC400B06FA2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A0E346EA1586041D00C59EF5 /* RegisterUserViewController.xib */,
+				A0E346F41586046200C59EF5 /* DatePickerViewController.xib */,
+				A08569D915820DE500B06FA2 /* ProfileViewController.xib */,
+				A0E346EF1586043100C59EF5 /* LoginViewController.xib */,
+				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
+				3E834D3215890263003D42DC /* PasswordViewController.xib */,
+				A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */,
+				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
 				A0E346E3158603FE00C59EF5 /* AddCityViewController.h */,
 				A0E346E4158603FE00C59EF5 /* AddCityViewController.m */,
+				A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */,
 				A0E346F71586048A00C59EF5 /* CountyPickerTableViewController.h */,
 				A0E346F81586048A00C59EF5 /* CountyPickerTableViewController.m */,
 				A0E346F21586046200C59EF5 /* DatePickerViewController.h */,
@@ -371,20 +382,11 @@
 		A08569DC15820E1400B06FA2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A0E346EA1586041D00C59EF5 /* RegisterUserViewController.xib */,
-				A0E346F41586046200C59EF5 /* DatePickerViewController.xib */,
-				A08569D915820DE500B06FA2 /* ProfileViewController.xib */,
-				A0E346EF1586043100C59EF5 /* LoginViewController.xib */,
-				A0E346E5158603FE00C59EF5 /* AddCityViewController.xib */,
-				A0E3470315861DF300C59EF5 /* MapViewController.xib */,
-				3E834D3215890263003D42DC /* PasswordViewController.xib */,
-				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
-				A0DC1591158B8DFC003DD61F /* SortOptionsViewController.xib */,
-				A0AFCFDB1588FEF50065DFC0 /* DetailedForecastViewController.xib */,
 				A0B76515158A0FCF00E997E4 /* CustomLabel.h */,
 				A0B76516158A0FCF00E997E4 /* CustomLabel.m */,
 				A0AFCFBA1588CC660065DFC0 /* MapButton.h */,
 				A0AFCFBB1588CC660065DFC0 /* MapButton.m */,
+				A0E210F81599F409003BDA42 /* LoadingView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -667,6 +669,7 @@
 				A0DC158C158B6469003DD61F /* Poland.png in Resources */,
 				A0DC158E158B67E7003DD61F /* Italy.png in Resources */,
 				A0DC1593158B8DFD003DD61F /* SortOptionsViewController.xib in Resources */,
+				A0E210F91599F409003BDA42 /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

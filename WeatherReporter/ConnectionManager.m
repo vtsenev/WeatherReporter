@@ -96,7 +96,9 @@ static ConnectionManager *defaultConnectionManager = nil;
         CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createForecastURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:weatherParser];
         [weatherParser release];
         
-        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+//        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest startImmediately:YES];
+        newConnection.delegate = self;
         [newRequest release];
         [newConnection.delegates addObject:delegate];
         newConnection.connectionTag = tagString;
@@ -119,7 +121,9 @@ static ConnectionManager *defaultConnectionManager = nil;
         CustomRequest *newRequest = [[CustomRequest alloc] initWithURL:[self createGeoLocationURLForCity:city inCountry:country] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10 parser:geoLocationParser];
         [geoLocationParser release];
         
-        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+//        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest delegate:self startImmediately:YES];
+        CustomConnection *newConnection = [[CustomConnection alloc] initWithRequest:newRequest startImmediately:YES];
+        newConnection.delegate = self;
         [newRequest release];
         [newConnection.delegates addObject:delegate];
         newConnection.connectionTag = tagString;
@@ -131,39 +135,6 @@ static ConnectionManager *defaultConnectionManager = nil;
     }
 }
 
-#pragma mark NSURLConnection delegate methods
-
-- (NSURLRequest *)connection:(NSURLConnection *)connection
- 			 willSendRequest:(NSURLRequest *)request
- 			redirectResponse:(NSURLResponse *)redirectResponse {
- 	NSLog(@"Connection received data, retain count");
-    return request;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response  {
-    NSLog(@"Request received response.");
-    receivedData = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data  {
-    NSLog(@"Request received data.");
-    [self.receivedData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [receivedData release];
- 	NSLog(@"Error receiving response: %@", error);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection  {
-    NSLog(@"Succeeded! Received %d bytes of data",[self.receivedData length]);
-    
-    CustomConnection *customConnection = (CustomConnection *)connection;
-    NSString *dataStr = [[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding];
-    [customConnection.customRequest.basicParser parseResponseWithString:dataStr withDelegate:self withConnectionTag:customConnection.connectionTag];
-    [dataStr release];
-}
-
 # pragma mark - BasicParserDelegate methods
 
 - (void)parserDidSucceedWithData:(NSObject *)parsedData withConnectionTag:(NSString *)connectionTag {
@@ -171,10 +142,10 @@ static ConnectionManager *defaultConnectionManager = nil;
 
     for (id<CustomConnectionDelegate> delegate in customConnection.delegates) {
         if ([delegate respondsToSelector:@selector(connectionDidSucceedWithParsedData:)]) {
-            GeoLocationResponse *gr = (GeoLocationResponse *)parsedData;
-            BasicResponse *br = [gr basicResponse];
-            
-            NSLog(@"Success! BOOL: %i", [br isSuccessful]);
+//            GeoLocationResponse *gr = (GeoLocationResponse *)parsedData;
+//            BasicResponse *br = [gr basicResponse];
+//            
+//            NSLog(@"Success! BOOL: %i", [br isSuccessful]);
             [delegate connectionDidSucceedWithParsedData:parsedData];
         }
     }
